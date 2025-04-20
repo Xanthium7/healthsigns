@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,18 +15,60 @@ import {
   Database,
   Star,
   CheckCircle,
+  Sun,
+  Moon,
+  Menu,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { Sphere } from "@/components/ui/3d-sphere";
+import Link from "next/link";
 
 // Animated components
 const MotionDiv = motion.div;
 
 export default function Home() {
+  // Theme state
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // Animation controls
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  // Initialize theme from localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme") as
+        | "light"
+        | "dark"
+        | null;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+
+      const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+      setTheme(initialTheme);
+
+      if (initialTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, []);
+
+  // Theme toggle function
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", newTheme);
+  };
 
   useEffect(() => {
     if (isInView) {
@@ -55,7 +97,124 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
-      {/* Hero Section */}
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-800/50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <div className="flex items-center">
+              <span className="text-xl font-bold gradient-text">
+                HealthSigns
+              </span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link
+                href="/"
+                className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              >
+                About
+              </Link>
+              <Link
+                href="/rpm"
+                className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              >
+                RPM
+              </Link>
+
+              {/* Theme Toggle */}
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full w-9 h-9 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+                aria-label="Toggle theme"
+              >
+                {theme === "light" ? (
+                  <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
+                ) : (
+                  <Sun className="h-4 w-4 text-yellow-500" />
+                )}
+              </Button>
+
+              <Link href="/contact">
+                <Button variant="gradient" size="sm" className="rounded-full">
+                  Contact
+                </Button>
+              </Link>
+            </nav>
+
+            {/* Mobile menu button and theme toggle */}
+            <div className="flex items-center space-x-4 md:hidden">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full w-9 h-9 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+                aria-label="Toggle theme"
+              >
+                {theme === "light" ? (
+                  <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
+                ) : (
+                  <Sun className="h-4 w-4 text-yellow-500" />
+                )}
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-gray-700 dark:text-gray-200"
+                aria-label="Menu"
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile menu dropdown */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800">
+              <nav className="flex flex-col space-y-4">
+                <Link
+                  href="/"
+                  className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-4 py-2"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-4 py-2"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/rpm"
+                  className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-4 py-2"
+                >
+                  RPM
+                </Link>
+                <div className="px-4 pt-2">
+                  <Link href="/contact">
+                    <Button variant="gradient" className="w-full rounded-full">
+                      Contact
+                    </Button>
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section - Adjust padding to account for navbar */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-950">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-soft-glow opacity-70 pointer-events-none"></div>
@@ -69,7 +228,7 @@ export default function Home() {
               className="text-center lg:text-left"
             >
               <h1 className="mb-6 gradient-text text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Transforming Healthcare with AI-Powered Solutions
+                Transforming Healthcare
               </h1>
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 font-jakarta">
                 Our AI-powered Remote Patient Management system ensures
@@ -260,7 +419,16 @@ export default function Home() {
       </section>
 
       {/* About HealthSigns Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-gray-800 dark:via-gray-900 dark:to-indigo-950 relative overflow-hidden">
+      <section
+        className="py-20 relative overflow-hidden bg-fixed bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/e9/be/f1/e9bef1597ba75fbd276b2bfdff1eaea1.jpg')",
+        }}
+      >
+        {/* Semi-transparent gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/10 via-black/10 to-black-50/10 dark:from-gray-800/90 dark:via-gray-900/80 dark:to-indigo-950/90 pointer-events-none"></div>
+        {/* Dotted pattern overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -272,13 +440,13 @@ export default function Home() {
               className="order-2 lg:order-1"
             >
               <h2 className="mb-6 gradient-text">About HealthSigns</h2>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 font-jakarta">
+              <p className="text-gray-300 mb-6 font-jakarta">
                 At HealthSigns, our founders and team have deep healthcare
                 expertise and extensive experience in delivering health
                 services. We understand the challenges in healthcare—gaps in
                 care, delayed responses, and the need for continuous monitoring.
               </p>
-              <p className="text-gray-700 dark:text-gray-300 mb-8 font-jakarta">
+              <p className="text-gray-300 mb-8 font-jakarta">
                 Integrating AI into healthcare is crucial to bridge these gaps,
                 offering real-time monitoring, personalized care, and improved
                 clinical decision-making. Our human-centric approach ensures

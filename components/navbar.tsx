@@ -45,6 +45,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
+  const nodeRef = useRef(null); // Add a new ref for CSSTransition
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,7 +126,7 @@ const Navbar = () => {
               </NavLink>
             ))}
             <Button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              Get Started
+              Contact
             </Button>
           </nav>
 
@@ -145,6 +146,7 @@ const Navbar = () => {
           <CSSTransition
             in={isOpen}
             timeout={200}
+            nodeRef={nodeRef} // Add the nodeRef prop here
             classNames={{
               enter: "mobile-menu-enter",
               enterActive: "mobile-menu-enter-active",
@@ -153,7 +155,10 @@ const Navbar = () => {
             }}
             unmountOnExit
           >
-            <nav className="md:hidden mt-4 py-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-100/30 dark:border-gray-700/30">
+            <nav
+              ref={nodeRef}
+              className="md:hidden mt-4 py-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-100/30 dark:border-gray-700/30"
+            >
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
                   <NavLink
@@ -167,7 +172,7 @@ const Navbar = () => {
                 ))}
                 <div className="px-4 pt-2 pb-2">
                   <Button className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
-                    Get Started
+                    Contact
                   </Button>
                 </div>
               </div>
