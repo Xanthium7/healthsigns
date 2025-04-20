@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,60 +20,27 @@ import {
   Database,
   Star,
   CheckCircle,
-  Sun,
-  Moon,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
-import { Sphere } from "@/components/ui/3d-sphere";
-import Link from "next/link";
+
 import { VideoText } from "@/components/magicui/video-text";
 import Navbar from "@/components/navbar";
+import Link from "next/link";
 
 // Animated components
 const MotionDiv = motion.div;
 
 export default function Home() {
-  // Theme state
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
   // Animation controls
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  // Initialize theme from localStorage
+  // Force light mode
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | null;
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-      const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-      setTheme(initialTheme);
-
-      if (initialTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    }
+    // Always remove dark class to ensure light mode
+    document.documentElement.classList.remove("dark");
   }, []);
-
-  // Theme toggle function
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", newTheme);
-  };
 
   useEffect(() => {
     if (isInView) {
@@ -106,10 +73,10 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section - Adjust padding to account for navbar */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-950">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-purple-50 via-white to-indigo-50">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-soft-glow opacity-70 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent dark:from-gray-900 dark:to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <MotionDiv
@@ -128,13 +95,13 @@ export default function Home() {
                     loop={true}
                     fontWeight={"bold"}
                     className="mt-4"
-                    src="https://videos.pexels.com/video-files/25935021/11922056_360_360_24fps.mp4"
+                    src="https://videos.pexels.com/video-files/856882/856882-sd_640_360_24fps.mp4"
                   >
                     HEALTHCARE
                   </VideoText>
                 </div>
               </div>
-              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 font-jakarta">
+              <p className="text-lg md:text-xl text-gray-700 mb-8 font-jakarta">
                 Our AI-powered Remote Patient Management system ensures
                 real-time monitoring, that allows for early detection and timely
                 care, thus enhancing patient outcomes.
@@ -150,7 +117,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-purple-500 text-purple-500 hover:bg-purple-50 dark:hover:bg-gray-800 rounded-full transform transition-transform hover:scale-105"
+                  className="border-purple-500 text-purple-500 hover:bg-purple-50 rounded-full transform transition-transform hover:scale-105"
                 >
                   Partner with us
                 </Button>
@@ -179,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12  bg-white dark:bg-gray-900">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
@@ -192,26 +159,26 @@ export default function Home() {
               value="98%"
               label="Patient Satisfaction"
               icon={<Star className="h-6 w-6" />}
-              className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
               value="24/7"
               label="Continuous Monitoring"
               icon={<Activity className="h-6 w-6" />}
-              className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
               value="85%"
               label="Early Detection Rate"
               icon={<CheckCircle className="h-6 w-6" />}
-              className="bg-gradient-to-br z-10 backdrop-blur-sm from-purple-50/10 to-white/10 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gradient-to-br z-10 backdrop-blur-sm from-purple-50/10 to-white/10 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
             />
           </MotionDiv>
         </div>
       </section>
 
       {/* Why Partner Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <MotionDiv
             initial={{ opacity: 0, y: 30 }}
@@ -223,7 +190,7 @@ export default function Home() {
             <h2 className="mb-6 gradient-text text-3xl md:text-4xl font-medium tracking-tight">
               Why Partner with HealthSigns?
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 font-jakarta text-lg">
+            <p className="text-gray-700 font-jakarta text-lg">
               Unlock the full potential of your healthcare services by
               partnering with HealthSigns. Our innovative solutions and
               collaborative approach can help you provide top-notch remote
@@ -281,15 +248,15 @@ export default function Home() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gray-50/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl card-3d transform hover:-translate-y-1">
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gray-50/80 backdrop-blur-sm rounded-2xl card-3d transform hover:-translate-y-1">
                   <CardContent className="p-6">
-                    <div className="mb-4 bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full w-fit">
+                    <div className="mb-4 bg-purple-100 p-3 rounded-full w-fit">
                       {item.icon}
                     </div>
-                    <h3 className="mb-3 text-gray-900 dark:text-white text-xl font-semibold">
+                    <h3 className="mb-3 text-gray-900 text-xl font-semibold">
                       {item.title}
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 font-jakarta">
+                    <p className="text-gray-700 font-jakarta">
                       {item.description}
                     </p>
                   </CardContent>
@@ -305,11 +272,11 @@ export default function Home() {
         className="py-20 relative overflow-hidden bg-fixed bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://i.pinimg.com/736x/e9/be/f1/e9bef1597ba75fbd276b2bfdff1eaea1.jpg')",
+            "url('https://i.pinimg.com/736x/39/8a/12/398a12c880571668c6763527b5aeab20.jpg')",
         }}
       >
         {/* Semi-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/10 via-black/10 to-black-50/10 dark:from-gray-800/90 dark:via-gray-900/80 dark:to-indigo-950/90 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/10 via-black/10 to-black-50/10 pointer-events-none"></div>
         {/* Dotted pattern overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -321,7 +288,9 @@ export default function Home() {
               variants={fadeInUp}
               className="order-2 lg:order-1"
             >
-              <h2 className="mb-6 gradient-text">About HealthSigns</h2>
+              <h2 className="mb-6 gradient-text font-medium">
+                About HealthSigns
+              </h2>
               <p className="text-gray-300 mb-6 font-jakarta">
                 At HealthSigns, our founders and team have deep healthcare
                 expertise and extensive experience in delivering health
@@ -334,9 +303,11 @@ export default function Home() {
                 clinical decision-making. Our human-centric approach ensures
                 technology enhances compassionate care.
               </p>
-              <Button variant="gradient" className="rounded-full">
-                Learn More <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href={"/about"}>
+                <Button variant="gradient" className="rounded-full">
+                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </MotionDiv>
             <MotionDiv
               initial="hidden"
@@ -363,7 +334,7 @@ export default function Home() {
       </section>
 
       {/* Pricing & Careers Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <MotionDiv
@@ -371,19 +342,19 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-gradient-to-br from-purple-50 to-lavender-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-purple-100/50 dark:border-purple-900/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-gradient-to-br from-purple-50 to-lavender-50 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-purple-100/50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <h3 className="text-2xl font-medium mb-4 text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-medium mb-4 text-gray-900">
                 Pricing
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 font-jakarta">
+              <p className="text-gray-700 mb-6 font-jakarta">
                 Affordable, scalable, and designed to meet your needs, our
                 pricing plans ensure you get the best value for advanced patient
                 care.
               </p>
               <Button
                 variant="outline"
-                className="border-purple-500 text-purple-500 hover:bg-purple-50 dark:hover:bg-gray-800 rounded-full transform transition-transform hover:scale-105"
+                className="border-purple-500 text-purple-500 hover:bg-purple-50 rounded-full transform transition-transform hover:scale-105"
               >
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -398,19 +369,19 @@ export default function Home() {
                 delay: 0.2,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="bg-gradient-to-br from-lavender-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-indigo-100/50 dark:border-indigo-900/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-gradient-to-br from-lavender-50 to-purple-50 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-indigo-100/50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <h3 className="text-2xl font-medium mb-4 text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-medium mb-4 text-gray-900">
                 Careers
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 font-jakarta">
+              <p className="text-gray-700 mb-6 font-jakarta">
                 Joining HealthSigns offers a unique opportunity to be at the
                 forefront of healthcare innovation, where your work directly
                 contributes to the betterment of society.
               </p>
               <Button
                 variant="outline"
-                className="border-indigo-500 text-indigo-500 hover:bg-indigo-50 dark:hover:bg-gray-800 rounded-full transform transition-transform hover:scale-105"
+                className="border-indigo-500 text-indigo-500 hover:bg-indigo-50 rounded-full transform transition-transform hover:scale-105"
               >
                 Explore Careers <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

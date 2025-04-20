@@ -20,9 +20,7 @@ const NavLink = ({ href, children, isActive }: NavLinkProps) => {
       href={href}
       className={cn(
         "text-sm font-medium transition-colors relative group",
-        isActive
-          ? "text-purple-600 dark:text-purple-400"
-          : "text-gray-700 dark:text-gray-200 hover:text-purple-500 dark:hover:text-purple-400"
+        isActive ? "text-purple-600 " : "text-gray-700  hover:text-purple-500 "
       )}
     >
       {children}
@@ -109,7 +107,7 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/60 opacity-100 backdrop-blur-xl shadow-sm border-b border-gray-200/30 dark:bg-gray-900/70 dark:border-gray-700/30"
+          ? "bg-white/30 opacity-100 backdrop-blur-xl shadow-sm border-b border-gray-200/30 "
           : "bg-transparent opacity-0"
       )}
     >
@@ -138,11 +136,11 @@ const Navbar = () => {
               variant="outline"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full w-9 h-9 bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700"
+              className="rounded-full w-9 h-9 bg-white/80  border border-gray-200 d"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
+                <Moon className="h-4 w-4 text-gray-700 " />
               ) : (
                 <Sun className="h-4 w-4 text-yellow-500" />
               )}
@@ -162,18 +160,18 @@ const Navbar = () => {
               variant="outline"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full w-9 h-9 bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700"
+              className="rounded-full w-9 h-9 bg-white/80  border border-gray-200"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
+                <Moon className="h-4 w-4 text-gray-700 " />
               ) : (
                 <Sun className="h-4 w-4 text-yellow-500" />
               )}
             </Button>
 
             <button
-              className="text-gray-700 dark:text-gray-200 focus:outline-none hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
+              className="text-gray-700  focus:outline-none hover:text-purple-500 "
               onClick={toggleMenu}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
