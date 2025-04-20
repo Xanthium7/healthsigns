@@ -4,7 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, useInView, useAnimation } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useAnimation,
+  AnimatePresence,
+} from "framer-motion";
 import {
   ArrowRight,
   Users,
@@ -17,11 +22,12 @@ import {
   CheckCircle,
   Sun,
   Moon,
-  Menu,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { Sphere } from "@/components/ui/3d-sphere";
 import Link from "next/link";
+import { VideoText } from "@/components/magicui/video-text";
+import Navbar from "@/components/navbar";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -29,7 +35,6 @@ const MotionDiv = motion.div;
 export default function Home() {
   // Theme state
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Animation controls
   const controls = useAnimation();
@@ -98,121 +103,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Navbar */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-800/50">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <div className="flex items-center">
-              <span className="text-xl font-bold gradient-text">
-                HealthSigns
-              </span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/"
-                className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/rpm"
-                className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-              >
-                RPM
-              </Link>
-
-              {/* Theme Toggle */}
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-full w-9 h-9 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
-                aria-label="Toggle theme"
-              >
-                {theme === "light" ? (
-                  <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
-                ) : (
-                  <Sun className="h-4 w-4 text-yellow-500" />
-                )}
-              </Button>
-
-              <Link href="/contact">
-                <Button variant="gradient" size="sm" className="rounded-full">
-                  Contact
-                </Button>
-              </Link>
-            </nav>
-
-            {/* Mobile menu button and theme toggle */}
-            <div className="flex items-center space-x-4 md:hidden">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-full w-9 h-9 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
-                aria-label="Toggle theme"
-              >
-                {theme === "light" ? (
-                  <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
-                ) : (
-                  <Sun className="h-4 w-4 text-yellow-500" />
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-700 dark:text-gray-200"
-                aria-label="Menu"
-              >
-                <Menu className="h-6 w-6" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile menu dropdown */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800">
-              <nav className="flex flex-col space-y-4">
-                <Link
-                  href="/"
-                  className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-4 py-2"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/about"
-                  className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-4 py-2"
-                >
-                  About
-                </Link>
-                <Link
-                  href="/rpm"
-                  className="text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors px-4 py-2"
-                >
-                  RPM
-                </Link>
-                <div className="px-4 pt-2">
-                  <Link href="/contact">
-                    <Button variant="gradient" className="w-full rounded-full">
-                      Contact
-                    </Button>
-                  </Link>
-                </div>
-              </nav>
-            </div>
-          )}
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section - Adjust padding to account for navbar */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-950">
@@ -227,9 +118,22 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-center lg:text-left"
             >
-              <h1 className="mb-6 gradient-text text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Transforming Healthcare
-              </h1>
+              <div className="flex flex-col ">
+                <h1 className=" translate-y-10  h-20 gradient-text text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
+                  Transforming
+                </h1>
+                <div className="relative h-40 w-full flex items-center justify-center">
+                  <VideoText
+                    fontSize={15}
+                    loop={true}
+                    fontWeight={"bold"}
+                    className="mt-4"
+                    src="https://videos.pexels.com/video-files/25935021/11922056_360_360_24fps.mp4"
+                  >
+                    HEALTHCARE
+                  </VideoText>
+                </div>
+              </div>
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 font-jakarta">
                 Our AI-powered Remote Patient Management system ensures
                 real-time monitoring, that allows for early detection and timely
@@ -252,52 +156,30 @@ export default function Home() {
                 </Button>
               </div>
             </MotionDiv>
-            <MotionDiv
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="relative"
-            >
-              <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-purple-200/50 dark:ring-purple-900/30">
+
+            <AnimatePresence>
+              <MotionDiv
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute z-0 top-0 bottom-0 right-0 md:block hidden h-[100vh] w-1/2 rounded-3xl overflow-hidden"
+              >
                 <Image
-                  src="/placeholder.svg?height=800&width=1200"
+                  src="hero.png"
                   alt="AI-powered healthcare"
                   fill
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent"></div>
-              </div>
-
-              {/* 3D Elements */}
-              <div className="absolute -bottom-10 -right-10 z-10">
-                <Sphere size={1.2} color="#8b5cf6" className="floating" />
-              </div>
-              <div className="absolute -top-10 -left-10 z-10">
-                <Sphere
-                  size={0.8}
-                  color="#a78bfa"
-                  className="floating-delay-1"
-                />
-              </div>
-              <div className="absolute top-1/2 right-1/3 z-10">
-                <Sphere
-                  size={0.6}
-                  color="#c4b5fd"
-                  className="floating-delay-2"
-                />
-              </div>
-            </MotionDiv>
+              </MotionDiv>
+            </AnimatePresence>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-white dark:bg-gray-900">
+      <section className="py-12  bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
@@ -310,19 +192,19 @@ export default function Home() {
               value="98%"
               label="Patient Satisfaction"
               icon={<Star className="h-6 w-6" />}
-              className="bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
               value="24/7"
               label="Continuous Monitoring"
               icon={<Activity className="h-6 w-6" />}
-              className="bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
               value="85%"
               label="Early Detection Rate"
               icon={<CheckCircle className="h-6 w-6" />}
-              className="bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
+              className="bg-gradient-to-br z-10 backdrop-blur-sm from-purple-50/10 to-white/10 dark:from-gray-800 dark:to-gray-900 rounded-2xl border border-purple-100/50 dark:border-purple-900/20 hover:shadow-lg transition-shadow duration-300"
             />
           </MotionDiv>
         </div>
@@ -338,7 +220,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="mb-6 gradient-text text-3xl md:text-4xl font-bold tracking-tight">
+            <h2 className="mb-6 gradient-text text-3xl md:text-4xl font-medium tracking-tight">
               Why Partner with HealthSigns?
             </h2>
             <p className="text-gray-700 dark:text-gray-300 font-jakarta text-lg">
@@ -491,7 +373,7 @@ export default function Home() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="bg-gradient-to-br from-purple-50 to-lavender-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-purple-100/50 dark:border-purple-900/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-medium mb-4 text-gray-900 dark:text-white">
                 Pricing
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6 font-jakarta">
@@ -518,7 +400,7 @@ export default function Home() {
               }}
               className="bg-gradient-to-br from-lavender-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-indigo-100/50 dark:border-indigo-900/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-medium mb-4 text-gray-900 dark:text-white">
                 Careers
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6 font-jakarta">
@@ -548,7 +430,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-display tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 font-display tracking-tight">
               Enhance patient outcomes without the stress of in-person
               monitoring.
             </h2>

@@ -1,23 +1,20 @@
 "use client";
 
-import type React from "react";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { CSSTransition } from "react-transition-group";
+import MobileNavbar from "./mobile-navbar";
 
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
   isActive: boolean;
-  onClick?: () => void;
 }
 
-const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
+const NavLink = ({ href, children, isActive }: NavLinkProps) => {
   return (
     <Link
       href={href}
@@ -27,7 +24,6 @@ const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
           ? "text-purple-600 dark:text-purple-400"
           : "text-gray-700 dark:text-gray-200 hover:text-purple-500 dark:hover:text-purple-400"
       )}
-      onClick={onClick}
     >
       {children}
       <span
@@ -43,10 +39,10 @@ const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const pathname = usePathname();
-  const menuRef = useRef<HTMLDivElement>(null);
-  const nodeRef = useRef(null); // Add a new ref for CSSTransition
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -68,22 +64,33 @@ const Navbar = () => {
     };
   }, []);
 
-  // Close menu when clicking outside
+  // Initialize theme from localStorage
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme") as
+        | "light"
+        | "dark"
+        | null;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
 
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+      setTheme(initialTheme);
     }
+  }, []);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  // Theme toggle function
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", newTheme);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -102,8 +109,8 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/60 backdrop-blur-xl shadow-sm border-b border-gray-200/30 dark:bg-gray-900/70 dark:border-gray-700/30"
-          : "bg-transparent"
+          ? "bg-white/60 opacity-100 backdrop-blur-xl shadow-sm border-b border-gray-200/30 dark:bg-gray-900/70 dark:border-gray-700/30"
+          : "bg-transparent opacity-0"
       )}
     >
       <div className="container mx-auto px-4 py-4">
@@ -125,60 +132,63 @@ const Navbar = () => {
                 {link.name}
               </NavLink>
             ))}
-            <Button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              Contact
+
+            {/* Theme Toggle */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full w-9 h-9 bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
+              ) : (
+                <Sun className="h-4 w-4 text-yellow-500" />
+              )}
             </Button>
+
+            <Link href="/contact">
+              <Button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                Contact
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
-            onClick={toggleMenu}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center space-x-4 md:hidden">
+            {/* Theme Toggle for Mobile */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full w-9 h-9 bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-4 w-4 text-gray-700 dark:text-gray-200" />
+              ) : (
+                <Sun className="h-4 w-4 text-yellow-500" />
+              )}
+            </Button>
+
+            <button
+              className="text-gray-700 dark:text-gray-200 focus:outline-none hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
+              onClick={toggleMenu}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+            >
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div ref={menuRef}>
-          <CSSTransition
-            in={isOpen}
-            timeout={200}
-            nodeRef={nodeRef} // Add the nodeRef prop here
-            classNames={{
-              enter: "mobile-menu-enter",
-              enterActive: "mobile-menu-enter-active",
-              exit: "mobile-menu-exit",
-              exitActive: "mobile-menu-exit-active",
-            }}
-            unmountOnExit
-          >
-            <nav
-              ref={nodeRef}
-              className="md:hidden mt-4 py-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-100/30 dark:border-gray-700/30"
-            >
-              <div className="flex flex-col space-y-4">
-                {navLinks.map((link) => (
-                  <NavLink
-                    key={link.name}
-                    href={link.href}
-                    isActive={pathname === link.href}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <div className="px-4 py-2">{link.name}</div>
-                  </NavLink>
-                ))}
-                <div className="px-4 pt-2 pb-2">
-                  <Button className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
-                    Contact
-                  </Button>
-                </div>
-              </div>
-            </nav>
-          </CSSTransition>
-        </div>
+        <MobileNavbar
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          links={navLinks}
+        />
       </div>
     </header>
   );
