@@ -64,31 +64,10 @@ const Navbar = () => {
 
   // Initialize theme from localStorage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | null;
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-      const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-      setTheme(initialTheme);
-    }
+    setTheme("light");
   }, []);
 
   // Theme toggle function
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", newTheme);
-  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -99,7 +78,6 @@ const Navbar = () => {
     { name: "About Us", href: "/about" },
     { name: "RPM", href: "/rpm" },
     { name: "Proprietary AI", href: "/ai" },
-    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -131,21 +109,6 @@ const Navbar = () => {
               </NavLink>
             ))}
 
-            {/* Theme Toggle */}
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full w-9 h-9 bg-white/80  border border-gray-200 d"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="h-4 w-4 text-gray-700 " />
-              ) : (
-                <Sun className="h-4 w-4 text-yellow-500" />
-              )}
-            </Button>
-
             <Link href="/contact">
               <Button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 Contact
@@ -155,21 +118,6 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-4 md:hidden">
-            {/* Theme Toggle for Mobile */}
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full w-9 h-9 bg-white/80  border border-gray-200"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="h-4 w-4 text-gray-700 " />
-              ) : (
-                <Sun className="h-4 w-4 text-yellow-500" />
-              )}
-            </Button>
-
             <button
               className="text-gray-700  focus:outline-none hover:text-purple-500 "
               onClick={toggleMenu}

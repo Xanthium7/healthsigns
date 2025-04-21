@@ -95,7 +95,7 @@ export default function Home() {
                     loop={true}
                     fontWeight={"bold"}
                     className="mt-4"
-                    src="https://videos.pexels.com/video-files/856882/856882-sd_640_360_24fps.mp4"
+                    src="https://cdn.pixabay.com/video/2025/03/17/265435_tiny.mp4"
                   >
                     HEALTHCARE
                   </VideoText>
@@ -276,9 +276,10 @@ export default function Home() {
         }}
       >
         {/* Semi-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/10 via-black/10 to-black-50/10 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-black/50 to-black/10 pointer-events-none"></div>
         {/* Dotted pattern overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <MotionDiv

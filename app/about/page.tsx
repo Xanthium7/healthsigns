@@ -14,7 +14,7 @@ import {
   Heart,
   Link2,
 } from "lucide-react";
-import { Sphere } from "@/components/ui/3d-sphere";
+import { BlurrySphere } from "@/components/ui/blurry-sphere";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -47,7 +47,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="pt-24">
+    <div className="">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-purple-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
@@ -58,24 +58,35 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-              About Us
+            <h1 className="text-4xl md:text-5xl h-20 font-medium mb-6 gradient-text">
+              About HealthSigns
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
-              At HealthSigns, technology meets healthcare to create a seamless,
-              innovative, and personalized patient management experience. We are
-              a pioneering health-tech brand committed to revolutionizing the
-              way patients in India, the Middle East, and the US receive medical
-              care.
+            <p className="text-lg md:text-xl text-gray-700  mb-8 leading-relaxed">
+              At HealthSigns, we bridge the gap between technology and
+              healthcare to deliver seamless, innovative, and personalized
+              patient management solutions. As a pioneering health-tech brand,
+              we are dedicated to transforming the way patients in India, the
+              Middle East, and the US access and experience medical care.
             </p>
           </MotionDiv>
 
-          {/* 3D Elements */}
           <div className="absolute -bottom-10 -right-10 z-10">
-            <Sphere size={1.2} color="#8b5cf6" className="floating" />
+            <BlurrySphere
+              size={1.2}
+              colors={["#8b5cf6", "#f375b4", "#6366f1"]}
+              className="floating"
+              opacity={0.6}
+              animationDuration={10}
+            />
           </div>
           <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
-            <Sphere size={0.8} color="#a78bfa" className="floating-delay-1" />
+            <BlurrySphere
+              size={0.8}
+              colors={["#a78bfa", "#9f7df0", "#d8b4fe"]}
+              className="floating-delay-1"
+              opacity={0.5}
+              animationDuration={8}
+            />
           </div>
         </div>
       </section>
@@ -99,17 +110,17 @@ export default function AboutPage() {
               <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-xl opacity-30"></div>
             </MotionDiv>
             <MotionDiv initial="hidden" animate="visible" variants={fadeInUp}>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
                 What We Do
               </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-lg text-gray-700  mb-6">
                 HealthSigns offers a suite of advanced healthcare solutions
                 designed to enhance patient care and provider efficiency. Our
                 core offering includes Remote Patient Management, enabling
                 continuous monitoring and care beyond traditional clinical
                 settings.
               </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-lg text-gray-700  mb-6">
                 We are also developing a clinical decision support system that
                 provides healthcare professionals with real-time, evidence-based
                 insights. By seamlessly integrating with existing healthcare
@@ -117,7 +128,7 @@ export default function AboutPage() {
                 personalized care while supporting providers in making informed
                 clinical decisions.
               </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
+              <p className="text-lg text-gray-700 ">
                 Our platform is designed to evolve, continually incorporating
                 the latest advancements in AI and healthcare technology to meet
                 the dynamic needs of the industry.
@@ -139,17 +150,17 @@ export default function AboutPage() {
               variants={fadeInUp}
               className="order-2 lg:order-1"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
                 How We Work
               </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-lg text-gray-700  mb-6">
                 Our unique business model allows us to partner with established
                 healthcare providers in India, the Middle East, and the US. By
                 leveraging our partners' existing customer bases, we seamlessly
                 integrate our remote patient monitoring services, enhancing
                 their capabilities and extending their reach.
               </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
+              <p className="text-lg text-gray-700 ">
                 This collaborative approach ensures that patients receive
                 consistent, high-quality care, regardless of their location.
               </p>
@@ -188,10 +199,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               Our Technology
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-gray-700 ">
               HealthSigns utilizes advanced AI technology to continuously
               monitor patient data, identifying early signs of potential health
               issues. Our platform provides healthcare providers with actionable
@@ -252,9 +263,7 @@ export default function AboutPage() {
                     <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
                       {item.title}
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {item.description}
-                    </p>
+                    <p className="text-gray-700 ">{item.description}</p>
                   </div>
                 </MotionDiv>
               ))}
@@ -274,7 +283,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               Why Choose HealthSigns?
             </h2>
           </MotionDiv>
@@ -333,9 +342,7 @@ export default function AboutPage() {
                     <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
                       {item.title}
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {item.description}
-                    </p>
+                    <p className="text-gray-700 ">{item.description}</p>
                   </CardContent>
                 </Card>
               </MotionDiv>
@@ -345,7 +352,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-500 to-indigo-600 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-animated text-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <MotionDiv
@@ -355,7 +362,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6">
               Join Us in Transforming Healthcare
             </h2>
             <p className="text-xl mb-8">

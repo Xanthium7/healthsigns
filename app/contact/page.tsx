@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { Sphere } from "@/components/ui/3d-sphere";
+import { BlurrySphere } from "@/components/ui/blurry-sphere";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -39,7 +39,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+            <h1 className="text-4xl md:text-5xl font-medium mb-6 gradient-text">
               Get in Touch
             </h1>
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
@@ -51,10 +51,22 @@ export default function ContactPage() {
 
           {/* 3D Elements */}
           <div className="absolute -bottom-10 -right-10 z-10">
-            <Sphere size={1.2} color="#8b5cf6" className="floating" />
+            <BlurrySphere
+              size={1.2}
+              colors={["#8b5cf6", "#f375b4", "#6366f1"]}
+              className="floating"
+              opacity={0.6}
+              animationDuration={10}
+            />
           </div>
           <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
-            <Sphere size={0.8} color="#a78bfa" className="floating-delay-1" />
+            <BlurrySphere
+              size={0.8}
+              colors={["#a78bfa", "#9f7df0", "#d8b4fe"]}
+              className="floating-delay-1"
+              opacity={0.5}
+              animationDuration={8}
+            />
           </div>
         </div>
       </section>
@@ -143,10 +155,10 @@ export default function ContactPage() {
                 <div className="relative h-full min-h-[300px] lg:min-h-[550px]">
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
-                      <div className="w-full h-full bg-[url('/placeholder.svg?height=800&width=800')] bg-cover bg-center"></div>
+                      <div className="w-full h-full bg-[url('https://i.pinimg.com/236x/d7/34/e7/d734e755f690c7fe18b4bbfbef688fb3.jpg')] bg-cover bg-center"></div>
                     </div>
                     <div className="relative h-full flex flex-col justify-center p-8 z-10 text-white">
-                      <h3 className="text-3xl font-bold mb-6">
+                      <h3 className="text-3xl font-medium mb-6">
                         Let's Start a Conversation
                       </h3>
                       <p className="mb-8 text-lg opacity-90">
@@ -204,7 +216,7 @@ export default function ContactPage() {
 
                 {/* Right Column - Form */}
                 <div className="p-8 lg:p-10">
-                  <h2 className="text-2xl font-bold mb-6 gradient-text">
+                  <h2 className="text-2xl font-medium mb-6 gradient-text">
                     Send Us a Message
                   </h2>
                   <form className="space-y-6">
@@ -318,7 +330,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               Our Location
             </h2>
           </MotionDiv>
@@ -328,12 +340,21 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl overflow-hidden shadow-xl h-[400px] w-full glass"
+            className="rounded-3xl overflow-hidden shadow-xl h-[400px] md:h-[500px] w-full glass"
           >
-            <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-              <p className="text-gray-600 dark:text-gray-300">
-                Map placeholder - Interactive map would be embedded here
-              </p>
+            <div className="w-full h-full bg-gray-200 dark:bg-gray-700">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3022.913174580775!2d-74.367089!3d40.741936!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3af1b056494d7%3A0x636449a1c178dbc0!2sRegus%20-%20Short%20Hills%20-%2051%20JFK%20Parkway!5e0!3m2!1sen!2sin!4v1745235095605!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="HealthSigns AI Office Location"
+                className="w-full h-full"
+                frameBorder="0"
+              ></iframe>
             </div>
           </MotionDiv>
         </div>
@@ -350,7 +371,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6">
               Ready to transform healthcare with AI?
             </h2>
             <p className="text-xl mb-8">

@@ -13,7 +13,7 @@ import {
   UserCheck,
   Heart,
 } from "lucide-react";
-import { Sphere } from "@/components/ui/3d-sphere";
+import { BlurrySphere } from "@/components/ui/blurry-sphere";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -58,7 +58,7 @@ export default function RPMPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+              <h1 className="text-4xl md:text-5xl font-medium mb-6 gradient-text">
                 Always-on healthcare. Anywhere, Anytime.
               </h1>
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
@@ -92,13 +92,21 @@ export default function RPMPage() {
 
               {/* 3D Elements */}
               <div className="absolute -bottom-10 -right-10 z-10">
-                <Sphere size={1.2} color="#8b5cf6" className="floating" />
+                <BlurrySphere
+                  size={1.2}
+                  colors={["#8b5cf6", "#f375b4", "#6366f1"]}
+                  className="floating"
+                  opacity={0.6}
+                  animationDuration={10}
+                />
               </div>
               <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
-                <Sphere
+                <BlurrySphere
                   size={0.8}
-                  color="#a78bfa"
+                  colors={["#a78bfa", "#9f7df0", "#d8b4fe"]}
                   className="floating-delay-1"
+                  opacity={0.5}
+                  animationDuration={8}
                 />
               </div>
             </MotionDiv>
@@ -115,7 +123,7 @@ export default function RPMPage() {
             variants={fadeInUp}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               What is Remote Patient Monitoring (RPM)?
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300">
@@ -141,7 +149,7 @@ export default function RPMPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               How Does RPM Work?
             </h2>
           </MotionDiv>
@@ -216,7 +224,7 @@ export default function RPMPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               Benefits of RPM
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300">
@@ -284,7 +292,7 @@ export default function RPMPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6">
               Ready to transform your healthcare experience?
             </h2>
             <p className="text-xl mb-8">

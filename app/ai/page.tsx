@@ -15,7 +15,7 @@ import {
   Users,
   Send,
 } from "lucide-react";
-import { Sphere } from "@/components/ui/3d-sphere";
+import { BlurrySphere } from "@/components/ui/blurry-sphere";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -60,7 +60,7 @@ export default function AIPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+              <h1 className="text-4xl md:text-5xl font-medium mb-6 gradient-text">
                 Proprietary AI-Powered Monitoring for better Health Outcomes
               </h1>
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
@@ -83,19 +83,33 @@ export default function AIPage() {
             >
               <div className="blob h-[400px] w-full overflow-hidden shadow-2xl bg-gradient-to-br from-purple-100 to-white dark:from-gray-800 dark:to-gray-900 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Sphere size={2.5} color="#8b5cf6" className="pulse" />
+                  <BlurrySphere
+                    size={2.5}
+                    colors={["#8b5cf6", "#a78bfa", "#c4b5fd"]}
+                    className="pulse"
+                    opacity={0.7}
+                    animationDuration={12}
+                  />
                 </div>
               </div>
 
               {/* 3D Elements */}
               <div className="absolute -bottom-10 -right-10 z-10">
-                <Sphere size={1} color="#a78bfa" className="floating" />
+                <BlurrySphere
+                  size={1}
+                  colors={["#a78bfa", "#c4b5fd", "#ddd6fe"]}
+                  className="floating"
+                  opacity={0.6}
+                  animationDuration={10}
+                />
               </div>
               <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
-                <Sphere
+                <BlurrySphere
                   size={0.7}
-                  color="#c4b5fd"
+                  colors={["#c4b5fd", "#ddd6fe", "#ede9fe"]}
                   className="floating-delay-1"
+                  opacity={0.5}
+                  animationDuration={8}
                 />
               </div>
             </MotionDiv>
@@ -112,7 +126,7 @@ export default function AIPage() {
             variants={fadeInUp}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               How Our AI Works
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300">
@@ -152,7 +166,7 @@ export default function AIPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
                 Intelligent Monitoring for Proactive Care
               </h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
@@ -177,7 +191,7 @@ export default function AIPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               Key AI Features
             </h2>
           </MotionDiv>
@@ -259,7 +273,7 @@ export default function AIPage() {
               variants={fadeInUp}
               className="order-2 lg:order-1"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
                 Predictive Health Insights
               </h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
@@ -285,7 +299,13 @@ export default function AIPage() {
             >
               <div className="blob h-[400px] w-full overflow-hidden shadow-xl bg-gradient-to-br from-purple-100 to-white dark:from-gray-800 dark:to-gray-900 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Sphere size={2} color="#a78bfa" className="pulse" />
+                  <BlurrySphere
+                    size={2}
+                    colors={["#a78bfa", "#8b5cf6", "#c4b5fd"]}
+                    className="pulse"
+                    opacity={0.6}
+                    animationDuration={10}
+                  />
                 </div>
               </div>
             </MotionDiv>
@@ -303,7 +323,7 @@ export default function AIPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
               Contact Us
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300">
@@ -326,14 +346,16 @@ export default function AIPage() {
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-700 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
                       <Image
-                        src="/placeholder.svg?height=800&width=800"
+                        src="https://i.pinimg.com/236x/d7/34/e7/d734e755f690c7fe18b4bbfbef688fb3.jpg"
                         alt="Contact us"
                         fill
                         className="object-cover"
                       />
                     </div>
                     <div className="relative h-full flex flex-col justify-center p-8 z-10 text-white">
-                      <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
+                      <h3 className="text-2xl font-medium mb-4">
+                        Get in Touch
+                      </h3>
                       <p className="mb-6">
                         We're here to answer your questions about our AI-powered
                         healthcare solutions.
