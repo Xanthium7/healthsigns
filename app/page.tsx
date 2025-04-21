@@ -86,7 +86,7 @@ export default function Home() {
               className="text-center lg:text-left"
             >
               <div className="flex flex-col ">
-                <h1 className=" translate-y-10  h-20 gradient-text text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
+                <h1 className=" md:translate-y-10 translate-y-20   h-20 gradient-text text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
                   Transforming
                 </h1>
                 <div className="relative h-40 w-full flex items-center justify-center">
@@ -132,7 +132,7 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute z-0 top-0 bottom-0 right-0 md:block hidden h-[100vh] w-1/2 rounded-3xl overflow-hidden"
+                className="absolute z-0 top-0 bottom-0 right-0 lg:block hidden h-[100vh] w-1/2 rounded-3xl overflow-hidden"
               >
                 <Image
                   src="hero.png"
