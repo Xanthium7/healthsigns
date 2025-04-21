@@ -114,13 +114,15 @@ export default function Home() {
                 >
                   Know more
                 </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-purple-500 text-purple-500 hover:bg-purple-50 rounded-full transform transition-transform hover:scale-105"
-                >
-                  Partner with us
-                </Button>
+                <Link href={"/contact"}>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-purple-500 text-purple-500 hover:bg-purple-50 rounded-full transform transition-transform hover:scale-105"
+                  >
+                    Partner with us
+                  </Button>
+                </Link>
               </div>
             </MotionDiv>
 
@@ -406,12 +408,14 @@ export default function Home() {
               Enhance patient outcomes without the stress of in-person
               monitoring.
             </h2>
-            <Button
-              size="xl"
-              className="bg-white text-purple-600 hover:bg-gray-100 rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
-            >
-              Partner with us <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href={"/contact"}>
+              <Button
+                size="xl"
+                className="bg-white text-purple-600 hover:bg-gray-100 rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
+              >
+                Partner with us <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </MotionDiv>
         </div>
 
