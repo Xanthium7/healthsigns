@@ -165,8 +165,8 @@ export default function Home() {
               className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
-              value="24/7"
-              unit=""
+              value="24"
+              unit="HR"
               label="Continuous Monitoring"
               icon={<Activity className="h-6 w-6" />}
               className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
