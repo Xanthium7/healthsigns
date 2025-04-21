@@ -272,11 +272,11 @@ export default function Home() {
         className="py-20 relative overflow-hidden bg-fixed bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://i.pinimg.com/736x/39/8a/12/398a12c880571668c6763527b5aeab20.jpg')",
+            "url('https://cdn.pixabay.com/photo/2020/10/14/08/20/texture-5653667_640.jpg')",
         }}
       >
         {/* Semi-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-black/50 to-black/10 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/70 to-black/60 pointer-events-none"></div>
         {/* Dotted pattern overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
 

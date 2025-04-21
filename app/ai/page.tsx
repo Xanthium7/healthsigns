@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +16,26 @@ import {
   Send,
 } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
+import { toast } from "@/components/ui/use-toast";
+import { EMAIL_CONFIG } from "@/config/email-config";
+
+// Type definitions
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  privacy: boolean; // Added privacy checkbox field
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+  privacy?: string; // Added privacy error field
+  [key: string]: string | undefined;
+}
 
 // Animated components
 const MotionDiv = motion.div;
@@ -24,10 +44,102 @@ export default function AIPage() {
   // Animation controls
   const controls = useAnimation();
 
+  // Form state
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+    privacy: false, // Initialize privacy setting
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
+  // Form handlers
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { id, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+
+    setFormData((prev) => ({
+      ...prev,
+      [id]: type === "checkbox" ? checked : value,
+    }));
+
+    // Clear error when user types
+    if (formErrors[id]) {
+      setFormErrors((prev) => ({ ...prev, [id]: undefined }));
+    }
+  };
+
+  const validateForm = (): FormErrors => {
+    const errors: FormErrors = {};
+    if (!formData.name.trim()) errors.name = "Name is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      errors.email = "Email is invalid";
+    if (!formData.message.trim()) errors.message = "Message is required";
+    if (!formData.privacy)
+      errors.privacy = "You must agree to the privacy policy";
+    return errors;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate form
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Create Gmail compose URL
+    const subject = encodeURIComponent(
+      formData.subject || "AI Inquiry from Website"
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Phone: ${formData.phone}\n\n` +
+        `Message:\n${formData.message}`
+    );
+
+    // Open Gmail compose window using the config email
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_CONFIG.aiInquiriesEmail}&su=${subject}&body=${body}`,
+      "_blank"
+    );
+
+    // Reset form and show success message
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+      privacy: false,
+    });
+    setIsSubmitting(false);
+    toast({
+      title: "Message sent",
+      description:
+        "Your message has been prepared in Gmail. Check your browser window.",
+      duration: 5000,
+    });
+  };
+
+  // Define animations
   const fadeInUp = {
     hidden: { opacity: 0, y: 60 },
     visible: {
@@ -395,35 +507,58 @@ export default function AIPage() {
                   transition={{ duration: 0.7 }}
                 >
                   <CardContent className="p-8 lg:p-12">
-                    <form className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                           <label
                             htmlFor="name"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                           >
-                            Full Name
+                            Full Name <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="text"
                             id="name"
                             placeholder="John Doe"
-                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            className={`w-full px-4 py-2 border ${
+                              formErrors.name
+                                ? "border-red-500"
+                                : "border-gray-300 dark:border-gray-700"
+                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors`}
                           />
+                          {formErrors.name && (
+                            <p className="text-red-500 text-xs mt-1">
+                              {formErrors.name}
+                            </p>
+                          )}
                         </div>
                         <div>
                           <label
                             htmlFor="email"
                             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                           >
-                            Email Address
+                            Email Address{" "}
+                            <span className="text-red-500">*</span>
                           </label>
                           <input
                             type="email"
                             id="email"
                             placeholder="you@example.com"
-                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            className={`w-full px-4 py-2 border ${
+                              formErrors.email
+                                ? "border-red-500"
+                                : "border-gray-300 dark:border-gray-700"
+                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors`}
                           />
+                          {formErrors.email && (
+                            <p className="text-red-500 text-xs mt-1">
+                              {formErrors.email}
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div>
@@ -437,6 +572,8 @@ export default function AIPage() {
                           type="tel"
                           id="phone"
                           placeholder="(123) 456-7890"
+                          value={formData.phone}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
                         />
                       </div>
@@ -449,6 +586,8 @@ export default function AIPage() {
                         </label>
                         <select
                           id="subject"
+                          value={formData.subject}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
                         >
                           <option value="">Select a topic</option>
@@ -463,20 +602,67 @@ export default function AIPage() {
                           htmlFor="message"
                           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                         >
-                          Your Message
+                          Your Message <span className="text-red-500">*</span>
                         </label>
                         <textarea
                           id="message"
                           rows={4}
                           placeholder="How can we help you?"
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          className={`w-full px-4 py-2 border ${
+                            formErrors.message
+                              ? "border-red-500"
+                              : "border-gray-300 dark:border-gray-700"
+                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors`}
                         ></textarea>
+                        {formErrors.message && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {formErrors.message}
+                          </p>
+                        )}
                       </div>
+
+                      {/* Add privacy checkbox matching the contact page */}
+                      <div className="flex items-start">
+                        <div className="flex items-center h-5">
+                          <input
+                            id="privacy"
+                            type="checkbox"
+                            checked={formData.privacy}
+                            onChange={handleInputChange}
+                            className={`w-4 h-4 border ${
+                              formErrors.privacy
+                                ? "border-red-500"
+                                : "border-gray-300"
+                            } rounded bg-gray-50 focus:ring-3 focus:ring-purple-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600`}
+                            required
+                          />
+                        </div>
+                        <label
+                          htmlFor="privacy"
+                          className={`ml-2 text-sm ${
+                            formErrors.privacy
+                              ? "text-red-500"
+                              : "text-gray-600 dark:text-gray-300"
+                          }`}
+                        >
+                          I agree to the privacy policy and terms of service
+                        </label>
+                      </div>
+                      {formErrors.privacy && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {formErrors.privacy}
+                        </p>
+                      )}
+
                       <Button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full py-6 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        disabled={isSubmitting}
+                        className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70"
                       >
-                        Send Message <Send className="ml-2 h-4 w-4" />
+                        {isSubmitting ? "Sending..." : "Send Message"}{" "}
+                        <Send className="ml-2 h-4 w-4" />
                       </Button>
                     </form>
                   </CardContent>
