@@ -522,11 +522,11 @@ export default function AIPage() {
                             placeholder="John Doe"
                             value={formData.name}
                             onChange={handleInputChange}
-                            className={`w-full px-4 py-2 border ${
+                            className={`w-full px-4 py-2.5 md:py-2 border ${
                               formErrors.name
                                 ? "border-red-500"
                                 : "border-gray-300 dark:border-gray-700"
-                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors`}
+                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
                           />
                           {formErrors.name && (
                             <p className="text-red-500 text-xs mt-1">
@@ -548,11 +548,11 @@ export default function AIPage() {
                             placeholder="you@example.com"
                             value={formData.email}
                             onChange={handleInputChange}
-                            className={`w-full px-4 py-2 border ${
+                            className={`w-full px-4 py-2.5 md:py-2 border ${
                               formErrors.email
                                 ? "border-red-500"
                                 : "border-gray-300 dark:border-gray-700"
-                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors`}
+                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
                           />
                           {formErrors.email && (
                             <p className="text-red-500 text-xs mt-1">
@@ -574,7 +574,7 @@ export default function AIPage() {
                           placeholder="(123) 456-7890"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
+                          className="w-full px-4 py-2.5 md:py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base"
                         />
                       </div>
                       <div>
@@ -588,7 +588,13 @@ export default function AIPage() {
                           id="subject"
                           value={formData.subject}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors"
+                          className="w-full px-4 py-2.5 md:py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base appearance-none bg-no-repeat bg-right"
+                          style={{
+                            backgroundImage:
+                              "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
+                            backgroundSize: "1.5em 1.5em",
+                            paddingRight: "2.5rem",
+                          }}
                         >
                           <option value="">Select a topic</option>
                           <option value="demo">Request a Demo</option>
@@ -610,11 +616,11 @@ export default function AIPage() {
                           placeholder="How can we help you?"
                           value={formData.message}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-2 border ${
+                          className={`w-full px-4 py-2.5 md:py-2 border ${
                             formErrors.message
                               ? "border-red-500"
                               : "border-gray-300 dark:border-gray-700"
-                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors`}
+                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
                         ></textarea>
                         {formErrors.message && (
                           <p className="text-red-500 text-xs mt-1">
@@ -659,7 +665,7 @@ export default function AIPage() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70"
+                        className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full py-3 md:py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 text-base"
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}{" "}
                         <Send className="ml-2 h-4 w-4" />
