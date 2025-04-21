@@ -158,19 +158,22 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
             <StatCard
-              value="98%"
+              value="98"
+              unit="%"
               label="Patient Satisfaction"
               icon={<Star className="h-6 w-6" />}
               className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
               value="24/7"
+              unit=""
               label="Continuous Monitoring"
               icon={<Activity className="h-6 w-6" />}
               className="bg-gradient-to-br backdrop-blur-sm from-purple-50/20 to-white/20 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
             />
             <StatCard
-              value="85%"
+              value="85"
+              unit="%"
               label="Early Detection Rate"
               icon={<CheckCircle className="h-6 w-6" />}
               className="bg-gradient-to-br z-10 backdrop-blur-sm from-purple-50/10 to-white/10 rounded-2xl border border-purple-100/50 hover:shadow-lg transition-shadow duration-300"
