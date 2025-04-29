@@ -26,6 +26,7 @@ import { StatCard } from "@/components/ui/stat-card";
 import { VideoText } from "@/components/magicui/video-text";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
+import Aurora from "@/Backgrounds/Aurora/Aurora";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -397,9 +398,19 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-500 to-indigo-600 text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+
+      <section className="py-20 bg-gradient-to-r from-black to-indigo-800 text-white relative overflow-hidden">
+        {/* Aurora as background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Aurora
+            colorStops={["#3e1285", "#cf1f54", "#ff002b"]}
+            blend={1}
+            amplitude={0.5}
+            speed={1.5}
+          />
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-20">
           <MotionDiv
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -423,9 +434,9 @@ export default function Home() {
         </div>
 
         {/* Enhanced decorative elements */}
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-400 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute top-0 left-0 w-64 h-64 bg-purple-400 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-violet-400 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-400 rounded-full blur-3xl opacity-30 z-10"></div>
+        <div className="absolute top-0 left-0 w-64 h-64 bg-purple-400 rounded-full blur-3xl opacity-30 z-10"></div>
+        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-violet-400 rounded-full blur-3xl opacity-20 z-10"></div>
       </section>
     </div>
   );
