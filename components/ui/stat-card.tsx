@@ -31,7 +31,7 @@ export function StatCard({
           <div>
             <NumberTicker
               value={parseFloat(value) || 0}
-              className="whitespace-pre-wrap text-4xl font-medium tracking-tighter text-black dark:text-white"
+              className="whitespace-pre-wrap text-4xl font-medium tracking-tighter text-black dark:text-black"
             />{" "}
             {unit}
             <p className="text-sm text-gray-500 dark:text-gray-400 font-jakarta">
