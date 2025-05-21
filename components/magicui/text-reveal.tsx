@@ -57,13 +57,12 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
       <div
         ref={stickyElementRef} // Assign ref to the element to be pinned
         className={
-          // Removed "sticky top-0"
-          "mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-[1rem] py-[5rem]"
+          "mx-auto flex h-[50%] max-w-4xl  items-center bg-transparent px-[1rem] py-[5rem]"
         }
       >
         <span
           className={
-            "flex flex-wrap p-5 text-2xl font-bold text-black/20 dark:text-white/20 md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-5xl"
+            "flex flex-wrap p-5 text-2xl font-bold text-purple-500/30 dark:text-white/20 md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-6xl"
           }
         >
           {words.map((word, i) => {
@@ -90,9 +89,9 @@ interface WordProps {
 const Word: FC<WordProps> = ({ children, progress, range }) => {
   const opacity = useTransform(progress, range, [0, 1]);
   return (
-    <span className="xl:lg-3 relative mx-1 lg:mx-1.5">
-      <span className="absolute opacity-30">{children}</span>
-      <motion.span style={{ opacity: opacity }} className={"text-black "}>
+    <span className="xl:lg-3 my-1 relative mx-1 lg:mx-1.5">
+      <span className="absolute  opacity-30">{children}</span>
+      <motion.span style={{ opacity: opacity }} className={"text-purple-500"}>
         {children}
       </motion.span>
     </span>

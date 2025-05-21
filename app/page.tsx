@@ -282,8 +282,8 @@ export default function Home() {
 
       {/* About HealthSigns Section */}
 
-      <TextReveal className=" text-purple-500 text-center  ">
-        At HealthScience we Revolutionize HEALTHCARE with AI
+      <TextReveal className="text-purple-500 text-center text-2xl md:text-3xl font-medium">
+        At HealthSigns, we're pioneering the future of healthcare with AI
       </TextReveal>
 
       {/* Pricing & Careers Section */}
