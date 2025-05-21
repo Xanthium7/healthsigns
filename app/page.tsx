@@ -104,11 +104,13 @@ export default function Home() {
                   </VideoText>
                 </div>
               </div>
-              <p className="text-lg md:text-xl text-gray-700 mb-8 font-jakarta">
-                Our AI-powered Remote Patient Management system ensures
-                real-time monitoring, that allows for early detection and timely
-                care, thus enhancing patient outcomes.
-              </p>
+              <Copy delay={0.5} animateOnScroll={false}>
+                <p className="text-lg md:text-xl text-gray-700 mb-8 font-jakarta">
+                  Our AI-powered Remote Patient Management system ensures
+                  real-time monitoring, that allows for early detection and
+                  timely care, thus enhancing patient outcomes.
+                </p>
+              </Copy>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button
                   size="lg"
@@ -357,26 +359,20 @@ export default function Home() {
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-10"></div>
         <div className="container mx-auto px-4 text-center relative z-20">
-          <MotionDiv
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl mx-auto"
-          >
+          <Copy>
             <h2 className="text-3xl md:text-4xl font-medium mb-6 font-display tracking-tight">
-              Enhance patient outcomes without the stress of in-person
+              Enhance patient outcomes without the <br /> stress of in-person
               monitoring.
             </h2>
-            <Link href={"/contact"}>
-              <Button
-                size="xl"
-                className="bg-white text-purple-600 hover:bg-gray-100 rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
-              >
-                Partner with us <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </MotionDiv>
+          </Copy>
+          <Link href={"/contact"}>
+            <Button
+              size="xl"
+              className="bg-white text-purple-600 hover:bg-gray-100 rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
+            >
+              Partner with us <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
         {/* Enhanced decorative elements */}
