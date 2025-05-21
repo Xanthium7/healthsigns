@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { ReactLenis } from "lenis/react";
 
 // Font definitions with fallbacks
 const inter = Inter({
@@ -41,18 +42,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${jakarta.variable} font-sans`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ReactLenis root>
           <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-        </ThemeProvider>
+        </ReactLenis>
       </body>
     </html>
   );

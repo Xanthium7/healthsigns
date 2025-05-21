@@ -27,6 +27,8 @@ import { VideoText } from "@/components/magicui/video-text";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
+import Copy from "@/components/Copy";
+import { TextReveal } from "@/components/magicui/text-reveal";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -193,15 +195,20 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="mb-6 gradient-text text-3xl md:text-4xl font-medium tracking-tight">
-              Why Partner with HealthSigns?
-            </h2>
-            <p className="text-gray-700 font-jakarta text-lg">
-              Unlock the full potential of your healthcare services by
-              partnering with HealthSigns. Our innovative solutions and
-              collaborative approach can help you provide top-notch remote
-              patient care.
-            </p>
+            <Copy>
+              <h2 className="mb-6 text-purple-500 text-3xl md:text-4xl font-medium tracking-tight">
+                Why Partner with HealthSigns?
+              </h2>
+            </Copy>
+
+            <Copy delay={0.2}>
+              <p className="text-gray-700 font-jakarta text-lg">
+                Unlock the full potential of your healthcare services by
+                partnering with HealthSigns. Our innovative solutions and
+                collaborative approach can help you provide top-notch remote
+                patient care.
+              </p>
+            </Copy>
           </MotionDiv>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -274,71 +281,10 @@ export default function Home() {
       </section>
 
       {/* About HealthSigns Section */}
-      <section
-        className="py-20 relative overflow-hidden bg-fixed bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://cdn.pixabay.com/photo/2020/10/14/08/20/texture-5653667_640.jpg')",
-        }}
-      >
-        {/* Semi-transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/70 to-black/60 pointer-events-none"></div>
-        {/* Dotted pattern overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              ref={ref}
-              initial="hidden"
-              animate={controls}
-              variants={fadeInUp}
-              className="order-2 lg:order-1"
-            >
-              <h2 className="mb-6 gradient-text font-medium">
-                About HealthSigns
-              </h2>
-              <p className="text-gray-300 mb-6 font-jakarta">
-                At HealthSigns, our founders and team have deep healthcare
-                expertise and extensive experience in delivering health
-                services. We understand the challenges in healthcare—gaps in
-                care, delayed responses, and the need for continuous monitoring.
-              </p>
-              <p className="text-gray-300 mb-8 font-jakarta">
-                Integrating AI into healthcare is crucial to bridge these gaps,
-                offering real-time monitoring, personalized care, and improved
-                clinical decision-making. Our human-centric approach ensures
-                technology enhances compassionate care.
-              </p>
-              <Link href={"/about"}>
-                <Button variant="gradient" className="rounded-full">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </MotionDiv>
-            <MotionDiv
-              initial="hidden"
-              animate={controls}
-              variants={fadeInUp}
-              className="order-1 lg:order-2"
-            >
-              <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-xl">
-                <Image
-                  src="/placeholder.svg?height=800&width=1200"
-                  alt="About HealthSigns"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
-              </div>
-
-              {/* Floating elements */}
-              <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-xl opacity-30"></div>
-              <div className="absolute -top-5 left-10 w-20 h-20 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-xl opacity-30"></div>
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
+      <TextReveal className=" text-purple-500 text-center  ">
+        At HealthScience we Revolutionize HEALTHCARE with AI
+      </TextReveal>
 
       {/* Pricing & Careers Section */}
       <section className="py-20 bg-white">
