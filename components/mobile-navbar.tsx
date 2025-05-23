@@ -104,7 +104,7 @@ const MobileNavbar = ({ isOpen, onClose, links }: MobileNavbarProps) => {
             ))}
             <div className="px-4 pt-2 pb-2">
               <Link href="/contact">
-                <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
+                <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
                   Contact
                 </Button>
               </Link>

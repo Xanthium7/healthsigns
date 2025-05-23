@@ -116,7 +116,7 @@ export default function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-primary text-primary hover:bg-primary/10 rounded-full transform transition-transform hover:scale-105"
+                    className="border-primary text-primary hover:bg-primary/10 hover:text-primary rounded-full transform transition-transform hover:scale-105"
                   >
                     Partner with us
                   </Button>
@@ -361,7 +361,7 @@ export default function Home() {
           <Link href={"/contact"}>
             <Button
               size="xl"
-              className="bg-background text-primary hover:bg-muted rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
+              className="bg-background text-primary   rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
             >
               Partner with us <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

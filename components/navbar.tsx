@@ -102,7 +102,7 @@ const Navbar = () => {
             ))}
 
             <Link href="/contact">
-              <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <Button className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 Contact
               </Button>
             </Link>
