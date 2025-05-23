@@ -139,7 +139,7 @@ export default function ContactPage() {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <MotionDiv
@@ -149,12 +149,12 @@ export default function ContactPage() {
             className="text-center max-w-3xl mx-auto"
           >
             <Copy animateOnScroll={false}>
-              <h1 className="text-4xl md:text-5xl font-medium mb-6 text-purple-500">
+              <h1 className="text-4xl md:text-5xl font-medium mb-6 text-primary">
                 Get in Touch
               </h1>
             </Copy>
             <Copy animateOnScroll={false} delay={0.2}>
-              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+              <p className="text-lg md:text-xl text-muted-foreground mb-8">
                 Have questions about our services or want to schedule a demo?
                 Our team is here to help. Reach out to us using any of the
                 methods below.
@@ -166,7 +166,11 @@ export default function ContactPage() {
           <div className="absolute -bottom-10 -right-10 z-10">
             <BlurrySphere
               size={1.2}
-              colors={["#8b5cf6", "#f375b4", "#6366f1"]}
+              colors={[
+                "hsl(var(--primary))",
+                "hsl(var(--accent))",
+                "hsl(var(--secondary))",
+              ]}
               className="floating"
               opacity={0.6}
               animationDuration={10}
@@ -175,7 +179,11 @@ export default function ContactPage() {
           <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
             <BlurrySphere
               size={0.8}
-              colors={["#a78bfa", "#9f7df0", "#d8b4fe"]}
+              colors={[
+                "hsl(var(--primary)/0.8)",
+                "hsl(var(--primary)/0.6)",
+                "hsl(var(--primary)/0.4)",
+              ]}
               className="floating-delay-1"
               opacity={0.5}
               animationDuration={8}
@@ -185,7 +193,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <MotionDiv
@@ -195,18 +203,18 @@ export default function ContactPage() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl card-3d">
+              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
                 <CardContent className="p-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
-                    <Mail className="h-8 w-8 text-purple-500" />
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <Mail className="h-8 w-8 text-primary" />
                   </div>
                   <Copy>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
                       Email
                     </h3>
                   </Copy>
                   <Copy delay={0.1}>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-muted-foreground">
                       {EMAIL_CONFIG.displayEmail}
                     </p>
                   </Copy>
@@ -221,20 +229,18 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-center"
             >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl card-3d">
+              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
                 <CardContent className="p-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-4">
-                    <Phone className="h-8 w-8 text-indigo-500" />
+                  <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+                    <Phone className="h-8 w-8 text-secondary" />
                   </div>
                   <Copy>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
                       Phone
                     </h3>
                   </Copy>
                   <Copy delay={0.1}>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      +1 9732706212
-                    </p>
+                    <p className="text-muted-foreground">+1 9732706212</p>
                   </Copy>
                 </CardContent>
               </Card>
@@ -247,18 +253,18 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-center"
             >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl card-3d">
+              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
                 <CardContent className="p-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
-                    <MapPin className="h-8 w-8 text-purple-500" />
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <MapPin className="h-8 w-8 text-primary" />
                   </div>
                   <Copy>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
                       Address
                     </h3>
                   </Copy>
                   <Copy delay={0.1}>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-muted-foreground">
                       30 N Gould St # 29714 Sheridan, WY 82801
                     </p>
                   </Copy>
@@ -274,15 +280,15 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="max-w-5xl mx-auto"
           >
-            <Card className="border-none shadow-xl bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden">
+            <Card className="border-none shadow-xl bg-gradient-to-br from-primary/10 to-background rounded-3xl overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Left Column - Visual Element */}
                 <div className="relative h-full min-h-[300px] lg:min-h-[550px]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary to-primary overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
                       <div className="w-full h-full bg-[url('https://i.pinimg.com/236x/d7/34/e7/d734e755f690c7fe18b4bbfbef688fb3.jpg')] bg-cover bg-center"></div>
                     </div>
-                    <div className="relative h-full flex flex-col justify-center p-8 z-10 text-white">
+                    <div className="relative h-full flex flex-col justify-center p-8 z-10 text-primary-foreground">
                       <Copy>
                         <h3 className="text-3xl font-medium mb-6">
                           Let's Start a Conversation
@@ -298,7 +304,7 @@ export default function ContactPage() {
 
                       <div className="space-y-6 mb-10">
                         <div className="flex items-center">
-                          <div className="bg-white/20 p-3 rounded-full mr-4">
+                          <div className="bg-primary/20 p-3 rounded-full mr-4">
                             <Mail className="h-5 w-5" />
                           </div>
                           <div>
@@ -310,7 +316,7 @@ export default function ContactPage() {
                         </div>
 
                         <div className="flex items-center">
-                          <div className="bg-white/20 p-3 rounded-full mr-4">
+                          <div className="bg-primary/20 p-3 rounded-full mr-4">
                             <Phone className="h-5 w-5" />
                           </div>
                           <div>
@@ -320,7 +326,7 @@ export default function ContactPage() {
                         </div>
 
                         <div className="flex items-center">
-                          <div className="bg-white/20 p-3 rounded-full mr-4">
+                          <div className="bg-primary/20 p-3 rounded-full mr-4">
                             <MapPin className="h-5 w-5" />
                           </div>
                           <div>
@@ -335,7 +341,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="mt-auto">
-                        <div className="h-1 w-16 bg-white/50 rounded mb-4"></div>
+                        <div className="h-1 w-16 bg-primary/50 rounded mb-4"></div>
                         <Copy delay={0.3}>
                           <p className="text-sm opacity-80">
                             Your privacy matters to us. We're committed to
@@ -350,7 +356,7 @@ export default function ContactPage() {
                 {/* Right Column - Form */}
                 <div className="p-8 lg:p-10">
                   <Copy>
-                    <h2 className="text-2xl font-medium mb-6 text-purple-500">
+                    <h2 className="text-2xl font-medium mb-6 text-primary">
                       Send Us a Message
                     </h2>
                   </Copy>
@@ -359,9 +365,9 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="fullname"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
-                          Full Name <span className="text-red-500">*</span>
+                          Full Name <span className="text-destructive">*</span>
                         </label>
                         <input
                           type="text"
@@ -371,12 +377,12 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           className={`w-full px-4 py-2.5 md:py-3 border ${
                             formErrors.fullname
-                              ? "border-red-500"
-                              : "border-gray-300 dark:border-gray-700"
-                          } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
+                              ? "border-destructive"
+                              : "border-border"
+                          } rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
                         />
                         {formErrors.fullname && (
-                          <p className="text-red-500 text-xs mt-1">
+                          <p className="text-destructive text-xs mt-1">
                             {formErrors.fullname}
                           </p>
                         )}
@@ -385,9 +391,10 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
-                          Email Address <span className="text-red-500">*</span>
+                          Email Address{" "}
+                          <span className="text-destructive">*</span>
                         </label>
                         <input
                           type="email"
@@ -397,12 +404,12 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           className={`w-full px-4 py-2.5 md:py-3 border ${
                             formErrors.email
-                              ? "border-red-500"
-                              : "border-gray-300 dark:border-gray-700"
-                          } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
+                              ? "border-destructive"
+                              : "border-border"
+                          } rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
                         />
                         {formErrors.email && (
-                          <p className="text-red-500 text-xs mt-1">
+                          <p className="text-destructive text-xs mt-1">
                             {formErrors.email}
                           </p>
                         )}
@@ -411,7 +418,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="subject"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Subject
                         </label>
@@ -419,7 +426,7 @@ export default function ContactPage() {
                           id="subject"
                           value={formData.subject}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 md:py-3 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base appearance-none bg-no-repeat bg-right"
+                          className="w-full px-4 py-2.5 md:py-3 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base appearance-none bg-no-repeat bg-right"
                           style={{
                             backgroundImage:
                               "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
@@ -441,9 +448,10 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="message"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
-                          Your Message <span className="text-red-500">*</span>
+                          Your Message{" "}
+                          <span className="text-destructive">*</span>
                         </label>
                         <textarea
                           id="message"
@@ -453,12 +461,12 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           className={`w-full px-4 py-2.5 md:py-3 border ${
                             formErrors.message
-                              ? "border-red-500"
-                              : "border-gray-300 dark:border-gray-700"
-                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
+                              ? "border-destructive"
+                              : "border-border"
+                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
                         ></textarea>
                         {formErrors.message && (
-                          <p className="text-red-500 text-xs mt-1">
+                          <p className="text-destructive text-xs mt-1">
                             {formErrors.message}
                           </p>
                         )}
@@ -473,9 +481,9 @@ export default function ContactPage() {
                             onChange={handleInputChange}
                             className={`w-4 h-4 border ${
                               formErrors.privacy
-                                ? "border-red-500"
-                                : "border-gray-300"
-                            } rounded bg-gray-50 focus:ring-3 focus:ring-purple-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600`}
+                                ? "border-destructive"
+                                : "border-border"
+                            } rounded bg-muted focus:ring-3 focus:ring-ring/50`}
                             required
                           />
                         </div>
@@ -483,15 +491,15 @@ export default function ContactPage() {
                           htmlFor="privacy"
                           className={`ml-2 text-sm ${
                             formErrors.privacy
-                              ? "text-red-500"
-                              : "text-gray-600 dark:text-gray-300"
+                              ? "text-destructive"
+                              : "text-muted-foreground"
                           }`}
                         >
                           I agree to the privacy policy and terms of service
                         </label>
                       </div>
                       {formErrors.privacy && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-destructive text-xs">
                           {formErrors.privacy}
                         </p>
                       )}
@@ -499,7 +507,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full py-3 md:py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 text-base"
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full py-3 md:py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 text-base"
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}{" "}
                       <Send className="ml-2 h-4 w-4" />
@@ -513,7 +521,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <MotionDiv
@@ -524,7 +532,7 @@ export default function ContactPage() {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
                 Our Location
               </h2>
             </Copy>
@@ -537,7 +545,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="rounded-3xl overflow-hidden shadow-xl h-[400px] md:h-[500px] w-full glass"
           >
-            <div className="w-full h-full bg-gray-200 dark:bg-gray-700">
+            <div className="w-full h-full bg-muted">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3022.913174580775!2d-74.367089!3d40.741936!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3af1b056494d7%3A0x636449a1c178dbc0!2sRegus%20-%20Short%20Hills%20-%2051%20JFK%20Parkway!5e0!3m2!1sen!2sin!4v1745235095605!5m2!1sen!2sin"
                 width="100%"
@@ -556,7 +564,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-500 to-indigo-600 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-primary-foreground relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <MotionDiv
@@ -580,7 +588,7 @@ export default function ContactPage() {
             </Copy>
             <Button
               size="lg"
-              className="bg-white text-purple-600 hover:bg-gray-100 rounded-full"
+              className="bg-background text-primary hover:bg-muted rounded-full"
             >
               Schedule a Demo
             </Button>
@@ -588,8 +596,8 @@ export default function ContactPage() {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute bottom-0 right-0 w-40 h-40 bg-indigo-400 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute top-0 left-0 w-40 h-40 bg-purple-400 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-0 right-0 w-40 h-40 bg-secondary/50 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute top-0 left-0 w-40 h-40 bg-primary/50 rounded-full blur-3xl opacity-30"></div>
       </section>
     </div>
   );

@@ -4,48 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 250 95% 76%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 260 60% 98%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 250 95% 76%;
-    --radius: 1rem;
-  }
-
-  .dark {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 250 95% 76%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 260 60% 98%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 250 95% 76%;
+    --background: 43 89% 92%; /* Light Cream */
+    --foreground: 202 100% 14%; /* Dark Blue */
+    --card: 43 89% 92%; /* Light Cream */
+    --card-foreground: 202 100% 14%; /* Dark Blue */
+    --popover: 43 89% 92%; /* Light Cream */
+    --popover-foreground: 202 100% 14%; /* Dark Blue */
+    --primary: 355 83% 41%; /* Red */
+    --primary-foreground: 43 89% 92%; /* Light Cream */
+    --secondary: 205 38% 60%; /* Light Blue */
+    --secondary-foreground: 202 100% 14%; /* Dark Blue */
+    --muted: 205 38% 85%; /* Lighter Light Blue */
+    --muted-foreground: 202 100% 25%; /* Slightly Lighter Dark Blue */
+    --accent: 0 100% 23.5%; /* Dark Red */
+    --accent-foreground: 43 89% 92%; /* Light Cream */
+    --destructive: 355 83% 41%; /* Red */
+    --destructive-foreground: 43 89% 92%; /* Light Cream */
+    --border: 43 89% 85%; /* Slightly darker Light Cream */
+    --input: 43 89% 85%; /* Slightly darker Light Cream */
+    --ring: 355 83% 41%; /* Red */
     --radius: 1rem;
   }
 }
@@ -143,7 +120,7 @@
 
 /* Gradient text */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-400;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
 }
 
 /* 3D Card effect */
@@ -159,15 +136,10 @@
 
 /* Glass morphism */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: hsla(var(--card), 0.7); /* Use card color with opacity */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.dark .glass {
-  background: rgba(17, 25, 40, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.125);
+  border: 1px solid hsla(var(--border), 0.18); /* Use border color with opacity */
 }
 
 /* Blob shape */
@@ -196,11 +168,7 @@
 
 /* Gradient backgrounds */
 .bg-gradient-soft {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-.dark .bg-gradient-soft {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(30, 30, 30, 0) 100%);
+  background: linear-gradient(135deg, hsla(var(--primary), 0.05) 0%, hsla(var(--background), 0) 100%);
 }
 
 /* Blur effects */
@@ -237,9 +205,9 @@
   background-size: 200% 200%;
   animation: gradient-animation 8s ease infinite;
   background-image: linear-gradient(45deg, 
-    var(--purple-gradient-start, #8b5cf6) 0%, 
-    var(--purple-gradient-mid, #883edd) 50%,
-    var(--purple-gradient-end, #4f46e5) 100%);
+    hsl(var(--primary)) 0%, 
+    hsl(var(--accent)) 50%,
+    hsl(var(--secondary)) 100%);
 }
 
 @keyframes gradient-animation {

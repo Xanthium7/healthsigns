@@ -163,18 +163,18 @@ export default function AIPage() {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <MotionDiv className="text-center lg:text-left">
               <Copy animateOnScroll={false}>
-                <h1 className="text-4xl md:text-5xl font-medium mb-6 text-purple-500">
+                <h1 className="text-4xl md:text-5xl font-medium mb-6 text-primary">
                   Proprietary AI-Powered Monitoring for better Health Outcomes
                 </h1>
               </Copy>
               <Copy animateOnScroll={false} delay={0.2}>
-                <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+                <p className="text-lg md:text-xl text-muted-foreground mb-8">
                   HealthSigns AI enhances monitoring, integrates data,
                   personalizes care, and offers proactive insights for better
                   outcomes. Stay ahead with HealthSigns.
@@ -182,7 +182,7 @@ export default function AIPage() {
               </Copy>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full"
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full"
               >
                 Schedule a Demo <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -193,11 +193,15 @@ export default function AIPage() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="relative"
             >
-              <div className="blob h-[400px] w-full overflow-hidden shadow-2xl bg-gradient-to-br from-purple-100 to-white dark:from-gray-800 dark:to-gray-900 relative">
+              <div className="blob h-[400px] w-full overflow-hidden shadow-2xl bg-gradient-to-br from-primary/20 to-background relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <BlurrySphere
                     size={2.5}
-                    colors={["#8b5cf6", "#a78bfa", "#c4b5fd"]}
+                    colors={[
+                      "hsl(var(--primary))",
+                      "hsl(var(--primary)/0.8)",
+                      "hsl(var(--primary)/0.6)",
+                    ]}
                     className="pulse"
                     opacity={0.7}
                     animationDuration={12}
@@ -209,7 +213,11 @@ export default function AIPage() {
               <div className="absolute -bottom-10 -right-10 z-10">
                 <BlurrySphere
                   size={1}
-                  colors={["#a78bfa", "#c4b5fd", "#ddd6fe"]}
+                  colors={[
+                    "hsl(var(--primary)/0.8)",
+                    "hsl(var(--primary)/0.6)",
+                    "hsl(var(--primary)/0.4)",
+                  ]}
                   className="floating"
                   opacity={0.6}
                   animationDuration={10}
@@ -218,7 +226,11 @@ export default function AIPage() {
               <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
                 <BlurrySphere
                   size={0.7}
-                  colors={["#c4b5fd", "#ddd6fe", "#ede9fe"]}
+                  colors={[
+                    "hsl(var(--primary)/0.6)",
+                    "hsl(var(--primary)/0.4)",
+                    "hsl(var(--primary)/0.2)",
+                  ]}
                   className="floating-delay-1"
                   opacity={0.5}
                   animationDuration={8}
@@ -230,16 +242,16 @@ export default function AIPage() {
       </section>
 
       {/* How Our AI Works Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <MotionDiv className="text-center max-w-3xl mx-auto mb-16">
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
                 How Our AI Works
               </h2>
             </Copy>
             <Copy delay={0.2}>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
+              <p className="text-lg text-muted-foreground">
                 At HealthSigns, our AI technology empowers patients and
                 healthcare providers with the tools and insights needed for
                 proactive, personalized care. Experience the future of
@@ -251,7 +263,7 @@ export default function AIPage() {
       </section>
 
       {/* Intelligent Monitoring Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -263,17 +275,17 @@ export default function AIPage() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
               </div>
             </MotionDiv>
             <MotionDiv>
               <Copy>
-                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
                   Intelligent Monitoring for Proactive Care
                 </h2>
               </Copy>
               <Copy delay={0.2}>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                <p className="text-lg text-muted-foreground mb-6">
                   At HealthSigns, our proprietary AI technology is at the heart
                   of our remote patient monitoring (RPM) services. Designed to
                   enhance patient care and streamline healthcare processes, our
@@ -287,11 +299,11 @@ export default function AIPage() {
       </section>
 
       {/* AI Features Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <MotionDiv className="text-center max-w-3xl mx-auto mb-16">
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
                 Key AI Features
               </h2>
             </Copy>
@@ -300,55 +312,55 @@ export default function AIPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Database className="h-12 w-12 text-purple-500" />,
+                icon: <Database className="h-12 w-12 text-primary" />,
                 title: "Comprehensive Health Data Integration",
                 description:
                   "Our AI system seamlessly integrates with various medical devices and wearables to collect vital health data such as heart rate, blood pressure, glucose levels, and more.",
               },
               {
-                icon: <Brain className="h-12 w-12 text-purple-500" />,
+                icon: <Brain className="h-12 w-12 text-primary" />,
                 title: "Intelligent Clinical Decision Support",
                 description:
                   "HealthSigns CDSS provides real-time, evidence-based recommendations to healthcare providers. It identifies health risks, suggests interventions, and guides treatment plans.",
               },
               {
-                icon: <LineChart className="h-12 w-12 text-purple-500" />,
+                icon: <LineChart className="h-12 w-12 text-primary" />,
                 title: "Real-Time Health Insights",
                 description:
                   "Our AI system seamlessly integrates with various medical devices and wearables to collect vital health data such as heart rate, blood pressure, glucose levels, and more.",
               },
               {
-                icon: <Bell className="h-12 w-12 text-purple-500" />,
+                icon: <Bell className="h-12 w-12 text-primary" />,
                 title: "Personalized Alerts and Recommendations",
                 description:
                   "When our AI identifies a potential issue, it generates personalized alerts and recommendations. Healthcare providers receive real-time notifications, enabling them to intervene promptly.",
               },
               {
-                icon: <RefreshCw className="h-12 w-12 text-purple-500" />,
+                icon: <RefreshCw className="h-12 w-12 text-primary" />,
                 title: "Continuous Learning and Improvement",
                 description:
                   "Our AI system continuously learns from the data it processes. This ongoing learning improves its accuracy and predictive capabilities over time.",
               },
               {
-                icon: <Users className="h-12 w-12 text-purple-500" />,
+                icon: <Users className="h-12 w-12 text-primary" />,
                 title: "Enhanced Patient Engagement",
                 description:
                   "Our AI-powered platform fosters greater patient engagement by providing easy-to-understand health reports and recommendations.",
               },
             ].map((item, index) => (
               <MotionDiv key={index}>
-                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl card-3d">
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
                   <CardContent className="p-6">
-                    <div className="mb-4 bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full w-fit">
+                    <div className="mb-4 bg-primary/10 p-3 rounded-full w-fit">
                       {item.icon}
                     </div>
                     <Copy>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                      <h3 className="text-xl font-semibold mb-3 text-card-foreground">
                         {item.title}
                       </h3>
                     </Copy>
                     <Copy delay={0.1}>
-                      <p className="text-gray-700 dark:text-gray-300 text-sm">
+                      <p className="text-muted-foreground text-sm">
                         {item.description}
                       </p>
                     </Copy>
@@ -361,18 +373,18 @@ export default function AIPage() {
       </section>
 
       {/* Predictive Analytics Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <MotionDiv className="order-2 lg:order-1">
               <Copy>
-                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
                   Predictive Health Insights
                 </h2>
               </Copy>
               <Copy delay={0.2}>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                <p className="text-lg text-muted-foreground mb-6">
                   Our AI goes beyond just monitoring—it predicts potential
                   health risks by identifying patterns and trends in the
                   collected data. This predictive capability allows healthcare
@@ -381,7 +393,7 @@ export default function AIPage() {
                 </p>
               </Copy>
               <Copy delay={0.3}>
-                <p className="text-lg text-gray-700 dark:text-gray-300">
+                <p className="text-lg text-muted-foreground">
                   By analyzing historical data and current health metrics, our
                   AI can identify subtle changes that might indicate the onset
                   of a health issue, enabling early intervention and better
@@ -390,11 +402,15 @@ export default function AIPage() {
               </Copy>
             </MotionDiv>
             <MotionDiv className="order-1 lg:order-2">
-              <div className="blob h-[400px] w-full overflow-hidden shadow-xl bg-gradient-to-br from-purple-100 to-white dark:from-gray-800 dark:to-gray-900 relative">
+              <div className="blob h-[400px] w-full overflow-hidden shadow-xl bg-gradient-to-br from-primary/20 to-background relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <BlurrySphere
                     size={2}
-                    colors={["#a78bfa", "#8b5cf6", "#c4b5fd"]}
+                    colors={[
+                      "hsl(var(--primary)/0.8)",
+                      "hsl(var(--primary))",
+                      "hsl(var(--primary)/0.6)",
+                    ]}
                     className="pulse"
                     opacity={0.6}
                     animationDuration={10}
@@ -407,16 +423,16 @@ export default function AIPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <MotionDiv className="text-center max-w-3xl mx-auto mb-16">
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
                 Contact Us
               </h2>
             </Copy>
             <Copy delay={0.2}>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
+              <p className="text-lg text-muted-foreground">
                 Interested in learning more about our AI-powered healthcare
                 solutions? Get in touch with our team today.
               </p>
@@ -424,11 +440,11 @@ export default function AIPage() {
           </MotionDiv>
 
           <div className="max-w-6xl mx-auto">
-            <Card className="border-none shadow-xl bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden">
+            <Card className="border-none shadow-xl bg-gradient-to-br from-primary/10 to-background rounded-3xl overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Banner Image Column */}
                 <MotionDiv className="relative h-full min-h-[300px] lg:min-h-[500px]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-700 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
                       <Image
                         src="https://i.pinimg.com/236x/d7/34/e7/d734e755f690c7fe18b4bbfbef688fb3.jpg"
@@ -437,7 +453,7 @@ export default function AIPage() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="relative h-full flex flex-col justify-center p-8 z-10 text-white">
+                    <div className="relative h-full flex flex-col justify-center p-8 z-10 text-primary-foreground">
                       <Copy>
                         <h3 className="text-2xl font-medium mb-4">
                           Get in Touch
@@ -452,13 +468,13 @@ export default function AIPage() {
 
                       <div className="space-y-4">
                         <div className="flex items-center">
-                          <div className="bg-white/20 p-2 rounded-full mr-3">
+                          <div className="bg-primary/20 p-2 rounded-full mr-3">
                             <Send className="h-4 w-4" />
                           </div>
                           <span>contact@healthsigns.com</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="bg-white/20 p-2 rounded-full mr-3">
+                          <div className="bg-primary/20 p-2 rounded-full mr-3">
                             <Bell className="h-4 w-4" />
                           </div>
                           <span>+1 (888) 123-4567</span>
@@ -466,7 +482,7 @@ export default function AIPage() {
                       </div>
 
                       <div className="absolute bottom-8 left-8 right-8">
-                        <div className="h-1 w-16 bg-white/50 rounded mb-4"></div>
+                        <div className="h-1 w-16 bg-primary/50 rounded mb-4"></div>
                         <Copy delay={0.3}>
                           <p className="text-sm opacity-80">
                             Your health data is secure with us. We adhere to
@@ -486,9 +502,10 @@ export default function AIPage() {
                         <div>
                           <label
                             htmlFor="name"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                            className="block text-sm font-medium text-muted-foreground mb-1"
                           >
-                            Full Name <span className="text-red-500">*</span>
+                            Full Name{" "}
+                            <span className="text-destructive">*</span>
                           </label>
                           <input
                             type="text"
@@ -498,12 +515,12 @@ export default function AIPage() {
                             onChange={handleInputChange}
                             className={`w-full px-4 py-2.5 md:py-2 border ${
                               formErrors.name
-                                ? "border-red-500"
-                                : "border-gray-300 dark:border-gray-700"
-                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
+                                ? "border-destructive"
+                                : "border-border"
+                            } rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
                           />
                           {formErrors.name && (
-                            <p className="text-red-500 text-xs mt-1">
+                            <p className="text-destructive text-xs mt-1">
                               {formErrors.name}
                             </p>
                           )}
@@ -511,10 +528,10 @@ export default function AIPage() {
                         <div>
                           <label
                             htmlFor="email"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                            className="block text-sm font-medium text-muted-foreground mb-1"
                           >
                             Email Address{" "}
-                            <span className="text-red-500">*</span>
+                            <span className="text-destructive">*</span>
                           </label>
                           <input
                             type="email"
@@ -524,12 +541,12 @@ export default function AIPage() {
                             onChange={handleInputChange}
                             className={`w-full px-4 py-2.5 md:py-2 border ${
                               formErrors.email
-                                ? "border-red-500"
-                                : "border-gray-300 dark:border-gray-700"
-                            } rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
+                                ? "border-destructive"
+                                : "border-border"
+                            } rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
                           />
                           {formErrors.email && (
-                            <p className="text-red-500 text-xs mt-1">
+                            <p className="text-destructive text-xs mt-1">
                               {formErrors.email}
                             </p>
                           )}
@@ -538,7 +555,7 @@ export default function AIPage() {
                       <div>
                         <label
                           htmlFor="phone"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Phone Number
                         </label>
@@ -548,13 +565,13 @@ export default function AIPage() {
                           placeholder="(123) 456-7890"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 md:py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base"
+                          className="w-full px-4 py-2.5 md:py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="subject"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
                           Subject
                         </label>
@@ -562,7 +579,7 @@ export default function AIPage() {
                           id="subject"
                           value={formData.subject}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 md:py-2 border border-gray-300 dark:border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base appearance-none bg-no-repeat bg-right"
+                          className="w-full px-4 py-2.5 md:py-2 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base appearance-none bg-no-repeat bg-right"
                           style={{
                             backgroundImage:
                               "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
@@ -580,9 +597,10 @@ export default function AIPage() {
                       <div>
                         <label
                           htmlFor="message"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                          className="block text-sm font-medium text-muted-foreground mb-1"
                         >
-                          Your Message <span className="text-red-500">*</span>
+                          Your Message{" "}
+                          <span className="text-destructive">*</span>
                         </label>
                         <textarea
                           id="message"
@@ -592,12 +610,12 @@ export default function AIPage() {
                           onChange={handleInputChange}
                           className={`w-full px-4 py-2.5 md:py-2 border ${
                             formErrors.message
-                              ? "border-red-500"
-                              : "border-gray-300 dark:border-gray-700"
-                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white transition-colors text-base`}
+                              ? "border-destructive"
+                              : "border-border"
+                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
                         ></textarea>
                         {formErrors.message && (
-                          <p className="text-red-500 text-xs mt-1">
+                          <p className="text-destructive text-xs mt-1">
                             {formErrors.message}
                           </p>
                         )}
@@ -613,9 +631,9 @@ export default function AIPage() {
                             onChange={handleInputChange}
                             className={`w-4 h-4 border ${
                               formErrors.privacy
-                                ? "border-red-500"
-                                : "border-gray-300"
-                            } rounded bg-gray-50 focus:ring-3 focus:ring-purple-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-purple-600`}
+                                ? "border-destructive"
+                                : "border-border"
+                            } rounded bg-muted focus:ring-3 focus:ring-ring/50`}
                             required
                           />
                         </div>
@@ -623,15 +641,15 @@ export default function AIPage() {
                           htmlFor="privacy"
                           className={`ml-2 text-sm ${
                             formErrors.privacy
-                              ? "text-red-500"
-                              : "text-gray-600 dark:text-gray-300"
+                              ? "text-destructive"
+                              : "text-muted-foreground"
                           }`}
                         >
                           I agree to the privacy policy and terms of service
                         </label>
                       </div>
                       {formErrors.privacy && (
-                        <p className="text-red-500 text-xs mt-1">
+                        <p className="text-destructive text-xs mt-1">
                           {formErrors.privacy}
                         </p>
                       )}
@@ -639,7 +657,7 @@ export default function AIPage() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full py-3 md:py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 text-base"
+                        className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full py-3 md:py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 text-base"
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}{" "}
                         <Send className="ml-2 h-4 w-4" />

@@ -27,16 +27,14 @@ const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
       href={href}
       className={cn(
         "text-sm font-medium transition-colors relative group",
-        isActive
-          ? "text-purple-600 dark:text-purple-400"
-          : "text-gray-700 dark:text-gray-200 hover:text-purple-500 dark:hover:text-purple-400"
+        isActive ? "text-primary" : "text-foreground hover:text-primary"
       )}
       onClick={onClick}
     >
       {children}
       <span
         className={cn(
-          "absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full",
+          "absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full",
           isActive ? "w-full" : "w-0"
         )}
       />
@@ -82,12 +80,12 @@ const MobileNavbar = ({ isOpen, onClose, links }: MobileNavbarProps) => {
       >
         <nav
           ref={nodeRef}
-          className="md:hidden mt-4 py-4 bg-white/60 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl shadow-lg border border-gray-100/30 dark:border-gray-700/30"
+          className="md:hidden mt-4 py-4 bg-background/60 backdrop-blur-xl rounded-2xl shadow-lg border border-border/30"
         >
           <div className="flex justify-end px-4 mb-2">
             <button
               onClick={onClose}
-              className="text-gray-700 dark:text-gray-200 hover:text-purple-500 dark:hover:text-purple-400"
+              className="text-foreground hover:text-primary"
               aria-label="Close menu"
             >
               <X size={24} />
@@ -106,7 +104,7 @@ const MobileNavbar = ({ isOpen, onClose, links }: MobileNavbarProps) => {
             ))}
             <div className="px-4 pt-2 pb-2">
               <Link href="/contact">
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
+                <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
                   Contact
                 </Button>
               </Link>

@@ -21,20 +21,20 @@ export function StatCard({
   return (
     <Card
       className={cn(
-        "border-none shadow-md hover:shadow-lg transition-shadow duration-300 bg-[#ffffffaf]",
+        "border-none shadow-md hover:shadow-lg transition-shadow duration-300 bg-card/70 backdrop-blur-sm",
         className
       )}
     >
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
-          {icon && <div className="text-purple-500 mt-1">{icon}</div>}
+          {icon && <div className="text-primary mt-1">{icon}</div>}
           <div>
             <NumberTicker
               value={parseFloat(value) || 0}
-              className="whitespace-pre-wrap text-4xl font-medium tracking-tighter text-black dark:text-black"
+              className="whitespace-pre-wrap text-4xl font-medium tracking-tighter text-foreground"
             />{" "}
             {unit}
-            <p className="text-sm text-gray-500 dark:text-gray-400 font-jakarta">
+            <p className="text-sm text-muted-foreground font-jakarta">
               {label}
             </p>
           </div>

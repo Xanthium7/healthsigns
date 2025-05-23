@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, Sun, Moon } from "lucide-react";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import MobileNavbar from "./mobile-navbar";
@@ -20,13 +20,13 @@ const NavLink = ({ href, children, isActive }: NavLinkProps) => {
       href={href}
       className={cn(
         "text-sm font-medium transition-colors relative group",
-        isActive ? "text-purple-600 " : "text-gray-700  hover:text-purple-500 "
+        isActive ? "text-primary" : "text-foreground hover:text-primary"
       )}
     >
       {children}
       <span
         className={cn(
-          "absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full",
+          "absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full",
           isActive ? "w-full" : "w-0"
         )}
       />
@@ -37,7 +37,6 @@ const NavLink = ({ href, children, isActive }: NavLinkProps) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
   const pathname = usePathname();
 
   // Handle scroll effect
@@ -62,13 +61,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Initialize theme from localStorage
-  useEffect(() => {
-    setTheme("light");
-  }, []);
-
-  // Theme toggle function
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -85,7 +77,7 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/30 opacity-100 backdrop-blur-xl shadow-sm border-b border-gray-200/30 "
+          ? "bg-background/30 opacity-100 backdrop-blur-xl shadow-sm border-b border-border/30"
           : "bg-transparent opacity-0"
       )}
     >
@@ -110,7 +102,7 @@ const Navbar = () => {
             ))}
 
             <Link href="/contact">
-              <Button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 Contact
               </Button>
             </Link>
@@ -119,7 +111,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-4 md:hidden">
             <button
-              className="text-gray-700  focus:outline-none hover:text-purple-500 "
+              className="text-foreground focus:outline-none hover:text-primary"
               onClick={toggleMenu}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
