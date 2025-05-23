@@ -8,6 +8,7 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import { toast } from "@/components/ui/use-toast";
 import { EMAIL_CONFIG } from "@/config/email-config";
+import Copy from "@/components/Copy";
 
 // Type definitions
 interface FormData {
@@ -147,14 +148,18 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-medium mb-6 gradient-text">
-              Get in Touch
-            </h1>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
-              Have questions about our services or want to schedule a demo? Our
-              team is here to help. Reach out to us using any of the methods
-              below.
-            </p>
+            <Copy animateOnScroll={false}>
+              <h1 className="text-4xl md:text-5xl font-medium mb-6 text-purple-500">
+                Get in Touch
+              </h1>
+            </Copy>
+            <Copy animateOnScroll={false} delay={0.2}>
+              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+                Have questions about our services or want to schedule a demo?
+                Our team is here to help. Reach out to us using any of the
+                methods below.
+              </p>
+            </Copy>
           </MotionDiv>
 
           {/* 3D Elements */}
@@ -195,12 +200,16 @@ export default function ContactPage() {
                   <div className="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
                     <Mail className="h-8 w-8 text-purple-500" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    Email
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    {EMAIL_CONFIG.displayEmail}
-                  </p>
+                  <Copy>
+                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                      Email
+                    </h3>
+                  </Copy>
+                  <Copy delay={0.1}>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      {EMAIL_CONFIG.displayEmail}
+                    </p>
+                  </Copy>
                 </CardContent>
               </Card>
             </MotionDiv>
@@ -217,12 +226,16 @@ export default function ContactPage() {
                   <div className="w-16 h-16 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-4">
                     <Phone className="h-8 w-8 text-indigo-500" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    Phone
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    +1 9732706212
-                  </p>
+                  <Copy>
+                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                      Phone
+                    </h3>
+                  </Copy>
+                  <Copy delay={0.1}>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      +1 9732706212
+                    </p>
+                  </Copy>
                 </CardContent>
               </Card>
             </MotionDiv>
@@ -239,12 +252,16 @@ export default function ContactPage() {
                   <div className="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
                     <MapPin className="h-8 w-8 text-purple-500" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                    Address
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    30 N Gould St # 29714 Sheridan, WY 82801
-                  </p>
+                  <Copy>
+                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                      Address
+                    </h3>
+                  </Copy>
+                  <Copy delay={0.1}>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      30 N Gould St # 29714 Sheridan, WY 82801
+                    </p>
+                  </Copy>
                 </CardContent>
               </Card>
             </MotionDiv>
@@ -266,14 +283,18 @@ export default function ContactPage() {
                       <div className="w-full h-full bg-[url('https://i.pinimg.com/236x/d7/34/e7/d734e755f690c7fe18b4bbfbef688fb3.jpg')] bg-cover bg-center"></div>
                     </div>
                     <div className="relative h-full flex flex-col justify-center p-8 z-10 text-white">
-                      <h3 className="text-3xl font-medium mb-6">
-                        Let's Start a Conversation
-                      </h3>
-                      <p className="mb-8 text-lg opacity-90">
-                        We're excited to hear from you and learn how we can help
-                        transform your healthcare operations with our AI
-                        solutions.
-                      </p>
+                      <Copy>
+                        <h3 className="text-3xl font-medium mb-6">
+                          Let's Start a Conversation
+                        </h3>
+                      </Copy>
+                      <Copy delay={0.2}>
+                        <p className="mb-8 text-lg opacity-90">
+                          We're excited to hear from you and learn how we can
+                          help transform your healthcare operations with our AI
+                          solutions.
+                        </p>
+                      </Copy>
 
                       <div className="space-y-6 mb-10">
                         <div className="flex items-center">
@@ -315,10 +336,12 @@ export default function ContactPage() {
 
                       <div className="mt-auto">
                         <div className="h-1 w-16 bg-white/50 rounded mb-4"></div>
-                        <p className="text-sm opacity-80">
-                          Your privacy matters to us. We're committed to
-                          protecting your personal information.
-                        </p>
+                        <Copy delay={0.3}>
+                          <p className="text-sm opacity-80">
+                            Your privacy matters to us. We're committed to
+                            protecting your personal information.
+                          </p>
+                        </Copy>
                       </div>
                     </div>
                   </div>
@@ -326,9 +349,11 @@ export default function ContactPage() {
 
                 {/* Right Column - Form */}
                 <div className="p-8 lg:p-10">
-                  <h2 className="text-2xl font-medium mb-6 gradient-text">
-                    Send Us a Message
-                  </h2>
+                  <Copy>
+                    <h2 className="text-2xl font-medium mb-6 text-purple-500">
+                      Send Us a Message
+                    </h2>
+                  </Copy>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 gap-6">
                       <div>
@@ -498,9 +523,11 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              Our Location
-            </h2>
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                Our Location
+              </h2>
+            </Copy>
           </MotionDiv>
 
           <MotionDiv
@@ -539,13 +566,18 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6">
-              Ready to transform healthcare with AI?
-            </h2>
-            <p className="text-xl mb-8">
-              Join us in our mission to provide better care for patients around
-              the world through innovative Remote Patient Management solutions.
-            </p>
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6">
+                Ready to transform healthcare with AI?
+              </h2>
+            </Copy>
+            <Copy delay={0.2}>
+              <p className="text-xl mb-8">
+                Join us in our mission to provide better care for patients
+                around the world through innovative Remote Patient Management
+                solutions.
+              </p>
+            </Copy>
             <Button
               size="lg"
               className="bg-white text-purple-600 hover:bg-gray-100 rounded-full"

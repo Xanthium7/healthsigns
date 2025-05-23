@@ -14,6 +14,7 @@ import {
   Heart,
 } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
+import Copy from "@/components/Copy";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -58,14 +59,18 @@ export default function RPMPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-4xl md:text-5xl font-medium mb-6 gradient-text">
-                Always-on healthcare. Anywhere, Anytime.
-              </h1>
-              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
-                Experience seamless healthcare with HealthSigns Remote Patient
-                Monitoring. Empowering patients and providers with real-time
-                health insights for better outcomes.
-              </p>
+              <Copy animateOnScroll={false}>
+                <h1 className="text-4xl md:text-5xl font-medium mb-6 text-purple-500">
+                  Always-on healthcare. Anywhere, Anytime.
+                </h1>
+              </Copy>
+              <Copy animateOnScroll={false} delay={0.2}>
+                <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+                  Experience seamless healthcare with HealthSigns Remote Patient
+                  Monitoring. Empowering patients and providers with real-time
+                  health insights for better outcomes.
+                </p>
+              </Copy>
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full"
@@ -123,17 +128,21 @@ export default function RPMPage() {
             variants={fadeInUp}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              What is Remote Patient Monitoring (RPM)?
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
-              Remote Patient Monitoring (RPM) is an innovative healthcare
-              solution that allows healthcare providers to monitor patients'
-              health outside traditional clinical settings. By utilizing
-              cutting-edge technology, RPM collects vital health data in
-              real-time, providing continuous insights into a patient's
-              condition.
-            </p>
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                What is Remote Patient Monitoring (RPM)?
+              </h2>
+            </Copy>
+            <Copy delay={0.2}>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                Remote Patient Monitoring (RPM) is an innovative healthcare
+                solution that allows healthcare providers to monitor patients'
+                health outside traditional clinical settings. By utilizing
+                cutting-edge technology, RPM collects vital health data in
+                real-time, providing continuous insights into a patient's
+                condition.
+              </p>
+            </Copy>
           </MotionDiv>
         </div>
       </section>
@@ -149,9 +158,11 @@ export default function RPMPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              How Does RPM Work?
-            </h2>
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                How Does RPM Work?
+              </h2>
+            </Copy>
           </MotionDiv>
 
           <MotionDiv
@@ -199,12 +210,16 @@ export default function RPMPage() {
                       <div className="flex justify-center mb-4 bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full w-fit mx-auto">
                         {item.icon}
                       </div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-700 text-sm dark:text-gray-300">
-                        {item.description}
-                      </p>
+                      <Copy>
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                          {item.title}
+                        </h3>
+                      </Copy>
+                      <Copy delay={0.1}>
+                        <p className="text-gray-700 text-sm dark:text-gray-300">
+                          {item.description}
+                        </p>
+                      </Copy>
                     </CardContent>
                   </Card>
                 </MotionDiv>
@@ -224,15 +239,19 @@ export default function RPMPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              Benefits of RPM
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
-              At HealthSigns, we are committed to delivering top-notch remote
-              patient monitoring services that enhance the healthcare experience
-              for patients and providers alike. Discover the future of
-              healthcare with HealthSigns RPM solutions.
-            </p>
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                Benefits of RPM
+              </h2>
+            </Copy>
+            <Copy delay={0.2}>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                At HealthSigns, we are committed to delivering top-notch remote
+                patient monitoring services that enhance the healthcare
+                experience for patients and providers alike. Discover the future
+                of healthcare with HealthSigns RPM solutions.
+              </p>
+            </Copy>
           </MotionDiv>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -267,12 +286,16 @@ export default function RPMPage() {
               >
                 <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl glass">
                   <CardContent className="p-8">
-                    <h3 className="text-2xl font-semibold mb-4 gradient-text">
-                      {item.title}
-                    </h3>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
-                      {item.description}
-                    </p>
+                    <Copy>
+                      <h3 className="text-2xl font-semibold mb-4 text-purple-500">
+                        {item.title}
+                      </h3>
+                    </Copy>
+                    <Copy delay={0.1}>
+                      <p className="text-lg text-gray-700 dark:text-gray-300">
+                        {item.description}
+                      </p>
+                    </Copy>
                   </CardContent>
                 </Card>
               </MotionDiv>
@@ -292,13 +315,18 @@ export default function RPMPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6">
-              Ready to transform your healthcare experience?
-            </h2>
-            <p className="text-xl mb-8">
-              Schedule a consultation with our experts to learn how HealthSigns
-              RPM can benefit your practice or healthcare facility.
-            </p>
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6">
+                Ready to transform your healthcare experience?
+              </h2>
+            </Copy>
+            <Copy delay={0.2}>
+              <p className="text-xl mb-8">
+                Schedule a consultation with our experts to learn how
+                HealthSigns RPM can benefit your practice or healthcare
+                facility.
+              </p>
+            </Copy>
             <Button
               size="lg"
               className="bg-white text-purple-600 hover:bg-gray-100 rounded-full"

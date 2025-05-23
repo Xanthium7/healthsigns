@@ -18,6 +18,7 @@ import {
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import { toast } from "@/components/ui/use-toast";
 import { EMAIL_CONFIG } from "@/config/email-config";
+import Copy from "@/components/Copy";
 
 // Type definitions
 interface FormData {
@@ -166,20 +167,19 @@ export default function AIPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-center lg:text-left"
-            >
-              <h1 className="text-4xl md:text-5xl font-medium mb-6 gradient-text">
-                Proprietary AI-Powered Monitoring for better Health Outcomes
-              </h1>
-              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
-                HealthSigns AI enhances monitoring, integrates data,
-                personalizes care, and offers proactive insights for better
-                outcomes. Stay ahead with HealthSigns.
-              </p>
+            <MotionDiv className="text-center lg:text-left">
+              <Copy animateOnScroll={false}>
+                <h1 className="text-4xl md:text-5xl font-medium mb-6 text-purple-500">
+                  Proprietary AI-Powered Monitoring for better Health Outcomes
+                </h1>
+              </Copy>
+              <Copy animateOnScroll={false} delay={0.2}>
+                <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+                  HealthSigns AI enhances monitoring, integrates data,
+                  personalizes care, and offers proactive insights for better
+                  outcomes. Stay ahead with HealthSigns.
+                </p>
+              </Copy>
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-full"
@@ -232,21 +232,20 @@ export default function AIPage() {
       {/* How Our AI Works Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <MotionDiv
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              How Our AI Works
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
-              At HealthSigns, our AI technology empowers patients and healthcare
-              providers with the tools and insights needed for proactive,
-              personalized care. Experience the future of healthcare with our
-              intelligent RPM solutions.
-            </p>
+          <MotionDiv className="text-center max-w-3xl mx-auto mb-16">
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                How Our AI Works
+              </h2>
+            </Copy>
+            <Copy delay={0.2}>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                At HealthSigns, our AI technology empowers patients and
+                healthcare providers with the tools and insights needed for
+                proactive, personalized care. Experience the future of
+                healthcare with our intelligent RPM solutions.
+              </p>
+            </Copy>
           </MotionDiv>
         </div>
       </section>
@@ -256,12 +255,7 @@ export default function AIPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-            >
+            <MotionDiv>
               <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-xl">
                 <Image
                   src="/placeholder.svg?height=800&width=1200"
@@ -272,22 +266,21 @@ export default function AIPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
               </div>
             </MotionDiv>
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-            >
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-                Intelligent Monitoring for Proactive Care
-              </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                At HealthSigns, our proprietary AI technology is at the heart of
-                our remote patient monitoring (RPM) services. Designed to
-                enhance patient care and streamline healthcare processes, our AI
-                works tirelessly behind the scenes to provide intelligent
-                insights and proactive health management.
-              </p>
+            <MotionDiv>
+              <Copy>
+                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                  Intelligent Monitoring for Proactive Care
+                </h2>
+              </Copy>
+              <Copy delay={0.2}>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                  At HealthSigns, our proprietary AI technology is at the heart
+                  of our remote patient monitoring (RPM) services. Designed to
+                  enhance patient care and streamline healthcare processes, our
+                  AI works tirelessly behind the scenes to provide intelligent
+                  insights and proactive health management.
+                </p>
+              </Copy>
             </MotionDiv>
           </div>
         </div>
@@ -296,16 +289,12 @@ export default function AIPage() {
       {/* AI Features Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              Key AI Features
-            </h2>
+          <MotionDiv className="text-center max-w-3xl mx-auto mb-16">
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                Key AI Features
+              </h2>
+            </Copy>
           </MotionDiv>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -347,24 +336,22 @@ export default function AIPage() {
                   "Our AI-powered platform fosters greater patient engagement by providing easy-to-understand health reports and recommendations.",
               },
             ].map((item, index) => (
-              <MotionDiv
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
+              <MotionDiv key={index}>
                 <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl card-3d">
                   <CardContent className="p-6">
                     <div className="mb-4 bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full w-fit">
                       {item.icon}
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
-                      {item.description}
-                    </p>
+                    <Copy>
+                      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                        {item.title}
+                      </h3>
+                    </Copy>
+                    <Copy delay={0.1}>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm">
+                        {item.description}
+                      </p>
+                    </Copy>
                   </CardContent>
                 </Card>
               </MotionDiv>
@@ -378,37 +365,31 @@ export default function AIPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="order-2 lg:order-1"
-            >
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-                Predictive Health Insights
-              </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                Our AI goes beyond just monitoring—it predicts potential health
-                risks by identifying patterns and trends in the collected data.
-                This predictive capability allows healthcare providers to
-                anticipate and address health concerns before they become
-                critical.
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                By analyzing historical data and current health metrics, our AI
-                can identify subtle changes that might indicate the onset of a
-                health issue, enabling early intervention and better patient
-                outcomes.
-              </p>
+            <MotionDiv className="order-2 lg:order-1">
+              <Copy>
+                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                  Predictive Health Insights
+                </h2>
+              </Copy>
+              <Copy delay={0.2}>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                  Our AI goes beyond just monitoring—it predicts potential
+                  health risks by identifying patterns and trends in the
+                  collected data. This predictive capability allows healthcare
+                  providers to anticipate and address health concerns before
+                  they become critical.
+                </p>
+              </Copy>
+              <Copy delay={0.3}>
+                <p className="text-lg text-gray-700 dark:text-gray-300">
+                  By analyzing historical data and current health metrics, our
+                  AI can identify subtle changes that might indicate the onset
+                  of a health issue, enabling early intervention and better
+                  patient outcomes.
+                </p>
+              </Copy>
             </MotionDiv>
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="order-1 lg:order-2"
-            >
+            <MotionDiv className="order-1 lg:order-2">
               <div className="blob h-[400px] w-full overflow-hidden shadow-xl bg-gradient-to-br from-purple-100 to-white dark:from-gray-800 dark:to-gray-900 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <BlurrySphere
@@ -428,33 +409,25 @@ export default function AIPage() {
       {/* Contact Form Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-medium mb-6 gradient-text">
-              Contact Us
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
-              Interested in learning more about our AI-powered healthcare
-              solutions? Get in touch with our team today.
-            </p>
+          <MotionDiv className="text-center max-w-3xl mx-auto mb-16">
+            <Copy>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-purple-500">
+                Contact Us
+              </h2>
+            </Copy>
+            <Copy delay={0.2}>
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                Interested in learning more about our AI-powered healthcare
+                solutions? Get in touch with our team today.
+              </p>
+            </Copy>
           </MotionDiv>
 
           <div className="max-w-6xl mx-auto">
             <Card className="border-none shadow-xl bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Banner Image Column */}
-                <MotionDiv
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.7 }}
-                  className="relative h-full min-h-[300px] lg:min-h-[500px]"
-                >
+                <MotionDiv className="relative h-full min-h-[300px] lg:min-h-[500px]">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-700 overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
                       <Image
@@ -465,13 +438,17 @@ export default function AIPage() {
                       />
                     </div>
                     <div className="relative h-full flex flex-col justify-center p-8 z-10 text-white">
-                      <h3 className="text-2xl font-medium mb-4">
-                        Get in Touch
-                      </h3>
-                      <p className="mb-6">
-                        We're here to answer your questions about our AI-powered
-                        healthcare solutions.
-                      </p>
+                      <Copy>
+                        <h3 className="text-2xl font-medium mb-4">
+                          Get in Touch
+                        </h3>
+                      </Copy>
+                      <Copy delay={0.2}>
+                        <p className="mb-6">
+                          We're here to answer your questions about our
+                          AI-powered healthcare solutions.
+                        </p>
+                      </Copy>
 
                       <div className="space-y-4">
                         <div className="flex items-center">
@@ -490,22 +467,19 @@ export default function AIPage() {
 
                       <div className="absolute bottom-8 left-8 right-8">
                         <div className="h-1 w-16 bg-white/50 rounded mb-4"></div>
-                        <p className="text-sm opacity-80">
-                          Your health data is secure with us. We adhere to HIPAA
-                          compliance standards.
-                        </p>
+                        <Copy delay={0.3}>
+                          <p className="text-sm opacity-80">
+                            Your health data is secure with us. We adhere to
+                            HIPAA compliance standards.
+                          </p>
+                        </Copy>
                       </div>
                     </div>
                   </div>
                 </MotionDiv>
 
                 {/* Form Column */}
-                <MotionDiv
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.7 }}
-                >
+                <MotionDiv>
                   <CardContent className="p-8 lg:p-12">
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
