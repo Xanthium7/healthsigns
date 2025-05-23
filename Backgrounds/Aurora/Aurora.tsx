@@ -210,9 +210,12 @@ export default function Aurora(props: AuroraProps) {
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      // Ensure gl context exists before trying to lose it
+      if (gl && gl.getExtension("WEBGL_lose_context")) {
+        gl.getExtension("WEBGL_lose_context")?.loseContext();
+      }
     };
-  }, [amplitude]);
+  }, []); // Changed dependency from [amplitude] to []
 
   return <div ref={ctnDom} className="w-full h-full" />;
 }
