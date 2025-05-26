@@ -17,7 +17,7 @@ interface FlowingMenuProps {
 
 const FlowingMenu: React.FC<FlowingMenuProps> = ({ items = [] }) => {
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden ">
       <nav className="flex flex-col h-full m-0 p-0">
         {items.map((item, idx) => (
           <MenuItem key={idx} {...item} />
@@ -38,7 +38,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
     mouseX: number,
     mouseY: number,
     width: number,
-    height: number,
+    height: number
   ): "top" | "bottom" => {
     const topEdgeDist = Math.pow(mouseX - width / 2, 2) + Math.pow(mouseY, 2);
     const bottomEdgeDist =
@@ -54,7 +54,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       ev.clientX - rect.left,
       ev.clientY - rect.top,
       rect.width,
-      rect.height,
+      rect.height
     );
 
     const tl = gsap.timeline({ defaults: animationDefaults });
@@ -71,24 +71,25 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       ev.clientX - rect.left,
       ev.clientY - rect.top,
       rect.width,
-      rect.height,
+      rect.height
     );
 
-    const tl = gsap.timeline({ defaults: animationDefaults }) as TimelineMax;
+    const tl = gsap.timeline({ defaults: animationDefaults });
     tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" }).to(
       marqueeInnerRef.current,
       { y: edge === "top" ? "101%" : "-101%" },
+      0 // Start second animation at the same time
     );
   };
 
   const repeatedMarqueeContent = React.useMemo(() => {
     return Array.from({ length: 4 }).map((_, idx) => (
       <React.Fragment key={idx}>
-        <span className="text-[#060606] uppercase font-normal text-[4vh] leading-[1.2] p-[1vh_1vw_0]">
+        <span className="text-primary-foreground uppercase font-medium text-xl md:text-2xl leading-none p-2 mx-2">
           {text}
         </span>
         <div
-          className="w-[200px] h-[7vh] my-[2em] mx-[2vw] p-[1em_0] rounded-[50px] bg-cover bg-center"
+          className="w-20 h-12 md:w-24 md:h-16 mx-3 my-auto rounded-md bg-cover bg-center"
           style={{ backgroundImage: `url(${image})` }}
         />
       </React.Fragment>
@@ -97,11 +98,11 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
 
   return (
     <div
-      className="flex-1 relative overflow-hidden text-center shadow-[0_-1px_0_0_#fff]"
+      className="flex-1 relative overflow-hidden text-center border-b border-border"
       ref={itemRef}
     >
       <a
-        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-white text-[4vh] hover:text-[#060606] focus:text-white focus-visible:text-[#060606]"
+        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-foreground text-2xl md:text-3xl lg:text-4xl hover:text-transparent focus:text-transparent focus-visible:text-transparent transition-colors duration-300"
         href={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -109,10 +110,13 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
         {text}
       </a>
       <div
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-white translate-y-[101%]"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary translate-y-[101%]"
         ref={marqueeRef}
       >
-        <div className="h-full w-[200%] flex" ref={marqueeInnerRef}>
+        <div
+          className="h-full w-[200%] flex translate-y-[101%]"
+          ref={marqueeInnerRef}
+        >
           <div className="flex items-center relative h-full w-[200%] will-change-transform animate-marquee">
             {repeatedMarqueeContent}
           </div>

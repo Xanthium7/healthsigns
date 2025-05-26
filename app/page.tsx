@@ -31,9 +31,55 @@ import Copy from "@/components/Copy";
 import { TextReveal } from "@/components/magicui/text-reveal";
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import FlowingMenu from "@/CoolComponents/FlowingMenu/FlowingMenu";
 
 // Animated components
 const MotionDiv = motion.div;
+
+const whyPartnerItems = [
+  {
+    icon: <Users className="h-10 w-10 text-primary" />, // Kept for potential future use or if FlowingMenu is adapted
+    title: "Empower Your Patients",
+    description:
+      "Transform patients into active partners in their health journey. Our RPM fosters engagement, boosts adherence, and elevates outcomes.",
+  },
+  {
+    icon: <Activity className="h-10 w-10 text-primary" />,
+    title: "Stay Ahead of Health Risks",
+    description:
+      "Leverage continuous vital tracking for early issue detection. Our RPM keeps you one step ahead, ensuring timely interventions and proactive care.",
+  },
+  {
+    icon: <TrendingUp className="h-10 w-10 text-primary" />,
+    title: "Revolutionize Chronic Care",
+    description:
+      "Streamline chronic condition management with consistent, remote oversight, lightening the load on facilities and enhancing patient quality of life.",
+  },
+  {
+    icon: <DollarSign className="h-10 w-10 text-primary" />,
+    title: "Smart Savings, Smarter Care",
+    description:
+      "Slash unnecessary costs by minimizing in-person visits and readmissions. Deliver premium, efficient care without breaking the bank.",
+  },
+  {
+    icon: <Globe className="h-10 w-10 text-primary" />,
+    title: "Care Without Borders",
+    description:
+      "Erase geographical limits. Extend top-tier healthcare to every patient, regardless of location, with our accessible RPM solutions.",
+  },
+  {
+    icon: <Database className="h-10 w-10 text-primary" />,
+    title: "Unlock Actionable Intelligence",
+    description:
+      "Turn raw health data into powerful, actionable insights. Understand patient trends and treatment efficacy for superior decision-making.",
+  },
+];
+
+const flowingMenuItems = whyPartnerItems.map((item, index) => ({
+  link: "#", // Placeholder link
+  text: item.title,
+  image: `https://picsum.photos/600/400?random=${index + 1}`, // Placeholder image
+}));
 
 export default function Home() {
   // Animation controls
@@ -198,72 +244,8 @@ export default function Home() {
             </Copy>
           </MotionDiv>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[
-              {
-                icon: <Users className="h-10 w-10 text-primary" />,
-                title: "Empower Your Patients",
-                description:
-                  "Transform patients into active partners in their health journey. Our RPM fosters engagement, boosts adherence, and elevates outcomes.",
-              },
-              {
-                icon: <Activity className="h-10 w-10 text-primary" />,
-                title: "Stay Ahead of Health Risks",
-                description:
-                  "Leverage continuous vital tracking for early issue detection. Our RPM keeps you one step ahead, ensuring timely interventions and proactive care.",
-              },
-              {
-                icon: <TrendingUp className="h-10 w-10 text-primary" />,
-                title: "Revolutionize Chronic Care",
-                description:
-                  "Streamline chronic condition management with consistent, remote oversight, lightening the load on facilities and enhancing patient quality of life.",
-              },
-              {
-                icon: <DollarSign className="h-10 w-10 text-primary" />,
-                title: "Smart Savings, Smarter Care",
-                description:
-                  "Slash unnecessary costs by minimizing in-person visits and readmissions. Deliver premium, efficient care without breaking the bank.",
-              },
-              {
-                icon: <Globe className="h-10 w-10 text-primary" />,
-                title: "Care Without Borders",
-                description:
-                  "Erase geographical limits. Extend top-tier healthcare to every patient, regardless of location, with our accessible RPM solutions.",
-              },
-              {
-                icon: <Database className="h-10 w-10 text-primary" />,
-                title: "Unlock Actionable Intelligence",
-                description:
-                  "Turn raw health data into powerful, actionable insights. Understand patient trends and treatment efficacy for superior decision-making.",
-              },
-            ].map((item, index) => (
-              <MotionDiv
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <SpotlightCard
-                  className="custom-spotlight-card shadow-md hover:shadow-lg transition-all duration-300 bg-background/30 backdrop-blur-md rounded-2xl transform hover:-translate-y-1 p-8 h-full flex flex-col"
-                  spotlightColor="rgba(255, 75, 186, 0.2)" // Example primary color, adjust as needed
-                >
-                  <div className="mb-5 bg-primary/10 p-3 rounded-full w-fit">
-                    {item.icon}
-                  </div>
-                  <h3 className="mb-3 text-card-foreground text-xl font-semibold">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground font-jakarta text-base">
-                    {item.description}
-                  </p>
-                </SpotlightCard>
-              </MotionDiv>
-            ))}
+          <div className="w-full h-[70vh] md:h-[80vh] lg:h-[90vh] relative my-10">
+            <FlowingMenu items={flowingMenuItems} />
           </div>
         </div>
       </section>
