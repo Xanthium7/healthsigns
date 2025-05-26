@@ -17,25 +17,19 @@ export default function Careers() {
               HOW WE WORK
             </h1>
           </div>
-          <div className="w-full md:w-1/2 container flex flex-col gap-4 items-center md:items-start justify-around space-y-6 md:space-y-0 md:pl-8">
+          <div className="w-full md:w-1/2 container flex flex-col gap-4 items-center md:items-start justify-around space-y-6 md:space-y-6 md:pl-8">
             <Copy delay={0.1}>
-              <p className="text-muted-foreground text-sm sm:text-base font-jakarta text-center md:text-left">
-                Our <span className="font-bold">innovative model</span>{" "}
-                strategically partners with{" "}
-                <span className="font-bold">healthcare providers</span> in
-                India, the Middle East, and the US. By tapping into their
-                existing customer bases, we integrate advanced{" "}
-                <span className="font-bold">
-                  remote patient monitoring services
-                </span>
-                to significantly{" "}
+              <p className="text-muted-foreground text-base sm:text-lg font-jakarta text-center md:text-left">
+                Our <span className="font-bold">innovative model</span> partners
+                with <span className="font-bold">healthcare providers</span> in
+                India, the Middle East, and the US. We integrate{" "}
+                <span className="font-bold">remote patient monitoring</span> to{" "}
                 <span className="font-bold">enhance care delivery</span> and{" "}
-                <span className="font-bold">expand reach</span>. This
-                collaborative approach ensures patients receive{" "}
-                <span className="font-bold">consistent, quality care</span>{" "}
-                wherever they are, fostering better health outcomes and
-                accessibility. We are dedicated to transforming healthcare
-                through technology and partnership.
+                <span className="font-bold">expand reach</span>, ensuring{" "}
+                <span className="font-bold">quality care</span> and better
+                health outcomes through technology and partnership. We are
+                dedicated to transforming healthcare by making it more
+                accessible and efficient.
               </p>
             </Copy>
             <InteractiveHoverButton

@@ -212,28 +212,20 @@ export default function Home() {
       {/* Why Partner Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center max-w-3xl mx-auto mb-16" // Added mb-16 for spacing
-          >
-            <Copy>
-              <h2 className="mb-6 text-primary text-3xl md:text-4xl font-medium tracking-tight">
-                Why Partner with HealthSigns?
-              </h2>
-            </Copy>
+          <Copy>
+            <h2 className="mb-20 text-secondary/30 uppercase text-4xl md:text-7xl font-extrabold text-center lg:text-left tracking-tight">
+              Why Partner with <br /> HealthSigns?
+            </h2>
+          </Copy>
 
-            <Copy delay={0.2}>
-              <p className="text-muted-foreground font-jakarta text-lg">
-                Unlock the full potential of your healthcare services by
-                partnering with HealthSigns. Our innovative solutions and
-                collaborative approach can help you provide top-notch remote
-                patient care.
-              </p>
-            </Copy>
-          </MotionDiv>
+          {/* <Copy delay={0.2}>
+            <p className="text-muted-foreground font-jakarta text-lg">
+              Unlock the full potential of your healthcare services by
+              partnering with HealthSigns. Our innovative solutions and
+              collaborative approach can help you provide top-notch remote
+              patient care.
+            </p>
+          </Copy> */}
         </div>{" "}
         <div className="w-full h-[40vh] md:h-[40vh] lg:h-[50vh] relative">
           <FlowingMenu items={flowingMenuItems} />
