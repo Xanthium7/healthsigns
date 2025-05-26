@@ -206,43 +206,43 @@ export default function Home() {
             </Copy>
           </MotionDiv>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {[
               {
                 icon: <Users className="h-10 w-10 text-primary" />,
-                title: "Enhanced Patient Engagement",
+                title: "Empower Your Patients",
                 description:
-                  "RPM allows patients to actively participate in their own care, leading to better adherence to treatment plans and improved health outcomes.",
+                  "Transform patients into active partners in their health journey. Our RPM fosters engagement, boosts adherence, and elevates outcomes.",
               },
               {
                 icon: <Activity className="h-10 w-10 text-primary" />,
-                title: "Proactive Health Monitoring",
+                title: "Stay Ahead of Health Risks",
                 description:
-                  "By continuously tracking vital signs and health metrics, RPM enables early detection of potential issues.",
+                  "Leverage continuous vital tracking for early issue detection. Our RPM keeps you one step ahead, ensuring timely interventions and proactive care.",
               },
               {
                 icon: <TrendingUp className="h-10 w-10 text-primary" />,
-                title: "Improved Chronic Disease Management",
+                title: "Revolutionize Chronic Care",
                 description:
-                  "For patients with chronic conditions, RPM offers consistent monitoring and management, reducing the burden on healthcare facilities.",
+                  "Streamline chronic condition management with consistent, remote oversight, lightening the load on facilities and enhancing patient quality of life.",
               },
               {
                 icon: <DollarSign className="h-10 w-10 text-primary" />,
-                title: "Cost-Effective Care",
+                title: "Smart Savings, Smarter Care",
                 description:
-                  "RPM reduces the need for frequent in-person visits and hospital admissions, significantly lowering healthcare costs.",
+                  "Slash unnecessary costs by minimizing in-person visits and readmissions. Deliver premium, efficient care without breaking the bank.",
               },
               {
                 icon: <Globe className="h-10 w-10 text-primary" />,
-                title: "Increased Accessibility",
+                title: "Care Without Borders",
                 description:
-                  "RPM breaks down geographical barriers, providing high-quality care to patients in remote or underserved areas.",
+                  "Erase geographical limits. Extend top-tier healthcare to every patient, regardless of location, with our accessible RPM solutions.",
               },
               {
                 icon: <Database className="h-10 w-10 text-primary" />,
-                title: "Data-Driven Insights",
+                title: "Unlock Actionable Intelligence",
                 description:
-                  "RPM empowers healthcare providers with valuable insights into patient health trends and treatment efficacy.",
+                  "Turn raw health data into powerful, actionable insights. Understand patient trends and treatment efficacy for superior decision-making.",
               },
             ].map((item, index) => (
               <MotionDiv
@@ -256,15 +256,15 @@ export default function Home() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card/80 backdrop-blur-sm rounded-2xl card-3d transform hover:-translate-y-1">
-                  <CardContent className="p-6">
-                    <div className="mb-4 bg-primary/20 p-3 rounded-full w-fit">
+                <Card className="h-full border border-primary/10 shadow-md hover:shadow-lg transition-all duration-300 bg-background/30 backdrop-blur-md rounded-2xl transform hover:-translate-y-1">
+                  <CardContent className="p-8">
+                    <div className="mb-5 bg-primary/10 p-3 rounded-full w-fit">
                       {item.icon}
                     </div>
-                    <h3 className="mb-3 text-card-foreground text-xl font-semibold">
+                    <h3 className="mb-3 text-card-foreground text-lg font-semibold">
                       {item.title}
                     </h3>
-                    <p className="text-muted-foreground font-jakarta">
+                    <p className="text-muted-foreground font-jakarta text-sm">
                       {item.description}
                     </p>
                   </CardContent>

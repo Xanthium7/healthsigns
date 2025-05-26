@@ -84,8 +84,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold gradient-text font-display">
-              HealthSigns
+            <span className="text-2xl font-bold text-primary font-display">
+              Health
+            </span>
+
+            <span className="text-2xl font-bold text-secondary font-display">
+              Signs
             </span>
           </Link>
 

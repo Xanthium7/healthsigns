@@ -4,22 +4,22 @@
 
 @layer base {
   :root {
-    --background: 43 89% 92%; /* Light Cream */
+    --background: 43 89% 99%; /* Light Cream */
     --foreground: 202 100% 14%; /* Dark Blue */
-    --card: 43 89% 92%; /* Light Cream */
+    --card: 43 89% 99%; /* Light Cream */
     --card-foreground: 202 100% 14%; /* Dark Blue */
-    --popover: 43 89% 92%; /* Light Cream */
+    --popover: 43 89% 99%; /* Light Cream */
     --popover-foreground: 202 100% 14%; /* Dark Blue */
-    --primary: 355 83% 41%; /* Red */
-    --primary-foreground: 43 89% 92%; /* Light Cream */
-    --secondary: 205 38% 60%; /* Light Blue */
+    --primary: 355 99% 60%; /* Red */
+    --primary-foreground: 43 89% 99%; /* Light Cream */
+    --secondary: 202 100% 24%; /* Light Blue */
     --secondary-foreground: 202 100% 14%; /* Dark Blue */
     --muted: 205 38% 85%; /* Lighter Light Blue */
     --muted-foreground: 202 100% 25%; /* Slightly Lighter Dark Blue */
     --accent: 0 100% 23.5%; /* Dark Red */
-    --accent-foreground: 43 89% 92%; /* Light Cream */
+    --accent-foreground: 43 89% 99%; /* Light Cream */
     --destructive: 355 83% 41%; /* Red */
-    --destructive-foreground: 43 89% 92%; /* Light Cream */
+    --destructive-foreground: 43 89% 99%; /* Light Cream */
     --border: 43 89% 85%; /* Slightly darker Light Cream */
     --input: 43 89% 85%; /* Slightly darker Light Cream */
     --ring: 355 83% 41%; /* Red */
