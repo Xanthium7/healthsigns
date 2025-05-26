@@ -6,28 +6,38 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import MobileNavbar from "./mobile-navbar";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
   isActive: boolean;
+  onClick?: () => void;
 }
 
-const NavLink = ({ href, children, isActive }: NavLinkProps) => {
+const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
   return (
     <Link
       href={href}
       className={cn(
-        "text-sm font-medium transition-colors relative group",
+        "text-sm font-medium transition-colors relative group block px-4 py-2 md:px-0 md:py-0 md:inline-block",
         isActive ? "text-primary" : "text-foreground hover:text-primary"
       )}
+      onClick={onClick}
     >
       {children}
       <span
         className={cn(
-          "absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full",
-          isActive ? "w-full" : "w-0"
+          "absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full",
+          isActive ? "w-full" : "w-0",
+          "md:block hidden"
         )}
       />
     </Link>
@@ -35,7 +45,6 @@ const NavLink = ({ href, children, isActive }: NavLinkProps) => {
 };
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -45,25 +54,12 @@ const Navbar = () => {
       setScrolled(window.scrollY > 10);
     };
 
-    // Close mobile menu when window is resized to desktop size
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(false);
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -112,25 +108,58 @@ const Navbar = () => {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button / Sheet Trigger */}
           <div className="flex items-center space-x-4 md:hidden">
-            <button
-              className="text-foreground focus:outline-none hover:text-primary"
-              onClick={toggleMenu}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-            >
-              <Menu size={24} />
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  className="text-foreground focus:outline-none hover:text-primary"
+                  aria-label={"Open menu"}
+                >
+                  <Menu size={24} />
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] bg-background p-0"
+              >
+                <SheetHeader className="p-6 pb-2">
+                  <SheetTitle className="text-left">
+                    <Link href="/" className="flex items-center">
+                      <span className="text-2xl font-bold text-primary font-display">
+                        Health
+                      </span>
+                      <span className="text-2xl font-bold text-secondary font-display">
+                        Signs
+                      </span>
+                    </Link>
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col space-y-2 p-4 pt-2">
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.name}>
+                      <NavLink
+                        href={link.href}
+                        isActive={pathname === link.href}
+                      >
+                        {link.name}
+                      </NavLink>
+                    </SheetClose>
+                  ))}
+                  <div className="pt-4">
+                    <SheetClose asChild>
+                      <Link href="/contact" className="block">
+                        <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
+                          Contact
+                        </Button>
+                      </Link>
+                    </SheetClose>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        <MobileNavbar
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          links={navLinks}
-        />
       </div>
     </header>
   );
