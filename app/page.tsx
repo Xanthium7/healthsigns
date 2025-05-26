@@ -234,7 +234,7 @@ export default function Home() {
             </Copy>
           </MotionDiv>
         </div>{" "}
-        <div className="w-full h-[300vh] md:h-[40vh] lg:h-[50vh] relative">
+        <div className="w-full h-[40vh] md:h-[40vh] lg:h-[50vh] relative">
           <FlowingMenu items={flowingMenuItems} />
         </div>
       </section>

@@ -46,7 +46,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
     return topEdgeDist < bottomEdgeDist ? "top" : "bottom";
   };
 
-  const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
       return;
 
@@ -74,7 +74,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" });
   };
 
-  const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseLeave = (ev: React.MouseEvent<HTMLDivElement>) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
       return;
     const rect = itemRef.current.getBoundingClientRect();
@@ -96,11 +96,11 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
   const repeatedMarqueeContent = React.useMemo(() => {
     return Array.from({ length: 4 }).map((_, idx) => (
       <React.Fragment key={idx}>
-        <span className="text-primary-foreground uppercase font-medium text-xl md:text-2xl leading-none p-2 mx-2">
+        <span className="text-primary-foreground uppercase font-medium text-base sm:text-lg md:text-xl leading-none p-1 sm:p-2 mx-1 sm:mx-2">
           {text}
         </span>
         <div
-          className="w-20 h-12 md:w-24 md:h-16 mx-3 my-auto rounded-md bg-cover bg-center"
+          className="w-12 h-8 sm:w-16 sm:h-10 md:w-24 md:h-16 mx-1 sm:mx-2 my-auto rounded-md bg-cover bg-center"
           style={{ backgroundImage: `url(${image})` }}
         />
       </React.Fragment>
@@ -112,16 +112,15 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       className="flex-1 relative overflow-hidden text-center border-b border-border"
       ref={itemRef}
     >
-      <a
-        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-foreground text-2xl md:text-3xl lg:text-4xl hover:text-transparent focus:text-transparent focus-visible:text-transparent transition-colors duration-300"
-        href={link}
+      <div
+        className="flex items-center justify-center h-full relative  uppercase no-underline font-semibold text-foreground text-xl sm:text-2xl md:text-3xl lg:text-4xl hover:text-transparent focus:text-transparent focus-visible:text-transparent transition-colors duration-300 p-2 sm:p-0"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {text}
-      </a>
+      </div>
       <div
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#8e9fb4] translate-y-[101%]"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#324861] translate-y-[101%]"
         ref={marqueeRef}
       >
         <div
