@@ -49,24 +49,14 @@ const whyPartnerItems = [
     description:
       "Leverage continuous vital tracking for early issue detection. Our RPM keeps you one step ahead, ensuring timely interventions and proactive care.",
   },
-  {
-    icon: <TrendingUp className="h-10 w-10 text-primary" />,
-    title: "Revolutionize Chronic Care",
-    description:
-      "Streamline chronic condition management with consistent, remote oversight, lightening the load on facilities and enhancing patient quality of life.",
-  },
+
   {
     icon: <DollarSign className="h-10 w-10 text-primary" />,
     title: "Smart Savings, Smarter Care",
     description:
       "Slash unnecessary costs by minimizing in-person visits and readmissions. Deliver premium, efficient care without breaking the bank.",
   },
-  {
-    icon: <Globe className="h-10 w-10 text-primary" />,
-    title: "Care Without Borders",
-    description:
-      "Erase geographical limits. Extend top-tier healthcare to every patient, regardless of location, with our accessible RPM solutions.",
-  },
+
   {
     icon: <Database className="h-10 w-10 text-primary" />,
     title: "Unlock Actionable Intelligence",
@@ -226,7 +216,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-3xl mx-auto mb-16" // Added mb-16 for spacing
           >
             <Copy>
               <h2 className="mb-6 text-primary text-3xl md:text-4xl font-medium tracking-tight">
@@ -243,10 +233,9 @@ export default function Home() {
               </p>
             </Copy>
           </MotionDiv>
-
-          <div className="w-full h-[70vh] md:h-[80vh] lg:h-[90vh] relative my-10">
-            <FlowingMenu items={flowingMenuItems} />
-          </div>
+        </div>{" "}
+        <div className="w-full h-[300vh] md:h-[40vh] lg:h-[50vh] relative">
+          <FlowingMenu items={flowingMenuItems} />
         </div>
       </section>
 

@@ -49,6 +49,17 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
   const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
       return;
+
+    // Restart marquee animation
+    const scrollingMarqueeElement = marqueeInnerRef.current
+      ?.children[0] as HTMLElement;
+    if (scrollingMarqueeElement) {
+      scrollingMarqueeElement.classList.remove("animate-marquee");
+      // Force reflow to restart animation
+      void scrollingMarqueeElement.offsetWidth;
+      scrollingMarqueeElement.classList.add("animate-marquee");
+    }
+
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(
       ev.clientX - rect.left,
@@ -110,14 +121,14 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
         {text}
       </a>
       <div
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary translate-y-[101%]"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#8e9fb4] translate-y-[101%]"
         ref={marqueeRef}
       >
         <div
           className="h-full w-[200%] flex translate-y-[101%]"
           ref={marqueeInnerRef}
         >
-          <div className="flex items-center relative h-full w-[200%] will-change-transform animate-marquee">
+          <div className="flex items-center relative h-full will-change-transform animate-marquee">
             {repeatedMarqueeContent}
           </div>
         </div>
