@@ -32,6 +32,7 @@ import { TextReveal } from "@/components/magicui/text-reveal";
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import FlowingMenu from "@/CoolComponents/FlowingMenu/FlowingMenu";
+import Careers from "@/components/Careers";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -238,13 +239,6 @@ export default function Home() {
           <FlowingMenu items={flowingMenuItems} />
         </div>
       </section>
-
-      {/* About HealthSigns Section */}
-
-      <TextReveal className="text-primary text-center text-2xl md:text-3xl font-medium">
-        At HealthSigns, we're pioneering the future of healthcare with AI
-      </TextReveal>
-
       {/* Pricing & Careers Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -301,6 +295,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* About HealthSigns Section */}
+
+      <TextReveal className="text-primary text-center text-2xl md:text-3xl font-medium">
+        At HealthSigns, we're pioneering the future of healthcare with AI
+      </TextReveal>
+
+      {/*  Careers Section */}
+      <Careers />
 
       {/* CTA Section */}
 
