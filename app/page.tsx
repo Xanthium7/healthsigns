@@ -29,6 +29,8 @@ import Link from "next/link";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
 import Copy from "@/components/Copy";
 import { TextReveal } from "@/components/magicui/text-reveal";
+import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -106,20 +108,10 @@ export default function Home() {
                 </p>
               </Copy>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button
-                  size="lg"
-                  className="rounded-full transform transition-transform hover:scale-105"
-                >
-                  Know more
-                </Button>
                 <Link href={"/contact"}>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-primary text-primary hover:bg-primary/10 hover:text-primary rounded-full transform transition-transform hover:scale-105"
-                  >
-                    Partner with us
-                  </Button>
+                  <InteractiveHoverButton>
+                    Partner With Us
+                  </InteractiveHoverButton>
                 </Link>
               </div>
             </MotionDiv>
@@ -256,19 +248,20 @@ export default function Home() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <Card className="h-full border border-primary/10 shadow-md hover:shadow-lg transition-all duration-300 bg-background/30 backdrop-blur-md rounded-2xl transform hover:-translate-y-1">
-                  <CardContent className="p-8">
-                    <div className="mb-5 bg-primary/10 p-3 rounded-full w-fit">
-                      {item.icon}
-                    </div>
-                    <h3 className="mb-3 text-card-foreground text-lg font-semibold">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground font-jakarta text-sm">
-                      {item.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <SpotlightCard
+                  className="custom-spotlight-card shadow-md hover:shadow-lg transition-all duration-300 bg-background/30 backdrop-blur-md rounded-2xl transform hover:-translate-y-1 p-8 h-full flex flex-col"
+                  spotlightColor="rgba(255, 75, 186, 0.2)" // Example primary color, adjust as needed
+                >
+                  <div className="mb-5 bg-primary/10 p-3 rounded-full w-fit">
+                    {item.icon}
+                  </div>
+                  <h3 className="mb-3 text-card-foreground text-xl font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground font-jakarta text-base">
+                    {item.description}
+                  </p>
+                </SpotlightCard>
               </MotionDiv>
             ))}
           </div>
