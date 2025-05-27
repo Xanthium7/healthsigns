@@ -213,25 +213,25 @@ export default function Home() {
       </section>
       {/* Who Are we ? */}
       <section className="py-20 bg-background">
-        <div className=" mx-auto px-4">
-          <Copy>
-            <h2 className="mb-20 mx-4 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
-              Who are we ?
-            </h2>
-          </Copy>
-
-          {/* <Copy delay={0.2}>
+        {/* <div className=" mx-auto px-4">
+          <Copy delay={0.2}>
             <p className="text-muted-foreground font-jakarta text-lg">
               Unlock the full potential of your healthcare services by
               partnering with HealthSigns. Our innovative solutions and
               collaborative approach can help you provide top-notch remote
               patient care.
             </p>
-          </Copy> */}
-        </div>{" "}
-        <div className="w-full px-4 h-[40vh] md:h-[40vh] lg:h-[50vh] relative lg:text-right text-center">
+          </Copy>
+        </div>{" "} */}
+        <div className="w-full px-4 min-h-[40vh] md:min-h-[40vh] lg:min-h-[60vh] flex flex-col justify-around relative lg:text-right text-center">
+          <Copy>
+            <h2 className="mt-12 mb-6 mx-4 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
+              Who are we ?
+            </h2>
+          </Copy>
+
           <Copy delay={0.2}>
-            <p className="text-muted-foreground font-jakarta text-lg md:text-2xl lg:text-4xl ">
+            <p className="text-muted-foreground font-jakarta  text-lg md:text-2xl lg:text-4xl ">
               At HealthSigns, we pioneer the convergence of{" "}
               <span className="font-bold text-foreground">
                 technology and healthcare
@@ -298,14 +298,18 @@ export default function Home() {
             className="text-center mb-12"
           >
             <MotionDiv variants={fadeInUp}>
-              <h2 className="text-3xl md:text-4xl font-medium mb-4 text-foreground">
-                Flexible Plans for Every Need
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-jakarta">
-                Our plans are designed to align with your organization's goals
-                and scale, offering both standardized enterprise solutions and
-                fully customizable options.
-              </p>
+              <Copy delay={0.1}>
+                <h2 className="text-3xl md:text-5xl font-medium mb-4 text-foreground">
+                  Flexible Plans for Every Need
+                </h2>
+              </Copy>
+              <Copy delay={0.2}>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-jakarta">
+                  Our plans are designed to align with your organization's goals
+                  and scale, offering both standardized enterprise solutions and
+                  fully customizable options.
+                </p>
+              </Copy>
             </MotionDiv>
           </MotionDiv>
           <div className="flex justify-center">
