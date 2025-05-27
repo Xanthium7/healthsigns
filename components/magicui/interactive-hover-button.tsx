@@ -6,7 +6,7 @@ interface InteractiveHoverButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: string;
   padding?: string;
-  borderColor?: string; // Added borderColor prop
+  borderColor?: string;
 }
 
 export const InteractiveHoverButton = React.forwardRef<

@@ -208,6 +208,45 @@ export default function Home() {
           </MotionDiv>
         </div>
       </section>
+      {/* Who Are we ? */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <Copy>
+            <h2 className="mb-20 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
+              Who are we ?
+            </h2>
+          </Copy>
+
+          {/* <Copy delay={0.2}>
+            <p className="text-muted-foreground font-jakarta text-lg">
+              Unlock the full potential of your healthcare services by
+              partnering with HealthSigns. Our innovative solutions and
+              collaborative approach can help you provide top-notch remote
+              patient care.
+            </p>
+          </Copy> */}
+        </div>{" "}
+        <div className="w-full container h-[40vh] md:h-[40vh] lg:h-[50vh] relative lg:text-right text-center">
+          <p className="text-muted-foreground font-jakarta text-lg md:text-2xl lg:text-4xl ">
+            At HealthSigns, we pioneer the convergence of{" "}
+            <span className="font-bold text-foreground">
+              technology and healthcare
+            </span>
+            . Our mission:{" "}
+            <span className="font-bold text-foreground">
+              seamless, innovative, personalized patient management solutions
+            </span>
+            . As a forward-thinking{" "}
+            <span className="font-bold text-foreground">healthtech brand</span>,
+            we're revolutionizing access to{" "}
+            <span className="font-bold text-foreground">
+              world-class medical care
+            </span>{" "}
+            in India, the Middle East, and the US, making healthcare intuitive,
+            effective, and human-centered.
+          </p>
+        </div>
+      </section>
 
       {/* Why Partner Section */}
       <section className="py-20 bg-background">
@@ -290,7 +329,7 @@ export default function Home() {
 
       {/* About HealthSigns Section */}
 
-      <TextReveal className="text-primary text-center text-2xl md:text-3xl font-medium">
+      <TextReveal className="font-extrabold uppercase ">
         At HealthSigns, we're pioneering the future of healthcare with AI
       </TextReveal>
 

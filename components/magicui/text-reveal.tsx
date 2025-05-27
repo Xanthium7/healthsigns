@@ -53,7 +53,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
   ); // Add dependencies if any props affect pinning logic
 
   return (
-    <div ref={targetRef} className={cn("relative z-2 h-[200vh]", className)}>
+    <div ref={targetRef} className={cn("relative z-2 h-[200vh]  ", className)}>
       <div
         ref={stickyElementRef} // Assign ref to the element to be pinned
         className={
