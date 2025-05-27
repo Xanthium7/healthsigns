@@ -148,10 +148,10 @@ export default function RPMPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+            className="text-right max-w-3xl ml-auto mb-12 md:mb-16"
           >
             <Copy>
-              <h2 className="text-3xl md:text-4xl uppercase font-medium mb-6 text-primary">
+              <h2 className="text-3xl md:text-5xl uppercase font-medium mb-6 text-right text-primary">
                 How RPM Works
               </h2>
             </Copy>
