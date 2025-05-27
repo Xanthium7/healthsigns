@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react"; // Added React for Fragment
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -47,10 +47,43 @@ export default function RPMPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1, // Adjusted stagger for more elements
       },
     },
   };
+
+  const rpmSteps = [
+    {
+      icon: <Activity className="h-10 w-10 text-secondary/80" />,
+      title: "Data Collection",
+      description:
+        "Patients use connected medical devices to record vital signs and health metrics from home.",
+    },
+    {
+      icon: <Smartphone className="h-10 w-10 text-secondary/80" />,
+      title: "Secure Transmission",
+      description:
+        "Data is securely transmitted in real-time to the HealthSigns platform for provider access.",
+    },
+    {
+      icon: <BarChart className="h-10 w-10 text-secondary/80" />,
+      title: "Monitoring", // Corrected title based on image
+      description:
+        "Healthcare teams monitor data, detect early warnings, and provide timely interventions.",
+    },
+    {
+      icon: <UserCheck className="h-10 w-10 text-secondary/80" />,
+      title: "Personalized Care",
+      description:
+        "Insights from data inform adjustments to treatment plans and personalized patient advice.",
+    },
+    {
+      icon: <Heart className="h-10 w-10 text-secondary/80" />,
+      title: "Patient Engagement",
+      description:
+        "RPM empowers patients in their health journey, improving adherence and self-management.",
+    },
+  ];
 
   return (
     <div className="pt-16 md:pt-24 bg-background">
@@ -64,7 +97,7 @@ export default function RPMPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <Copy>
-                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-secondary/30 uppercase tracking-wider">
+                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-secondary/80 uppercase tracking-wider">
                   Remote Patient
                   <br />
                   Monitoring
@@ -102,7 +135,7 @@ export default function RPMPage() {
         </div>
       </section>
 
-      {/* What is RPM Section - "How We Work" Style */}
+      {/* What is RPM Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -162,61 +195,70 @@ export default function RPMPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 
+                       xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] 
+                       xl:gap-x-3 xl:items-stretch"
           >
-            {[
-              {
-                icon: <Activity className="h-10 w-10 text-secondary/80" />,
-                title: "Data Collection",
-                description:
-                  "Patients use connected medical devices to record vital signs and health metrics from home.",
-              },
-              {
-                icon: <Smartphone className="h-10 w-10 text-secondary/80" />,
-                title: "Secure Transmission",
-                description:
-                  "Data is securely transmitted in real-time to the HealthSigns platform for provider access.",
-              },
-              {
-                icon: <BarChart className="h-10 w-10 text-secondary/80" />,
-                title: " Monitoring",
-                description:
-                  "Healthcare teams monitor data, detect early warnings, and provide timely interventions.",
-              },
-              {
-                icon: <UserCheck className="h-10 w-10 text-secondary/80" />,
-                title: "Personalized Care",
-                description:
-                  "Insights from data inform adjustments to treatment plans and personalized patient advice.",
-              },
-              {
-                icon: <Heart className="h-10 w-10 text-secondary/80" />,
-                title: "Patient Engagement",
-                description:
-                  "RPM empowers patients in their health journey, improving adherence and self-management.",
-              },
-            ].map((item, index) => (
-              <MotionDiv key={index} variants={fadeInUp}>
-                <SpotlightCard
-                  className=" h-full bg-gray-50 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl"
-                  spotlightColor="rgba(0, 229, 255, 0.2)"
-                >
-                  <div className="flex justify-center items-center mb-4 bg-secondary/10 p-3 rounded-full w-16 h-16">
-                    {item.icon}
-                  </div>
+            {rpmSteps.flatMap((item, index) => {
+              const cardElement = (
+                <MotionDiv key={`card-${item.title}`} variants={fadeInUp}>
+                  <SpotlightCard
+                    className="h-full bg-gray-100 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl p-6"
+                    spotlightColor="rgba(0, 229, 255, 0.2)"
+                  >
+                    <div className="flex flex-col items-center text-center h-full">
+                      <div className="flex justify-center items-center mb-4 bg-secondary/10 p-3 rounded-full w-16 h-16 flex-shrink-0">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-base font-bold uppercase mb-2 text-secondary tracking-wide">
+                        {item.title}
+                      </h3>
+                      <Copy delay={0.01}>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {item.description}
+                        </p>
+                      </Copy>
+                    </div>
+                  </SpotlightCard>
+                </MotionDiv>
+              );
 
-                  <h3 className="text-lg font-bold uppercase mb-2 text-secondary">
-                    {item.title}
-                  </h3>
-
-                  <Copy delay={0.01}>
-                    <p className="text-muted-foreground text-sm">
-                      {item.description}
-                    </p>
-                  </Copy>
-                </SpotlightCard>
-              </MotionDiv>
-            ))}
+              if (index < rpmSteps.length - 1) {
+                const arrowElement = (
+                  <MotionDiv
+                    key={`arrow-${item.title}`}
+                    variants={fadeInUp}
+                    className="hidden xl:flex items-center justify-center"
+                  >
+                    <svg
+                      width="32"
+                      height="24"
+                      viewBox="0 0 32 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="text-gray-400 opacity-70"
+                    >
+                      <path
+                        d="M2 12H30"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M22 5L30 12L22 19"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </MotionDiv>
+                );
+                return [cardElement, arrowElement];
+              }
+              return [cardElement];
+            })}
           </MotionDiv>
         </div>
       </section>
@@ -273,20 +315,21 @@ export default function RPMPage() {
               },
             ].map((item, index) => (
               <MotionDiv key={index} variants={fadeInUp}>
-                <Card className="h-full bg-primary/5 border border-primary/20 hover:shadow-primary/10 shadow-lg transition-shadow duration-300 rounded-xl">
-                  <CardContent className="p-6 md:p-8">
-                    <Copy>
-                      <h3 className="text-xl font-semibold mb-3 text-primary">
-                        {item.title}
-                      </h3>
-                    </Copy>
-                    <Copy delay={0.1}>
-                      <p className="text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </Copy>
-                  </CardContent>
-                </Card>
+                <SpotlightCard
+                  className="h-full bg-gray-100 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl p-6 md:p-8"
+                  spotlightColor="rgba(0, 229, 255, 0.2)" // Fuchsia/purple tint for spotlight
+                >
+                  <Copy>
+                    <h3 className="text-xl  font-bold uppercase mb-3 text-secondary">
+                      {item.title}
+                    </h3>
+                  </Copy>
+                  <Copy delay={0.1}>
+                    <p className="text-muted-foreground text-sm">
+                      {item.description}
+                    </p>
+                  </Copy>
+                </SpotlightCard>
               </MotionDiv>
             ))}
           </MotionDiv>

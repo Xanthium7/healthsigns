@@ -51,7 +51,7 @@ export default function Career() {
     <div className="flex flex-col lg:flex-row relative items-center justify-center min-h-screen bg-background px-4 lg:px-0">
       <div className="w-full lg:w-1/2 h-full flex justify-center container flex-col text-center lg:text-left py-8 lg:py-0">
         <Copy delay={0.1}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-secondary/30 text-center lg:text-left font-extrabold mb-4 lg:mb-6 uppercase leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-secondary/80 text-center lg:text-left font-extrabold mb-4 lg:mb-6 uppercase leading-tight">
             <span className="lg:hidden">Career Opportunities</span>
             <span className="hidden lg:block">
               Career
@@ -60,7 +60,7 @@ export default function Career() {
             </span>
           </h1>
         </Copy>
-        <Copy delay={0.2}>
+        <Copy delay={0.1}>
           <p className="text-base sm:text-lg lg:text-lg text-center lg:text-left text-secondary mb-3 lg:mb-4 px-2 lg:px-0 leading-relaxed">
             Joining HealthSigns offers a unique opportunity to be at the
             forefront of healthcare innovation, where your work directly
