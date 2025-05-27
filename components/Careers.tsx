@@ -19,7 +19,7 @@ export default function Careers() {
               </h1>
             </Copy>
           </div>
-          <div className="w-full md:w-1/2 container flex flex-col gap-4 items-center md:items-start justify-around space-y-6 md:space-y-6 md:pl-8">
+          <div className="w-full md:w-1/2 container flex flex-col gap-4 items-center md:items-start justify-between space-y-8 md:space-y-8 md:pl-8">
             <Copy delay={0.15}>
               <p className="text-muted-foreground text-lg sm:text-2xl font-jakarta text-center md:text-left">
                 Our <span className="font-bold">innovative model</span> partners

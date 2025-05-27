@@ -213,9 +213,9 @@ export default function Home() {
       </section>
       {/* Who Are we ? */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className=" mx-auto px-4">
           <Copy>
-            <h2 className="mb-20 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
+            <h2 className="mb-20 mx-4 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
               Who are we ?
             </h2>
           </Copy>
@@ -229,7 +229,7 @@ export default function Home() {
             </p>
           </Copy> */}
         </div>{" "}
-        <div className="w-full container h-[40vh] md:h-[40vh] lg:h-[50vh] relative lg:text-right text-center">
+        <div className="w-full px-4 h-[40vh] md:h-[40vh] lg:h-[50vh] relative lg:text-right text-center">
           <Copy delay={0.2}>
             <p className="text-muted-foreground font-jakarta text-lg md:text-2xl lg:text-4xl ">
               At HealthSigns, we pioneer the convergence of{" "}
@@ -257,7 +257,7 @@ export default function Home() {
 
       {/* Why Partner Section */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className=" mx-4 px-4">
           <Copy>
             <h2 className="mb-20 text-secondary/30 uppercase text-4xl md:text-7xl font-extrabold text-center lg:text-left tracking-tight">
               Why Partner with <br /> HealthSigns?
