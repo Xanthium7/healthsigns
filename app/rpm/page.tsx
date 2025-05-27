@@ -19,6 +19,7 @@ import Copy from "@/components/Copy";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Link from "next/link";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
+import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 // import Aurora from "@/Backgrounds/Aurora/Aurora"; // Removed for cleaner design
 
 // Animated components
@@ -150,7 +151,7 @@ export default function RPMPage() {
             className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
           >
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
+              <h2 className="text-3xl md:text-4xl uppercase font-medium mb-6 text-primary">
                 How RPM Works
               </h2>
             </Copy>
@@ -196,23 +197,24 @@ export default function RPMPage() {
               },
             ].map((item, index) => (
               <MotionDiv key={index} variants={fadeInUp}>
-                <Card className="h-full bg-background border border-primary/20 hover:shadow-primary/10 shadow-lg transition-shadow duration-300 rounded-xl text-center">
-                  <CardContent className="p-6 flex flex-col items-center">
-                    <div className="flex justify-center items-center mb-4 bg-secondary/10 p-3 rounded-full w-16 h-16">
-                      {item.icon}
-                    </div>
+                <SpotlightCard
+                  className=" h-full bg-gray-50 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl"
+                  spotlightColor="rgba(0, 229, 255, 0.2)"
+                >
+                  <div className="flex justify-center items-center mb-4 bg-secondary/10 p-3 rounded-full w-16 h-16">
+                    {item.icon}
+                  </div>
 
-                    <h3 className="text-lg font-bold uppercase mb-2 text-secondary">
-                      {item.title}
-                    </h3>
+                  <h3 className="text-lg font-bold uppercase mb-2 text-secondary">
+                    {item.title}
+                  </h3>
 
-                    <Copy delay={0.01}>
-                      <p className="text-muted-foreground text-sm">
-                        {item.description}
-                      </p>
-                    </Copy>
-                  </CardContent>
-                </Card>
+                  <Copy delay={0.01}>
+                    <p className="text-muted-foreground text-sm">
+                      {item.description}
+                    </p>
+                  </Copy>
+                </SpotlightCard>
               </MotionDiv>
             ))}
           </MotionDiv>
