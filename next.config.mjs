@@ -27,6 +27,12 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  transpilePackages: [
+    "@react-three/fiber",
+    "@react-three/drei",
+    "@react-three/rapier",
+    "meshline",
+  ],
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
@@ -41,6 +47,7 @@ const nextConfig = {
         },
       ],
     });
+
     return config;
   },
 };
