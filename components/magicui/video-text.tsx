@@ -1,7 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { ElementType, ReactNode, useEffect, useState } from "react";
+import React, {
+  ElementType,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 export interface VideoTextProps {
   /**
@@ -62,6 +68,11 @@ export interface VideoTextProps {
    * @default "div"
    */
   as?: ElementType;
+  /**
+   * The playback speed of the video
+   * @default 1.0
+   */
+  playbackRate?: number;
 }
 
 export function VideoText({
@@ -78,9 +89,11 @@ export function VideoText({
   dominantBaseline = "middle",
   fontFamily = "sans-serif",
   as: Component = "div",
+  playbackRate = 1.0,
 }: VideoTextProps) {
   const [svgMask, setSvgMask] = useState("");
   const content = React.Children.toArray(children).join("");
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const updateSvgMask = () => {
@@ -95,7 +108,15 @@ export function VideoText({
     return () => window.removeEventListener("resize", updateSvgMask);
   }, [content, fontSize, fontWeight, textAnchor, dominantBaseline, fontFamily]);
 
-  const dataUrlMask = `url("data:image/svg+xml,${encodeURIComponent(svgMask)}")`;
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = playbackRate;
+    }
+  }, [playbackRate]);
+
+  const dataUrlMask = `url("data:image/svg+xml,${encodeURIComponent(
+    svgMask
+  )}")`;
 
   return (
     <Component className={cn(`relative size-full`, className)}>
@@ -114,6 +135,7 @@ export function VideoText({
         }}
       >
         <video
+          ref={videoRef}
           className="w-full h-full object-cover"
           autoPlay={autoPlay}
           muted={muted}

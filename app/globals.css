@@ -10,7 +10,7 @@
     --card-foreground: 202 100% 14%; /* Dark Blue */
     --popover: 43 89% 99%; /* Light Cream */
     --popover-foreground: 202 100% 14%; /* Dark Blue */
-    --primary: 355 99% 55%; /* Red */
+    --primary: 351 89% 50%; /* Red */
     --primary-foreground: 43 89% 99%; /* Light Cream */
     --secondary: 202 100% 24%; /* Light Blue */
     --secondary-foreground: 202 100% 14%; /* Dark Blue */
@@ -123,7 +123,7 @@
 
 /* Gradient text */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary/90;
 }
 
 /* 3D Card effect */

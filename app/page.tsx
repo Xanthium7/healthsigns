@@ -123,7 +123,7 @@ export default function Home() {
               className="text-center lg:text-left"
             >
               <div className="flex flex-col ">
-                <h1 className=" md:translate-y-10 translate-y-20   h-20 gradient-text text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
+                <h1 className=" md:translate-y-10 translate-y-20   h-20 text-[#d82e2e] text-4xl md:text-5xl lg:text-6xl font-medium  tracking-tight">
                   Transforming
                 </h1>
                 <div className="relative h-40 w-full flex items-center justify-center">
@@ -132,7 +132,9 @@ export default function Home() {
                     loop={true}
                     fontWeight={"bold"}
                     className="mt-4"
-                    src="https://cdn.pixabay.com/video/2025/03/17/265435_tiny.mp4"
+                    playbackRate={1}
+                    // src="https://cdn.pixabay.com/video/2025/03/17/265435_tiny.mp4"
+                    src="https://cdn.pixabay.com/video/2023/11/19/189738-886596198_tiny.mp4"
                   >
                     HEALTHCARE
                   </VideoText>
@@ -228,24 +230,28 @@ export default function Home() {
           </Copy> */}
         </div>{" "}
         <div className="w-full container h-[40vh] md:h-[40vh] lg:h-[50vh] relative lg:text-right text-center">
-          <p className="text-muted-foreground font-jakarta text-lg md:text-2xl lg:text-4xl ">
-            At HealthSigns, we pioneer the convergence of{" "}
-            <span className="font-bold text-foreground">
-              technology and healthcare
-            </span>
-            . Our mission:{" "}
-            <span className="font-bold text-foreground">
-              seamless, innovative, personalized patient management solutions
-            </span>
-            . As a forward-thinking{" "}
-            <span className="font-bold text-foreground">healthtech brand</span>,
-            we're revolutionizing access to{" "}
-            <span className="font-bold text-foreground">
-              world-class medical care
-            </span>{" "}
-            in India, the Middle East, and the US, making healthcare intuitive,
-            effective, and human-centered.
-          </p>
+          <Copy delay={0.2}>
+            <p className="text-muted-foreground font-jakarta text-lg md:text-2xl lg:text-4xl ">
+              At HealthSigns, we pioneer the convergence of{" "}
+              <span className="font-bold text-foreground">
+                technology and healthcare
+              </span>
+              . Our mission:{" "}
+              <span className="font-bold text-foreground">
+                seamless, innovative, personalized patient management solutions
+              </span>
+              . As a forward-thinking{" "}
+              <span className="font-bold text-foreground">
+                healthtech brand
+              </span>
+              , we're revolutionizing access to{" "}
+              <span className="font-bold text-foreground">
+                world-class medical care
+              </span>{" "}
+              in India, the Middle East, and the US, making healthcare
+              intuitive, effective, and human-centered.
+            </p>
+          </Copy>
         </div>
       </section>
 
