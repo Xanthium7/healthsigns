@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react"; // Added React for Fragment
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,13 +14,12 @@ import {
   Heart,
   Dot,
 } from "lucide-react";
-// import { BlurrySphere } from "@/components/ui/blurry-sphere"; // Removed for cleaner design
+
 import Copy from "@/components/Copy";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Link from "next/link";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
-// import Aurora from "@/Backgrounds/Aurora/Aurora"; // Removed for cleaner design
 
 // Animated components
 const MotionDiv = motion.div;
