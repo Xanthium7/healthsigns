@@ -140,7 +140,7 @@ export default function RPMPage() {
       </section>
 
       {/* How Does RPM Work Section */}
-      <section className="py-16 md:py-20 bg-primary/5">
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <MotionDiv
             initial={{ opacity: 0, y: 40 }}
@@ -165,31 +165,31 @@ export default function RPMPage() {
           >
             {[
               {
-                icon: <Activity className="h-10 w-10 text-primary" />,
+                icon: <Activity className="h-10 w-10 text-secondary/80" />,
                 title: "Data Collection",
                 description:
                   "Patients use connected medical devices to record vital signs and health metrics from home.",
               },
               {
-                icon: <Smartphone className="h-10 w-10 text-primary" />,
+                icon: <Smartphone className="h-10 w-10 text-secondary/80" />,
                 title: "Secure Transmission",
                 description:
                   "Data is securely transmitted in real-time to the HealthSigns platform for provider access.",
               },
               {
-                icon: <BarChart className="h-10 w-10 text-primary" />,
-                title: "Continuous Monitoring",
+                icon: <BarChart className="h-10 w-10 text-secondary/80" />,
+                title: " Monitoring",
                 description:
                   "Healthcare teams monitor data, detect early warnings, and provide timely interventions.",
               },
               {
-                icon: <UserCheck className="h-10 w-10 text-primary" />,
+                icon: <UserCheck className="h-10 w-10 text-secondary/80" />,
                 title: "Personalized Care",
                 description:
                   "Insights from data inform adjustments to treatment plans and personalized patient advice.",
               },
               {
-                icon: <Heart className="h-10 w-10 text-primary" />,
+                icon: <Heart className="h-10 w-10 text-secondary/80" />,
                 title: "Patient Engagement",
                 description:
                   "RPM empowers patients in their health journey, improving adherence and self-management.",
@@ -198,11 +198,11 @@ export default function RPMPage() {
               <MotionDiv key={index} variants={fadeInUp}>
                 <Card className="h-full bg-background border border-primary/20 hover:shadow-primary/10 shadow-lg transition-shadow duration-300 rounded-xl text-center">
                   <CardContent className="p-6 flex flex-col items-center">
-                    <div className="flex justify-center items-center mb-4 bg-primary/10 p-3 rounded-full w-16 h-16">
+                    <div className="flex justify-center items-center mb-4 bg-secondary/10 p-3 rounded-full w-16 h-16">
                       {item.icon}
                     </div>
 
-                    <h3 className="text-lg font-semibold mb-2 text-primary">
+                    <h3 className="text-lg font-bold uppercase mb-2 text-secondary">
                       {item.title}
                     </h3>
 
