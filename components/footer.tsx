@@ -9,9 +9,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1.5fr_1.5fr] lg:grid-cols-[2fr_1.5fr_1.5fr] gap-y-8 md:gap-y-12 gap-x-8 pb-8 md:pb-12 mb-8 border-b border-background/10">
           {/* Column 1: CTA */}
           <div className="flex flex-col justify-center text-center md:text-left">
-            <p className="text-lg lg:text-xl font-normal mb-6 leading-relaxed text-background/90">
-              Elevate your practice with HealthSigns and experience the
-              difference.
+            <p className="text-lg lg:text-xl font-normal mb-6 md:translate-y-5 leading-relaxed text-background/90">
+              Elevate your practice with HealthSigns and <br />
+              experience the difference.
             </p>
             <Link
               href="/contact"
@@ -31,10 +31,10 @@ const Footer = () => {
             <div className="relative flex flex-col items-center justify-center text-center md:border-l md:border-r border-background/10 px-4 md:px-8 py-4 md:py-8">
               {/* Logo Text */}
               <h1 className="flex gap-1 md:block relative z-10  md:gap-1 text-4xl md:text-5xl lg:text-6xl font-semibold leading-none">
-                <span className="text-primary block md:-translate-x-10">
+                <span className="text-primary block md:-translate-x-16">
                   Health
                 </span>
-                <span className="text-background block md:mt-1 md:translate-x-10">
+                <span className="text-background block md:mt-1 md:translate-x-16">
                   Signs
                 </span>
               </h1>

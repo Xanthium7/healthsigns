@@ -25,6 +25,9 @@
     --ring: 355 83% 41%; /* Red */
     --radius: 1rem;
   }
+  .theme {
+    --animate-shine: shine var(--duration) infinite linear;
+  }
 }
 
 @layer base {
@@ -219,5 +222,19 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@theme inline {
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
   }
 }

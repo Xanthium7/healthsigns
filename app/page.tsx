@@ -305,20 +305,20 @@ export default function Home() {
           <div className="flex justify-center">
             <MotionDiv
               variants={fadeInUp}
-              className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-8 rounded-3xl shadow-xl backdrop-blur-sm border border-primary/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xl" // Adjusted max-w for single column
+              className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-8 rounded-3xl shadow-xl backdrop-blur-sm border border-primary/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xl" // Added relative overflow-hidden
             >
               <div className="grid grid-cols-1 gap-8">
                 {/* Enterprise Section */}
                 <div>
-                  <h3 className="text-3xl font-semibold mb-2 text-foreground text-center md:text-left">
+                  <h3 className="relative z-10 text-3xl font-semibold mb-2 text-foreground text-center md:text-left">
                     ENTERPRISE & CUSTOM SOLUTIONS
                   </h3>
-                  <p className="text-muted-foreground mb-6 font-jakarta text-sm text-center md:text-left">
+                  <p className="relative z-10 text-muted-foreground mb-6 font-jakarta text-sm text-center md:text-left">
                     Comprehensive RPM solutions for large-scale healthcare
                     systems, with options for full customization to meet
                     specific clinical and operational requirements.
                   </p>
-                  <ul className="space-y-2 text-muted-foreground font-jakarta text-sm mb-6">
+                  <ul className="relative z-10 space-y-2 text-muted-foreground font-jakarta text-sm mb-6">
                     {[
                       "Dedicated Clinical Success Manager",
                       "HIPAA-Compliant Infrastructure",
@@ -333,7 +333,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-auto">
+                  <div className="relative z-10 mt-auto">
                     <InteractiveHoverButton
                       color="#205874"
                       borderColor="#205874"
@@ -372,7 +372,7 @@ export default function Home() {
           </Copy>
           <Link href={"/contact"}>
             <InteractiveHoverButton className="text-secondary self-center md:self-start">
-              Partner wiht Us
+              Partner With Us
             </InteractiveHoverButton>
           </Link>
         </div>

@@ -7,6 +7,9 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ReactLenis } from "lenis/react";
 
+import "./globals.css";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+
 // Font definitions with fallbacks
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +45,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${jakarta.variable} font-sans`}
       >
+        <SmoothCursor />
         <ReactLenis root>
           <div className="flex min-h-screen flex-col">
             <Navbar />
@@ -53,5 +57,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-import "./globals.css";
