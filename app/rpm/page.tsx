@@ -18,6 +18,7 @@ import {
 import Copy from "@/components/Copy";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Link from "next/link";
+import Aurora from "@/Backgrounds/Aurora/Aurora";
 // import Aurora from "@/Backgrounds/Aurora/Aurora"; // Removed for cleaner design
 
 // Animated components
@@ -112,9 +113,7 @@ export default function RPMPage() {
             >
               <Copy>
                 <h2 className="text-5xl md:text-7xl font-extrabold text-secondary/30 uppercase tracking-wider">
-                  What is
-                  <br />
-                  RPM?
+                  What is RPM?
                 </h2>
               </Copy>
             </MotionDiv>
@@ -207,7 +206,7 @@ export default function RPMPage() {
                       {item.title}
                     </h3>
 
-                    <Copy delay={0.1}>
+                    <Copy delay={0.01}>
                       <p className="text-muted-foreground text-sm">
                         {item.description}
                       </p>
@@ -223,26 +222,24 @@ export default function RPMPage() {
       {/* Benefits of RPM Section */}
       <section id="benifitsofrpm" className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
-          >
-            <Copy>
-              <h2 className="text-3xl md:text-4xl  font-medium mb-6 text-primary">
-                Key Benefits of RPM
-              </h2>
-            </Copy>
-            <Copy delay={0.2}>
-              <p className="text-lg text-muted-foreground">
-                HealthSigns' RPM solutions offer significant advantages for both
-                patients and healthcare providers, transforming the landscape of
-                modern healthcare.
-              </p>
-            </Copy>
-          </MotionDiv>
+          {/* Changed from a single MotionDiv to a grid structure */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12 md:mb-16">
+            <div></div>
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+            >
+              <Copy>
+                <h2 className="text-5xl md:text-7xl font-extrabold text-right text-secondary/30 uppercase tracking-wider">
+                  Key Benefits
+                  <br />
+                  of RPM
+                </h2>
+              </Copy>
+            </MotionDiv>
+          </div>
 
           <MotionDiv
             initial="hidden"
@@ -295,36 +292,35 @@ export default function RPMPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-primary/10 text-center">
-        <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl mx-auto"
-          >
-            <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
-                Ready to Transform Healthcare with RPM?
-              </h2>
-            </Copy>
-            <Copy delay={0.2}>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                Discover how HealthSigns' Remote Patient Monitoring can elevate
-                your practice or facility. Schedule a consultation with our
-                experts today.
-              </p>
-            </Copy>
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full group"
-            >
-              <Dot className="mr-1 h-7 w-7 -ml-2 text-primary-foreground transition-colors" />
+      <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
+        {/* Aurora as background */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <Aurora
+            colorStops={["#f50029", "#FF0037", "#FF0000"]}
+            blend={1}
+            amplitude={0.5}
+            speed={1.5}
+          />
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-20">
+          <Copy>
+            <h2 className="text-3xl md:text-4xl font-medium mb-6 font-display tracking-tight">
+              Ready to Transform Healthcare with RPM?
+            </h2>
+          </Copy>
+          <Copy delay={0.2}>
+            <p className="text-lg  md:text-xl text-gray-300 mb-8">
+              Discover how HealthSigns' Remote Patient Monitoring <br />
+              can elevate your practice or facility. Schedule a consultation
+              with our experts today.
+            </p>
+          </Copy>
+          <Link href={"/contact"}>
+            <InteractiveHoverButton className="text-secondary self-center md:self-start">
               Schedule a Consultation
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </MotionDiv>
+            </InteractiveHoverButton>
+          </Link>
         </div>
       </section>
     </div>
