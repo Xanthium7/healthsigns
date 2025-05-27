@@ -20,6 +20,7 @@ import {
   Database,
   Star,
   CheckCircle,
+  Check, // Add Check icon
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 
@@ -270,62 +271,6 @@ export default function Home() {
           <FlowingMenu items={flowingMenuItems} />
         </div>
       </section>
-      {/* Pricing & Careers Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-gradient-to-br from-primary/10 to-secondary/5 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-primary/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <h3 className="text-2xl font-medium mb-4 text-foreground">
-                Pricing
-              </h3>
-              <p className="text-muted-foreground mb-6 font-jakarta">
-                Affordable, scalable, and designed to meet your needs, our
-                pricing plans ensure you get the best value for advanced patient
-                care.
-              </p>
-              <Button
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary/10 rounded-full transform transition-transform hover:scale-105"
-              >
-                Learn More <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </MotionDiv>
-
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="bg-gradient-to-br from-secondary/5 to-primary/10 p-8 rounded-3xl shadow-lg backdrop-blur-sm border border-secondary/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <h3 className="text-2xl font-medium mb-4 text-foreground">
-                Careers
-              </h3>
-              <p className="text-muted-foreground mb-6 font-jakarta">
-                Joining HealthSigns offers a unique opportunity to be at the
-                forefront of healthcare innovation, where your work directly
-                contributes to the betterment of society.
-              </p>
-              <Button
-                variant="outline"
-                className="border-secondary text-secondary hover:bg-secondary/10 rounded-full transform transition-transform hover:scale-105"
-              >
-                Explore Careers <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
 
       {/* About HealthSigns Section */}
 
@@ -335,6 +280,75 @@ export default function Home() {
 
       {/*  Careers Section */}
       <Careers />
+
+      {/* Pricing Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="text-center mb-12"
+          >
+            <MotionDiv variants={fadeInUp}>
+              <h2 className="text-3xl md:text-4xl font-medium mb-4 text-foreground">
+                Flexible Plans for Every Need
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-jakarta">
+                Our plans are designed to align with your organization's goals
+                and scale, offering both standardized enterprise solutions and
+                fully customizable options.
+              </p>
+            </MotionDiv>
+          </MotionDiv>
+          <div className="flex justify-center">
+            <MotionDiv
+              variants={fadeInUp}
+              className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-8 rounded-3xl shadow-xl backdrop-blur-sm border border-primary/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xl" // Adjusted max-w for single column
+            >
+              <div className="grid grid-cols-1 gap-8">
+                {/* Enterprise Section */}
+                <div>
+                  <h3 className="text-3xl font-semibold mb-2 text-foreground text-center md:text-left">
+                    ENTERPRISE & CUSTOM SOLUTIONS
+                  </h3>
+                  <p className="text-muted-foreground mb-6 font-jakarta text-sm text-center md:text-left">
+                    Comprehensive RPM solutions for large-scale healthcare
+                    systems, with options for full customization to meet
+                    specific clinical and operational requirements.
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground font-jakarta text-sm mb-6">
+                    {[
+                      "Dedicated Clinical Success Manager",
+                      "HIPAA-Compliant Infrastructure",
+                      "Customizable RPM Device Integration",
+                      "Advanced Analytics & Reporting Suite",
+                      "EHR/EMR Integration Support",
+                      "Tailored Patient Onboarding Programs",
+                    ].map((feature, index) => (
+                      <li key={index} className="flex items-center">
+                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto">
+                    <InteractiveHoverButton
+                      color="#205874"
+                      borderColor="#205874"
+                      padding="p-2 px-8"
+                      className="text-secondary self-center md:self-start"
+                    >
+                      <Link href={"/contact"}>Contact Us</Link>
+                    </InteractiveHoverButton>
+                  </div>
+                </div>
+              </div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
 
@@ -357,12 +371,9 @@ export default function Home() {
             </h2>
           </Copy>
           <Link href={"/contact"}>
-            <Button
-              size="xl"
-              className="bg-background text-primary   rounded-full shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl"
-            >
-              Partner with us <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <InteractiveHoverButton className="text-secondary self-center md:self-start">
+              Partner wiht Us
+            </InteractiveHoverButton>
           </Link>
         </div>
 
