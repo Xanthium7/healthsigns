@@ -39,7 +39,12 @@ export default function Careers() {
               padding="p-2 px-8"
               className="text-secondary self-center md:self-start"
             >
-              <a href="/careers">Explore Careers</a>
+              <a
+                href="/career
+              "
+              >
+                Explore Careers
+              </a>
             </InteractiveHoverButton>
           </div>
         </div>
