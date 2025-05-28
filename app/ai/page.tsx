@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button"; // Keep if used, otherwise can be removed if InteractiveHoverButton is always used
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation } from "framer-motion";
@@ -20,6 +19,7 @@ import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Aurora from "@/Backgrounds/Aurora/Aurora"; // For CTA background
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
+import Image from "next/image"; // Ensure Image is imported
 
 // Animated components
 const MotionDiv = motion.div;
@@ -93,34 +93,30 @@ export default function AIPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="relative h-[300px] md:h-[400px] lg:h-[450px]" // Added height for container
+              className="relative h-[300px] md:h-[400px] lg:h-[450px]"
             >
-              <div className="absolute inset-0 flex items-center justify-center">
+              {/* Optional: BlurrySphere as a background accent */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-50">
                 <BlurrySphere
                   size={2.5}
                   colors={[
                     "hsl(var(--primary))",
-                    "hsl(var(--primary)/0.8)",
-                    "hsl(var(--primary)/0.6)",
+                    "hsl(var(--primary)/0.7)",
+                    "hsl(var(--primary)/0.5)",
                   ]}
                   className="pulse"
-                  opacity={0.7}
-                  animationDuration={12}
+                  opacity={0.4}
+                  animationDuration={15}
                 />
               </div>
-              {/* Optional: Add smaller floating spheres if desired, like original */}
-              <div className="absolute -bottom-5 -right-5 z-10 hidden md:block">
-                <BlurrySphere
-                  size={1}
-                  colors={[
-                    "hsl(var(--primary)/0.8)",
-                    "hsl(var(--primary)/0.6)",
-                  ]}
-                  className="floating"
-                  opacity={0.6}
-                  animationDuration={10}
-                />
-              </div>
+              <Image
+                src="/health_insight.png"
+                alt="AI Health Insights"
+                height={600}
+                width={600}
+                className="object-contain z-10"
+                priority
+              />
             </MotionDiv>
           </div>
         </div>
