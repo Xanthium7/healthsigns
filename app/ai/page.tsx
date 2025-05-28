@@ -96,7 +96,7 @@ export default function AIPage() {
               className="relative h-[300px] md:h-[400px] lg:h-[450px]"
             >
               {/* Optional: BlurrySphere as a background accent */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-50">
+              <div className="absolute inset-0 flex items-center justify-center top-20 opacity-50">
                 <BlurrySphere
                   size={2.5}
                   colors={[
@@ -354,19 +354,14 @@ export default function AIPage() {
               variants={fadeInUp}
               transition={{ delay: 0.2 }}
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <BlurrySphere
-                  size={2}
-                  colors={[
-                    "hsl(var(--primary)/0.8)",
-                    "hsl(var(--primary))",
-                    "hsl(var(--primary)/0.6)",
-                  ]}
-                  className="pulse"
-                  opacity={0.6}
-                  animationDuration={10}
-                />
-              </div>
+              {/* Replaced BlurrySphere with Image */}
+              <Image
+                src="/insight.png"
+                alt="Predictive Health Insights"
+                width={700}
+                height={700}
+                className="object-contain z-10 -translate-y-24" // Use object-contain to ensure the whole image is visible
+              />
             </MotionDiv>
           </div>
         </div>
