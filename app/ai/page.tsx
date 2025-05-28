@@ -112,8 +112,8 @@ export default function AIPage() {
               <Image
                 src="/health_insight.png"
                 alt="AI Health Insights"
-                height={600}
-                width={600}
+                height={700}
+                width={700}
                 className="object-contain z-10"
                 priority
               />
@@ -177,14 +177,14 @@ export default function AIPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
             >
-              <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl">
+              <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full rounded-2xl md:rounded-3xl overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=800&width=1200&text=AI+Monitoring"
+                  src="/innovative.png"
                   alt="Intelligent Monitoring Visualization"
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+                {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div> */}
               </div>
             </MotionDiv>
             <MotionDiv
