@@ -16,12 +16,12 @@
     --secondary-foreground: 202 100% 14%; /* Dark Blue */
     --muted: 205 38% 85%; /* Lighter Light Blue */
     --muted-foreground: 202 100% 25%; /* Slightly Lighter Dark Blue */
-    --accent: 0 100% 23.5%; /* Dark Red */
+    --accent: 202 100% 25%;  /* Dark Red */
     --accent-foreground: 43 89% 99%; /* Light Cream */
     --destructive: 355 83% 41%; /* Red */
     --destructive-foreground: 43 89% 99%; /* Light Cream */
     --border: 43 89% 85%; /* Slightly darker Light Cream */
-    --input: 43 89% 85%; /* Slightly darker Light Cream */
+    --input: 43 89% 95%; /* Slightly darker Light Cream */
     --ring: 355 83% 41%; /* Red */
     --radius: 1rem;
   }
@@ -127,7 +127,7 @@ html {
 
 /* Gradient text */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary/90;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary/80 to-secondary/60;
 }
 
 /* 3D Card effect */

@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card"; // Card and CardContent might still be used for the overall layout
 import { motion, useAnimation } from "framer-motion";
-
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import { toast } from "@/components/ui/use-toast";
@@ -12,122 +11,121 @@ import { EMAIL_CONFIG } from "@/config/email-config";
 import Copy from "@/components/Copy";
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 import Image from "next/image";
+import Aurora from "@/Backgrounds/Aurora/Aurora"; // Import Aurora
 
-// Type definitions
-interface FormData {
-  fullname: string;
-  email: string;
-  subject: string;
-  message: string;
-  privacy: boolean;
-}
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-interface FormErrors {
-  fullname?: string;
-  email?: string;
-  message?: string;
-  privacy?: string;
-  [key: string]: string | undefined;
-}
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+
+// Zod Schema for form validation
+const contactFormSchema = z.object({
+  fullname: z.string().min(1, { message: "Name is required." }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required." })
+    .email({ message: "Email is invalid." }),
+  subject: z.string().optional(),
+  message: z.string().min(1, { message: "Message is required." }),
+  privacy: z.boolean().refine((value) => value === true, {
+    message: "You must agree to the privacy policy.",
+  }),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 // Animated components
 const MotionDiv = motion.div;
 
 export default function ContactPage() {
-  // Animation controls
   const controls = useAnimation();
 
-  // Form state
-  const [formData, setFormData] = useState<FormData>({
-    fullname: "",
-    email: "",
-    subject: "",
-    message: "",
-    privacy: false,
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formErrors, setFormErrors] = useState<FormErrors>({});
-
-  useEffect(() => {
-    controls.start("visible");
-  }, [controls]);
-
-  // Form handlers
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { id, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
-
-    setFormData((prev) => ({
-      ...prev,
-      [id]: type === "checkbox" ? checked : value,
-    }));
-
-    // Clear error when user interacts with field
-    if (formErrors[id]) {
-      setFormErrors((prev) => ({ ...prev, [id]: undefined }));
-    }
-  };
-
-  const validateForm = (): FormErrors => {
-    const errors: FormErrors = {};
-    if (!formData.fullname.trim()) errors.fullname = "Name is required";
-    if (!formData.email.trim()) errors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      errors.email = "Email is invalid";
-    if (!formData.message.trim()) errors.message = "Message is required";
-    if (!formData.privacy)
-      errors.privacy = "You must agree to the privacy policy";
-
-    return errors;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validate form
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    // Create Gmail compose URL
-    const subject = encodeURIComponent(
-      formData.subject ? formData.subject : "Contact Form Submission"
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.fullname}\n` +
-        `Email: ${formData.email}\n\n` +
-        `Message:\n${formData.message}`
-    );
-
-    // Open Gmail compose window using the config email
-    window.open(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_CONFIG.contactEmail}&su=${subject}&body=${body}`,
-      "_blank"
-    );
-
-    // Reset form and show success
-    setFormData({
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
       fullname: "",
       email: "",
       subject: "",
       message: "",
       privacy: false,
-    });
-    setIsSubmitting(false);
-    toast({
-      title: "Message sent",
-      description:
-        "Your message has been prepared in Gmail. Check your browser window.",
-      duration: 5000,
-    });
+    },
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  // formErrors state is now handled by react-hook-form via form.formState.errors
+
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
+
+  // Form handlers (handleInputChange and validateForm are no longer needed)
+
+  const onSubmit = (data: ContactFormValues) => {
+    setIsSubmitting(true);
+    try {
+      // Create Gmail compose URL
+      const subject = encodeURIComponent(
+        data.subject ? data.subject : "Contact Form Submission"
+      );
+      const body = encodeURIComponent(
+        `Name: ${data.fullname}\n` +
+          `Email: ${data.email}\n\n` +
+          `Message:\n${data.message}`
+      );
+
+      // Open Gmail compose window using the config email
+      const mailWindow = window.open(
+        `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_CONFIG.contactEmail}&su=${subject}&body=${body}`,
+        "_blank"
+      );
+
+      if (!mailWindow) {
+        toast({
+          title: "Popup Blocked?",
+          description:
+            "The Gmail window might have been blocked. Please check your browser's popup settings and try again, or allow popups for this site.",
+          variant: "destructive", // Or "warning" if available/preferred
+          duration: 7000,
+        });
+      }
+
+      // Reset form and show success
+      form.reset();
+      toast({
+        title: "Message prepared",
+        description:
+          "Your message has been prepared in Gmail. Please check your browser window or tab. If it didn't open, ensure popups are allowed for this site.",
+        duration: 6000, // Slightly longer duration for more info
+      });
+    } catch (error) {
+      console.error("Error during form submission:", error);
+      toast({
+        title: "Submission Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const fadeInUp = {
@@ -258,65 +256,69 @@ export default function ContactPage() {
                 <div className="relative h-full min-h-[300px] lg:min-h-[550px]">
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary to-primary overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
-                      <div className="w-full h-full bg-[url('https://i.pinimg.com/236x/d7/34/e7/d734e755f690c7fe18b4bbfbef688fb3.jpg')] bg-cover bg-center"></div>
+                      <div className="w-full h-full bg-[url('https://images.pexels.com/photos/3780104/pexels-photo-3780104.png?auto=compress&cs=tinysrgb&w=600')] bg-cover bg-center"></div>
                     </div>
-                    <div className="relative h-full flex flex-col justify-center p-8 z-10 text-primary-foreground">
-                      <Copy>
-                        <h3 className="text-3xl font-medium mb-6">
-                          Let's Start a Conversation
-                        </h3>
-                      </Copy>
-                      <Copy delay={0.2}>
-                        <p className="mb-8 text-lg opacity-90">
-                          We're excited to hear from you and learn how we can
-                          help transform your healthcare operations with our AI
-                          solutions.
-                        </p>
-                      </Copy>
+                    <div className="relative h-full flex flex-col justify-between  p-8 z-10 text-primary-foreground">
+                      <div className="flex justify-center items-center ">
+                        <Copy>
+                          <h3 className="text-6xl font-medium mt-6">
+                            Reach Out to Our Team
+                          </h3>
+                        </Copy>
+                      </div>
+                      <div>
+                        <Copy delay={0.2}>
+                          <p className="mb-8 text-lg opacity-90">
+                            We're excited to hear from you and learn how we can
+                            help transform your healthcare operations with our
+                            AI solutions.
+                          </p>
+                        </Copy>
 
-                      <div className="space-y-6 mb-10">
-                        <div className="flex items-center">
-                          <div className="bg-primary/20 p-3 rounded-full mr-4">
-                            <Mail className="h-5 w-5" />
+                        <div className="space-y-6 mb-10">
+                          <div className="flex items-center">
+                            <div className="bg-primary/20 p-3 rounded-full mr-4">
+                              <Mail className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <p className="text-sm opacity-75">Email us at</p>
+                              <p className="font-medium">
+                                {EMAIL_CONFIG.displayEmail}
+                              </p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-sm opacity-75">Email us at</p>
-                            <p className="font-medium">
-                              {EMAIL_CONFIG.displayEmail}
-                            </p>
-                          </div>
-                        </div>
 
-                        <div className="flex items-center">
-                          <div className="bg-primary/20 p-3 rounded-full mr-4">
-                            <Phone className="h-5 w-5" />
+                          <div className="flex items-center">
+                            <div className="bg-primary/20 p-3 rounded-full mr-4">
+                              <Phone className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <p className="text-sm opacity-75">Call us at</p>
+                              <p className="font-medium">+1 (973) 270-6212</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-sm opacity-75">Call us at</p>
-                            <p className="font-medium">+1 (973) 270-6212</p>
-                          </div>
-                        </div>
 
-                        <div className="flex items-center">
-                          <div className="bg-primary/20 p-3 rounded-full mr-4">
-                            <MapPin className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="text-sm opacity-75">
-                              Visit our office
-                            </p>
-                            <p className="font-medium">
-                              30 N Gould St # 29714 Sheridan, WY 82801
-                            </p>
+                          <div className="flex items-center">
+                            <div className="bg-primary/20 p-3 rounded-full mr-4">
+                              <MapPin className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <p className="text-sm opacity-75">
+                                Visit our office
+                              </p>
+                              <p className="font-medium">
+                                30 N Gould St # 29714 Sheridan, WY 82801
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-auto">
+                      <div>
                         <div className="h-1 w-16 bg-primary/50 rounded mb-4"></div>
-                        <Copy delay={0.3}>
+                        <Copy delay={0.3} animateOnScroll={false}>
                           <p className="text-sm opacity-80">
-                            Your privacy matters to us. We're committed to
+                            Your privacy matters to us. We are committed to
                             protecting your personal information.
                           </p>
                         </Copy>
@@ -326,165 +328,150 @@ export default function ContactPage() {
                 </div>
 
                 {/* Right Column - Form */}
-                <div className="p-8 lg:p-10">
+                <div className="p-8 lg:p-10 flex flex-col justify-center">
                   <Copy>
-                    <h2 className="text-2xl font-medium mb-6 text-primary">
+                    <h2 className="text-2xl font-medium mb-8 text-primary">
                       Send Us a Message
                     </h2>
                   </Copy>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 gap-6">
-                      <div>
-                        <label
-                          htmlFor="fullname"
-                          className="block text-sm font-medium text-muted-foreground mb-1"
-                        >
-                          Full Name <span className="text-destructive">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="fullname"
-                          placeholder="John Doe"
-                          value={formData.fullname}
-                          onChange={handleInputChange}
-                          className={`w-full px-4 py-2.5 md:py-3 border ${
-                            formErrors.fullname
-                              ? "border-destructive"
-                              : "border-border"
-                          } rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
-                        />
-                        {formErrors.fullname && (
-                          <p className="text-destructive text-xs mt-1">
-                            {formErrors.fullname}
-                          </p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-muted-foreground mb-1"
-                        >
-                          Email Address{" "}
-                          <span className="text-destructive">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          placeholder="you@example.com"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className={`w-full px-4 py-2.5 md:py-3 border ${
-                            formErrors.email
-                              ? "border-destructive"
-                              : "border-border"
-                          } rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
-                        />
-                        {formErrors.email && (
-                          <p className="text-destructive text-xs mt-1">
-                            {formErrors.email}
-                          </p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="subject"
-                          className="block text-sm font-medium text-muted-foreground mb-1"
-                        >
-                          Subject
-                        </label>
-                        <select
-                          id="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-2.5 md:py-3 border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base appearance-none bg-no-repeat bg-right"
-                          style={{
-                            backgroundImage:
-                              "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
-                            backgroundSize: "1.5em 1.5em",
-                            paddingRight: "2.5rem",
-                          }}
-                        >
-                          <option value="">Select a topic</option>
-                          <option value="general">General Inquiry</option>
-                          <option value="demo">Schedule a Demo</option>
-                          <option value="pricing">Pricing & Plans</option>
-                          <option value="support">Technical Support</option>
-                          <option value="partnership">
-                            Partnership Opportunities
-                          </option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="message"
-                          className="block text-sm font-medium text-muted-foreground mb-1"
-                        >
-                          Your Message{" "}
-                          <span className="text-destructive">*</span>
-                        </label>
-                        <textarea
-                          id="message"
-                          rows={4}
-                          placeholder="How can we help you today?"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          className={`w-full px-4 py-2.5 md:py-3 border ${
-                            formErrors.message
-                              ? "border-destructive"
-                              : "border-border"
-                          } rounded-2xl focus:outline-none focus:ring-2 focus:ring-ring bg-input text-foreground transition-colors text-base`}
-                        ></textarea>
-                        {formErrors.message && (
-                          <p className="text-destructive text-xs mt-1">
-                            {formErrors.message}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="flex items-start">
-                        <div className="flex items-center h-5">
-                          <input
-                            id="privacy"
-                            type="checkbox"
-                            checked={formData.privacy}
-                            onChange={handleInputChange}
-                            className={`w-4 h-4 border ${
-                              formErrors.privacy
-                                ? "border-destructive"
-                                : "border-border"
-                            } rounded bg-muted focus:ring-3 focus:ring-ring/50`}
-                            required
-                          />
-                        </div>
-                        <label
-                          htmlFor="privacy"
-                          className={`ml-2 text-sm ${
-                            formErrors.privacy
-                              ? "text-destructive"
-                              : "text-muted-foreground"
-                          }`}
-                        >
-                          I agree to the privacy policy and terms of service
-                        </label>
-                      </div>
-                      {formErrors.privacy && (
-                        <p className="text-destructive text-xs">
-                          {formErrors.privacy}
-                        </p>
-                      )}
-                    </div>
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-full py-3 md:py-6 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 text-base"
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-8"
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}{" "}
-                      <Send className="ml-2 h-4 w-4" />
-                    </Button>
-                  </form>
+                      <FormField
+                        control={form.control}
+                        name="fullname"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              Full Name{" "}
+                              <span className="text-destructive">*</span>
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="John Doe"
+                                {...field}
+                                className="py-6 px-4 rounded-xl" // Example of custom styling if needed
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              Email Address{" "}
+                              <span className="text-destructive">*</span>
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="you@example.com"
+                                {...field}
+                                className="py-6 px-4 rounded-xl"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="subject"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Subject</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger className="py-6 px-4 rounded-xl">
+                                  <SelectValue placeholder="Select a topic" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="general">
+                                  General Inquiry
+                                </SelectItem>
+                                <SelectItem value="demo">
+                                  Schedule a Demo
+                                </SelectItem>
+                                <SelectItem value="pricing">
+                                  Pricing & Plans
+                                </SelectItem>
+                                <SelectItem value="support">
+                                  Technical Support
+                                </SelectItem>
+                                <SelectItem value="partnership">
+                                  Partnership Opportunities
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              Your Message{" "}
+                              <span className="text-destructive">*</span>
+                            </FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="How can we help you today?"
+                                {...field}
+                                rows={5}
+                                className="py-4 px-4 rounded-xl min-h-[120px]"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="privacy"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel>
+                                I agree to the privacy policy and terms of
+                                service
+                              </FormLabel>
+                              <FormDescription>
+                                You must agree to our terms and conditions.
+                              </FormDescription>
+                              <FormMessage />
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting || !form.formState.isValid} // Disable if submitting or form is invalid
+                        className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground rounded-xl py-4 text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 flex items-center justify-center"
+                      >
+                        {isSubmitting ? "Sending..." : "Send Message"}{" "}
+                        <Send className="ml-2.5 h-5 w-5" />
+                      </Button>
+                    </form>
+                  </Form>
                 </div>
               </div>
             </Card>
@@ -538,9 +525,22 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-primary-foreground relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+      <section className="py-20 bg-[#3d2323]  text-primary-foreground relative overflow-hidden">
+        {" "}
+        {/* Removed gradient, added overflow-hidden */}
+        {/* Aurora as background */}
+        <div className="absolute inset-0 z-0 pointer-events-none ">
+          <Aurora
+            colorStops={["#f50029", "#FF0037", "#FF0000"]}
+            blend={1}
+            amplitude={0.5}
+            speed={1.5}
+          />
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-0"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
+          {" "}
+          {/* Ensure content is above Aurora */}
           <MotionDiv
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -560,15 +560,8 @@ export default function ContactPage() {
                 solutions.
               </p>
             </Copy>
-            <Button
-              size="lg"
-              className="bg-background text-primary hover:bg-muted rounded-full"
-            >
-              Schedule a Demo
-            </Button>
           </MotionDiv>
         </div>
-
         {/* Decorative elements */}
         <div className="absolute bottom-0 right-0 w-40 h-40 bg-secondary/50 rounded-full blur-3xl opacity-30"></div>
         <div className="absolute top-0 left-0 w-40 h-40 bg-primary/50 rounded-full blur-3xl opacity-30"></div>
