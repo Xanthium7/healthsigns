@@ -109,7 +109,7 @@ export default function Home() {
       {/* Navbar */}
       <Navbar />
 
-      {/* Hero Section - Adjust padding to account for navbar */}
+      {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-soft-glow opacity-70 pointer-events-none"></div>
@@ -178,10 +178,10 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-background relative"> {/* Added relative */}
+      <section className="py-12 bg-background relative">
         {/* Gradient overlay for soft top edge */}
         <div className="absolute -top-12 sm:-top-16 md:-top-20 left-0 w-full h-12 sm:h-16 md:h-20 bg-gradient-to-b from-transparent via-[hsl(var(--background)_/_0.5)] to-background pointer-events-none z-0"></div>
-        <div className="container mx-auto px-4 relative z-10"> {/* Added relative z-10 for content */}
+        <div className="container mx-auto px-4 relative z-10">
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -215,16 +215,6 @@ export default function Home() {
       </section>
       {/* Who Are we ? */}
       <section className="py-20 bg-background">
-        {/* <div className=" mx-auto px-4">
-          <Copy delay={0.2}>
-            <p className="text-muted-foreground font-jakarta text-lg">
-              Unlock the full potential of your healthcare services by
-              partnering with HealthSigns. Our innovative solutions and
-              collaborative approach can help you provide top-notch remote
-              patient care.
-            </p>
-          </Copy>
-        </div>{" "} */}
         <div className="w-full px-4 min-h-[40vh] md:min-h-[40vh] lg:min-h-[60vh] flex flex-col justify-around relative lg:text-right text-center">
           <Copy>
             <h2 className="mt-12 mb-6 mx-4 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
@@ -265,15 +255,6 @@ export default function Home() {
               Why Partner with <br /> HealthSigns?
             </h2>
           </Copy>
-
-          {/* <Copy delay={0.2}>
-            <p className="text-muted-foreground font-jakarta text-lg">
-              Unlock the full potential of your healthcare services by
-              partnering with HealthSigns. Our innovative solutions and
-              collaborative approach can help you provide top-notch remote
-              patient care.
-            </p>
-          </Copy> */}
         </div>{" "}
         <div className="w-full h-[40vh] md:h-[40vh] lg:h-[50vh] relative">
           <FlowingMenu items={flowingMenuItems} />
@@ -317,7 +298,7 @@ export default function Home() {
           <div className="flex justify-center">
             <MotionDiv
               variants={fadeInUp}
-              className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-8 rounded-3xl shadow-xl backdrop-blur-sm border border-primary/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xl" // Added relative overflow-hidden
+              className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-8 rounded-3xl shadow-xl backdrop-blur-sm border border-primary/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xl"
             >
               <div className="grid grid-cols-1 gap-8">
                 {/* Enterprise Section */}
@@ -368,7 +349,7 @@ export default function Home() {
         {/* Gradient overlay for soft top edge */}
         <div className="absolute -top-12 sm:-top-16 md:-top-20 left-0 w-full h-12 sm:h-16 md:h-20 bg-gradient-to-b from-transparent via-[rgba(61,35,35,0.3)] to-[#3d2323] pointer-events-none z-0"></div>
         {/* Aurora as background */}
-        <div className="absolute inset-0 z-0 pointer-events-none"> {/* Adjusted z-index */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <Aurora
             colorStops={["#f50029", "#FF0037", "#FF0000"]}
             blend={1}
@@ -376,7 +357,7 @@ export default function Home() {
             speed={1.5}
           />
         </div>
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-0"></div> {/* Adjusted z-index */}
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-0"></div>
         <div className="container mx-auto px-4 text-center relative z-20">
           <Copy>
             <h2 className="text-3xl md:text-4xl font-medium mb-6 font-display tracking-tight">
