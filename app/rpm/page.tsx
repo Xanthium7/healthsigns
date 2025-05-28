@@ -66,7 +66,7 @@ export default function RPMPage() {
     },
     {
       icon: <BarChart className="h-10 w-10 text-secondary/80" />,
-      title: "Monitoring", // Corrected title based on image
+      title: "Continous Monitoring",
       description:
         "Healthcare teams monitor data, detect early warnings, and provide timely interventions.",
     },

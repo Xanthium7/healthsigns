@@ -178,8 +178,10 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-12 bg-background relative"> {/* Added relative */}
+        {/* Gradient overlay for soft top edge */}
+        <div className="absolute -top-12 sm:-top-16 md:-top-20 left-0 w-full h-12 sm:h-16 md:h-20 bg-gradient-to-b from-transparent via-[hsl(var(--background)_/_0.5)] to-background pointer-events-none z-0"></div>
+        <div className="container mx-auto px-4 relative z-10"> {/* Added relative z-10 for content */}
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -363,8 +365,10 @@ export default function Home() {
       {/* CTA Section */}
 
       <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
+        {/* Gradient overlay for soft top edge */}
+        <div className="absolute -top-12 sm:-top-16 md:-top-20 left-0 w-full h-12 sm:h-16 md:h-20 bg-gradient-to-b from-transparent via-[rgba(61,35,35,0.3)] to-[#3d2323] pointer-events-none z-0"></div>
         {/* Aurora as background */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none"> {/* Adjusted z-index */}
           <Aurora
             colorStops={["#f50029", "#FF0037", "#FF0000"]}
             blend={1}
@@ -372,7 +376,7 @@ export default function Home() {
             speed={1.5}
           />
         </div>
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none z-0"></div> {/* Adjusted z-index */}
         <div className="container mx-auto px-4 text-center relative z-20">
           <Copy>
             <h2 className="text-3xl md:text-4xl font-medium mb-6 font-display tracking-tight">
