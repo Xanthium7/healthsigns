@@ -139,7 +139,7 @@ export default function AIPage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
-              className="order-2 lg:order-1"
+              className="order-1 lg:order-1" // Changed: heading is now order-1 (first) on mobile
             >
               <Copy>
                 <h2 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-secondary/40 uppercase tracking-wider text-center lg:text-left">
@@ -153,7 +153,7 @@ export default function AIPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
               transition={{ delay: 0.2 }}
-              className="order-1 lg:order-2"
+              className="order-2 lg:order-2" // Changed: description is now order-2 (second) on mobile
             >
               <Copy>
                 <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-center lg:text-left">

@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation } from "framer-motion";
+
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import { toast } from "@/components/ui/use-toast";
 import { EMAIL_CONFIG } from "@/config/email-config";
 import Copy from "@/components/Copy";
+import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
+import Image from "next/image";
 
 // Type definitions
 interface FormData {
@@ -136,46 +139,61 @@ export default function ContactPage() {
     },
   };
 
+  const contactItems = [
+    {
+      icon: <Mail className="h-8 w-8 text-secondary" />, // Adjusted icon color to secondary as per SpotlightCard example
+      title: "Email",
+      description: EMAIL_CONFIG.displayEmail,
+    },
+    {
+      icon: <Phone className="h-8 w-8 text-secondary" />,
+      title: "Phone",
+      description: "+1 9732706212",
+    },
+    {
+      icon: <MapPin className="h-8 w-8 text-secondary" />,
+      title: "Address",
+      description: "30 N Gould St # 29714 Sheridan, WY 82801",
+    },
+  ];
+
   return (
-    <div className="pt-24">
+    <div>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
+      <section className="py-20 pt-24 bg-gradient-to-br from-primary/10 to-background relative">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 flex">
           <MotionDiv
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-3xl mx-auto w-1/2"
           >
             <Copy animateOnScroll={false}>
-              <h1 className="text-4xl md:text-5xl font-medium mb-6 text-primary">
+              <h1 className="text-4xl md:text-7xl font-extrabold text-left uppercase mb-6 text-primary/80">
                 Get in Touch
               </h1>
             </Copy>
             <Copy animateOnScroll={false} delay={0.2}>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8">
+              <p className="text-lg md:text-xl text-left text-muted-foreground mb-8">
                 Have questions about our services or want to schedule a demo?
                 Our team is here to help. Reach out to us using any of the
                 methods below.
               </p>
             </Copy>
           </MotionDiv>
-
-          {/* 3D Elements */}
-          <div className="absolute -bottom-10 -right-10 z-10">
-            <BlurrySphere
-              size={1.2}
-              colors={[
-                "hsl(var(--primary))",
-                "hsl(var(--accent))",
-                "hsl(var(--secondary))",
-              ]}
-              className="floating"
-              opacity={0.6}
-              animationDuration={10}
+          <div className="w-1/2  relative flex justify-center items-center ">
+            <Image
+              className="absolute -top-24 left-1/4 z-50"
+              src={"/customer_support.png"}
+              width={450}
+              height={450}
+              alt="customer suppport"
             />
           </div>
+
+          {/* 3D Elements */}
+
           <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2">
             <BlurrySphere
               size={0.8}
@@ -186,91 +204,45 @@ export default function ContactPage() {
               ]}
               className="floating-delay-1"
               opacity={0.5}
-              animationDuration={8}
             />
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[hsl(var(--background))] to-transparent pointer-events-none z-[5]"></div>
       </section>
 
       {/* Contact Information Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background relative overflow-hidden z-0">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
-            >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
-                <CardContent className="p-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <Mail className="h-8 w-8 text-primary" />
-                  </div>
-                  <Copy>
-                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
-                      Email
+            {contactItems.map((item, index) => (
+              <MotionDiv
+                key={item.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeInUp}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <SpotlightCard
+                  className="h-full bg-gray-100/5 dark:bg-gray-800/50 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl p-6" // Adjusted bg for theme
+                  spotlightColor="rgba(0, 229, 255, 0.2)" // Example color, adjust as needed
+                >
+                  <div className="flex flex-col items-center text-center h-full">
+                    <div className="flex justify-center items-center mb-4 bg-secondary/10 p-3 rounded-full w-16 h-16 flex-shrink-0">
+                      {item.icon}
+                    </div>
+                    <h3 className="text-base font-bold uppercase mb-2 text-secondary tracking-wide">
+                      {item.title}
                     </h3>
-                  </Copy>
-                  <Copy delay={0.1}>
-                    <p className="text-muted-foreground">
-                      {EMAIL_CONFIG.displayEmail}
-                    </p>
-                  </Copy>
-                </CardContent>
-              </Card>
-            </MotionDiv>
-
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-center"
-            >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
-                <CardContent className="p-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
-                    <Phone className="h-8 w-8 text-secondary" />
+                    <Copy delay={0.01} animateOnScroll={false}>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </Copy>
                   </div>
-                  <Copy>
-                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
-                      Phone
-                    </h3>
-                  </Copy>
-                  <Copy delay={0.1}>
-                    <p className="text-muted-foreground">+1 9732706212</p>
-                  </Copy>
-                </CardContent>
-              </Card>
-            </MotionDiv>
-
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-center"
-            >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-primary/10 to-background rounded-3xl card-3d">
-                <CardContent className="p-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <MapPin className="h-8 w-8 text-primary" />
-                  </div>
-                  <Copy>
-                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
-                      Address
-                    </h3>
-                  </Copy>
-                  <Copy delay={0.1}>
-                    <p className="text-muted-foreground">
-                      30 N Gould St # 29714 Sheridan, WY 82801
-                    </p>
-                  </Copy>
-                </CardContent>
-              </Card>
-            </MotionDiv>
+                </SpotlightCard>
+              </MotionDiv>
+            ))}
           </div>
 
           <MotionDiv
@@ -518,6 +490,7 @@ export default function ContactPage() {
             </Card>
           </MotionDiv>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[hsl(var(--background))] to-transparent pointer-events-none z-[5]"></div>
       </section>
 
       {/* Map Section */}
@@ -561,6 +534,7 @@ export default function ContactPage() {
             </div>
           </MotionDiv>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[hsl(var(--background))] to-transparent pointer-events-none z-[5]"></div>
       </section>
 
       {/* CTA Section */}
