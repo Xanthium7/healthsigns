@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Globe } from "@/components/magicui/globe";
 
 // Zod Schema for form validation
 const contactFormSchema = z.object({
@@ -520,9 +521,9 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="rounded-2xl md:rounded-3xl overflow-hidden shadow-xl h-[300px] sm:h-[400px] md:h-[500px] w-full glass"
+            className="overflow-hidden flex  h-[300px] sm:h-[400px] md:h-[500px] w-full glass"
           >
-            <div className="w-full h-full bg-muted">
+            <div className="w-full h-full bg-muted rounded-2xl overflow-hidden md:rounded-3xl">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3022.913174580775!2d-74.367089!3d40.741936!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3af1b056494d7%3A0x636449a1c178dbc0!2sRegus%20-%20Short%20Hills%20-%2051%20JFK%20Parkway!5e0!3m2!1sen!2sin!4v1745235095605!5m2!1sen!2sin"
                 width="100%"

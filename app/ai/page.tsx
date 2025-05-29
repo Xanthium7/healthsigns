@@ -82,7 +82,7 @@ export default function AIPage() {
                 </p>
               </Copy>
               <div className="flex justify-center lg:justify-start">
-                <Link href="/contact#schedule-demo">
+                <Link href="/contact">
                   <InteractiveHoverButton className="w-full sm:w-auto">
                     Schedule a Demo
                   </InteractiveHoverButton>
@@ -110,7 +110,7 @@ export default function AIPage() {
                 />
               </div>
               <Image
-                src="/health_insight.png"
+                src="/ai_insight.png"
                 alt="AI Health Insights"
                 height={700}
                 width={700}
