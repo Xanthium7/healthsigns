@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card"; // Card and CardContent might still be used for the overall layout
+import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
@@ -11,7 +11,7 @@ import { EMAIL_CONFIG } from "@/config/email-config";
 import Copy from "@/components/Copy";
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 import Image from "next/image";
-import Aurora from "@/Backgrounds/Aurora/Aurora"; // Import Aurora
+import Aurora from "@/Backgrounds/Aurora/Aurora";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -38,7 +38,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Globe } from "@/components/magicui/globe";
 
-// Zod Schema for form validation
 const contactFormSchema = z.object({
   fullname: z.string().min(1, { message: "Name is required." }),
   email: z
@@ -54,7 +53,6 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-// Animated components
 const MotionDiv = motion.div;
 
 export default function ContactPage() {
@@ -72,18 +70,14 @@ export default function ContactPage() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // formErrors state is now handled by react-hook-form via form.formState.errors
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
-  // Form handlers (handleInputChange and validateForm are no longer needed)
-
   const onSubmit = (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      // Create Gmail compose URL
       const subject = encodeURIComponent(
         data.subject ? data.subject : "Contact Form Submission"
       );
@@ -93,7 +87,6 @@ export default function ContactPage() {
           `Message:\n${data.message}`
       );
 
-      // Open Gmail compose window using the config email
       const mailWindow = window.open(
         `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_CONFIG.contactEmail}&su=${subject}&body=${body}`,
         "_blank"
@@ -104,18 +97,17 @@ export default function ContactPage() {
           title: "Popup Blocked?",
           description:
             "The Gmail window might have been blocked. Please check your browser's popup settings and try again, or allow popups for this site.",
-          variant: "destructive", // Or "warning" if available/preferred
+          variant: "destructive",
           duration: 7000,
         });
       }
 
-      // Reset form and show success
       form.reset();
       toast({
         title: "Message prepared",
         description:
           "Your message has been prepared in Gmail. Please check your browser window or tab. If it didn't open, ensure popups are allowed for this site.",
-        duration: 6000, // Slightly longer duration for more info
+        duration: 6000,
       });
     } catch (error) {
       console.error("Error during form submission:", error);
@@ -140,17 +132,17 @@ export default function ContactPage() {
 
   const contactItems = [
     {
-      icon: <Mail className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />, // Adjusted icon size for responsiveness
+      icon: <Mail className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />,
       title: "Email",
       description: EMAIL_CONFIG.displayEmail,
     },
     {
-      icon: <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />, // Adjusted icon size for responsiveness
+      icon: <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />,
       title: "Phone",
       description: "+1 9732706212",
     },
     {
-      icon: <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />, // Adjusted icon size for responsiveness
+      icon: <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />,
       title: "Address",
       description: "30 N Gould St # 29714 Sheridan, WY 82801",
     },
@@ -158,7 +150,6 @@ export default function ContactPage() {
 
   return (
     <div>
-      {/* Hero Section */}
       <section className="py-16 md:py-20 pt-24 bg-gradient-to-br from-primary/10 to-background relative">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center">
@@ -191,7 +182,6 @@ export default function ContactPage() {
             />
           </div>
 
-          {/* 3D Elements */}
           <div className="absolute top-1/3 left-0 z-10 transform -translate-x-1/2 hidden lg:block">
             <BlurrySphere
               size={0.8}
@@ -208,7 +198,6 @@ export default function ContactPage() {
         <div className="absolute bottom-0 left-0 w-full h-16 sm:h-24 bg-gradient-to-t from-[hsl(var(--background))] to-transparent pointer-events-none z-[5]"></div>
       </section>
 
-      {/* Contact Information Section */}
       <section className="py-16 md:py-20 bg-background relative overflow-hidden z-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
@@ -252,7 +241,6 @@ export default function ContactPage() {
           >
             <Card className="border-none shadow-xl bg-gradient-to-br from-primary/10 to-background rounded-2xl md:rounded-3xl overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Left Column - Visual Element */}
                 <div className="relative h-full min-h-[350px] sm:min-h-[450px] lg:min-h-[550px]">
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary to-primary overflow-hidden">
                     <div className="absolute inset-0 opacity-20">
@@ -260,8 +248,6 @@ export default function ContactPage() {
                     </div>
                     <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 z-10 text-primary-foreground">
                       <div className="flex items-center text-left">
-                        {" "}
-                        {/* Removed justify-center, changed text-center to text-left */}
                         <Copy>
                           <h3 className="text-3xl sm:text-4xl lg:text-6xl font-medium mt-4 sm:mt-6">
                             Reach Out to Our Team
@@ -269,8 +255,6 @@ export default function ContactPage() {
                         </Copy>
                       </div>
                       <div className="text-left">
-                        {" "}
-                        {/* Removed text-center */}
                         <Copy delay={0.2}>
                           <p className="mb-6 sm:mb-8 text-base sm:text-lg opacity-90">
                             We're excited to hear from you and learn how we can
@@ -280,8 +264,6 @@ export default function ContactPage() {
                         </Copy>
                         <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-10">
                           <div className="flex items-center justify-start">
-                            {" "}
-                            {/* Removed justify-center */}
                             <div className="bg-primary/20 p-2.5 sm:p-3 rounded-full mr-3 sm:mr-4">
                               <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
                             </div>
@@ -296,8 +278,6 @@ export default function ContactPage() {
                           </div>
 
                           <div className="flex items-center justify-start">
-                            {" "}
-                            {/* Removed justify-center */}
                             <div className="bg-primary/20 p-2.5 sm:p-3 rounded-full mr-3 sm:mr-4">
                               <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
                             </div>
@@ -312,8 +292,6 @@ export default function ContactPage() {
                           </div>
 
                           <div className="flex items-center justify-start">
-                            {" "}
-                            {/* Removed justify-center */}
                             <div className="bg-primary/20 p-2.5 sm:p-3 rounded-full mr-3 sm:mr-4">
                               <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
                             </div>
@@ -330,10 +308,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="text-left">
-                        {" "}
-                        {/* Removed text-center, lg:text-left */}
-                        <div className="h-1 w-12 sm:w-16 bg-primary/50 rounded mb-3 sm:mb-4"></div>{" "}
-                        {/* Removed mx-auto, lg:mx-0 */}
+                        <div className="h-1 w-12 sm:w-16 bg-primary/50 rounded mb-3 sm:mb-4"></div>
                         <Copy delay={0.3} animateOnScroll={false}>
                           <p className="text-xs sm:text-sm opacity-80">
                             Your privacy matters to us. We are committed to
@@ -345,7 +320,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Right Column - Form */}
                 <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
                   <Copy>
                     <h2 className="text-xl sm:text-2xl font-medium mb-6 sm:mb-8 text-primary">
@@ -498,7 +472,6 @@ export default function ContactPage() {
         <div className="absolute bottom-0 left-0 w-full h-16 sm:h-24 bg-gradient-to-t from-[hsl(var(--background))] to-transparent pointer-events-none z-[5]"></div>
       </section>
 
-      {/* Map Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -542,9 +515,7 @@ export default function ContactPage() {
         <div className="absolute bottom-0 left-0 w-full h-16 sm:h-24 bg-gradient-to-t from-[hsl(var(--background))] to-transparent pointer-events-none z-[5]"></div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 md:py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
-        {/* Aurora as background */}
         <div className="absolute inset-0 z-0 pointer-events-none ">
           <Aurora
             colorStops={["#f50029", "#FF0037", "#FF0000"]}
@@ -576,7 +547,6 @@ export default function ContactPage() {
             </Copy>
           </MotionDiv>
         </div>
-        {/* Decorative elements */}
         <div className="absolute bottom-0 right-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 bg-secondary/50 rounded-full blur-2xl sm:blur-3xl opacity-30"></div>
         <div className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 bg-primary/50 rounded-full blur-2xl sm:blur-3xl opacity-30"></div>
       </section>

@@ -346,9 +346,8 @@ export default function Home() {
       {/* CTA Section */}
 
       <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
-        {/* Gradient overlay for soft top edge */}
         <div className="absolute -top-12 sm:-top-16 md:-top-20 left-0 w-full h-12 sm:h-16 md:h-20 bg-gradient-to-b from-transparent via-[rgba(61,35,35,0.3)] to-[#3d2323] pointer-events-none z-0"></div>
-        {/* Aurora as background */}
+
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Aurora
             colorStops={["#f50029", "#FF0037", "#FF0000"]}

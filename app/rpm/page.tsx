@@ -21,11 +21,9 @@ import Link from "next/link";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
 import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 
-// Animated components
 const MotionDiv = motion.div;
 
 export default function RPMPage() {
-  // Animation controls
   const controls = useAnimation();
 
   useEffect(() => {
@@ -46,7 +44,7 @@ export default function RPMPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Adjusted stagger for more elements
+        staggerChildren: 0.1,
       },
     },
   };
@@ -86,7 +84,6 @@ export default function RPMPage() {
 
   return (
     <div className="pt-16 md:pt-24 bg-background">
-      {/* Hero Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -127,14 +124,12 @@ export default function RPMPage() {
                   className="object-cover"
                   priority
                 />
-                {/* <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div> */}
               </div>
             </MotionDiv>
           </div>
         </div>
       </section>
 
-      {/* What is RPM Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -172,7 +167,6 @@ export default function RPMPage() {
         </div>
       </section>
 
-      {/* How Does RPM Work Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <MotionDiv
@@ -261,10 +255,8 @@ export default function RPMPage() {
         </div>
       </section>
 
-      {/* Benefits of RPM Section */}
       <section id="benifitsofrpm" className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
-          {/* Changed from a single MotionDiv to a grid structure */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12 md:mb-16">
             <div></div>
             <MotionDiv
@@ -315,7 +307,7 @@ export default function RPMPage() {
               <MotionDiv key={index} variants={fadeInUp}>
                 <SpotlightCard
                   className="h-full bg-gray-100 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl p-6 md:p-8"
-                  spotlightColor="rgba(0, 229, 255, 0.2)" // Fuchsia/purple tint for spotlight
+                  spotlightColor="rgba(0, 229, 255, 0.2)"
                 >
                   <h3 className="text-xl  font-bold uppercase mb-3 text-secondary">
                     {item.title}
@@ -331,9 +323,7 @@ export default function RPMPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
-        {/* Aurora as background */}
         <div className="absolute inset-0 z-10 pointer-events-none">
           <Aurora
             colorStops={["#f50029", "#FF0037", "#FF0000"]}

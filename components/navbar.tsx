@@ -102,7 +102,7 @@ const Navbar = () => {
             ))}
 
             <Link href="/contact">
-              <Button className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <Button className="bg-gradient-animated text-primary-foreground rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 Contact
               </Button>
             </Link>
@@ -149,7 +149,7 @@ const Navbar = () => {
                   <div className="pt-4">
                     <SheetClose asChild>
                       <Link href="/contact" className="block">
-                        <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
+                        <Button className="w-full bg-gradient-animated text-primary-foreground rounded-full shadow-md transition-all duration-300 transform hover:shadow-lg">
                           Contact
                         </Button>
                       </Link>
