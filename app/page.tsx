@@ -223,7 +223,7 @@ export default function Home() {
           </Copy>
 
           <Copy delay={0.2}>
-            <p className="text-muted-foreground font-jakarta mx-4 lg:w-5/6 text-lg md:text-2xl lg:text-4xl text-center lg:text-right lg:ml-auto">
+            <p className="text-muted-foreground font-jakarta mx-4 lg:w-5/6 text-lg md:text-2xl lg:text-4xl text-center lg:text-left lg:mr-auto">
               At HealthSigns, we pioneer the convergence of{" "}
               <span className="font-bold text-foreground">
                 technology and healthcare

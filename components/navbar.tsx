@@ -35,7 +35,7 @@ const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
       {children}
       <span
         className={cn(
-          "absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full",
+          "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full",
           isActive ? "w-full" : "w-0",
           "md:block hidden"
         )}
@@ -63,9 +63,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Career", href: "/career" },
     { name: "RPM", href: "/rpm" },
     { name: "Proprietary AI", href: "/ai" },
+    { name: "Career", href: "/career" },
   ];
 
   return (

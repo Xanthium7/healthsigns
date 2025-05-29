@@ -119,15 +119,15 @@ export default function RPMPage() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="relative"
             >
-              <div className="relative h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden shadow-xl">
+              <div className="relative h-[350px] md:h-[450px] w-full rounded-3xl overflow-hidden ">
                 <Image
-                  src="/placeholder.svg?height=800&width=1200&text=RPM+Visualization" // Updated placeholder
+                  src="/remote_patient.png"
                   alt="Remote Patient Monitoring Visualization"
                   fill
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+                {/* <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div> */}
               </div>
             </MotionDiv>
           </div>
@@ -212,11 +212,10 @@ export default function RPMPage() {
                       <h3 className="text-base font-bold uppercase mb-2 text-secondary tracking-wide">
                         {item.title}
                       </h3>
-                      <Copy delay={0.01}>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {item.description}
-                        </p>
-                      </Copy>
+
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </SpotlightCard>
                 </MotionDiv>
