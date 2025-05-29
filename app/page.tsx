@@ -162,7 +162,7 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute z-0 top-0 bottom-0 right-0 lg:block hidden h-[100vh] w-1/2 rounded-3xl overflow-hidden"
+                className="absolute z-0 top-0 bottom-0 right-0 lg:block hidden h-full w-1/2 rounded-3xl overflow-hidden"
               >
                 <Image
                   src="hero.png"
@@ -263,8 +263,8 @@ export default function Home() {
 
       {/* About HealthSigns Section */}
 
-      <TextReveal className="font-extrabold uppercase ">
-        At HealthSigns, we're pioneering the future of healthcare with AI
+      <TextReveal className="font-extrabold uppercase text-center">
+        At HealthSigns, we're pioneering the future of healthcare
       </TextReveal>
 
       {/*  Careers Section */}

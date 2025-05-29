@@ -317,16 +317,13 @@ export default function RPMPage() {
                   className="h-full bg-gray-100 border border-secondary/20 hover:shadow-secondary/10 shadow-lg transition-shadow duration-300 rounded-xl p-6 md:p-8"
                   spotlightColor="rgba(0, 229, 255, 0.2)" // Fuchsia/purple tint for spotlight
                 >
-                  <Copy>
-                    <h3 className="text-xl  font-bold uppercase mb-3 text-secondary">
-                      {item.title}
-                    </h3>
-                  </Copy>
-                  <Copy delay={0.1}>
-                    <p className="text-muted-foreground text-sm">
-                      {item.description}
-                    </p>
-                  </Copy>
+                  <h3 className="text-xl  font-bold uppercase mb-3 text-secondary">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-muted-foreground text-sm">
+                    {item.description}
+                  </p>
                 </SpotlightCard>
               </MotionDiv>
             ))}
