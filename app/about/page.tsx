@@ -620,19 +620,11 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto mb-16"
           >
-            <Copy>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Brain className="h-6 w-6 text-primary" />
-                <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                  Patient Journey
-                </span>
-              </div>
-            </Copy>
             <Copy delay={0.2}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 {" "}
                 {/* Adjusted font size, weight, casing, tracking */}
-                How It Works – The Patient Journey
+                The Patient Journey
               </h2>
             </Copy>
             <Copy delay={0.4}>
@@ -658,34 +650,28 @@ export default function AboutPage() {
                 <MotionDiv
                   key={index}
                   variants={fadeInUp}
-                  className={`flex items-start mb-12 ${
+                  className={`flex items-start mb-16 ${
                     index % 2 === 0
-                      ? "justify-start md:pr-28"
-                      : "justify-end md:pl-28"
+                      ? "justify-end md:pl-28"
+                      : "justify-start md:pr-28"
                   }`}
                 >
                   <div
-                    className={`relative bg-background/80 backdrop-blur-md border border-primary/20 p-6 rounded-2xl shadow-xl max-w-md ${
+                    className={`relative bg-background/70 backdrop-blur-md border border-primary/20 p-8 rounded-2xl shadow-xl max-w-md ${
                       index % 2 === 0 ? "md:mr-[12%]" : "md:ml-[12%]"
                     }`}
                   >
                     <div
-                      className="absolute top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-primary border-4 border-background z-20 flex items-center justify-center"
-                      style={{ [index % 2 === 0 ? "right" : "left"]: "-16px" }}
-                    >
-                      <span className="text-xs font-bold text-white">
-                        {step.step}
-                      </span>
-                    </div>
+                      className="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-[3px] border-background z-20"
+                      style={{ [index % 2 === 0 ? "left" : "right"]: "-10px" }}
+                    ></div>
                     <Copy>
-                      <h3 className="text-lg font-bold mb-3 text-foreground">
+                      <h3 className="text-xl font-semibold mb-3 text-foreground">
                         {step.title}
                       </h3>
                     </Copy>
                     <Copy delay={0.1}>
-                      <p className="text-sm text-muted-foreground leading-relaxed font-jakarta">
-                        {" "}
-                        {/* Added font-jakarta */}
+                      <p className="text-muted-foreground ">
                         {step.description}
                       </p>
                     </Copy>
@@ -976,23 +962,7 @@ export default function AboutPage() {
               </p>
             </Copy>
             <Copy delay={0.4}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    className="bg-background text-primary hover:bg-muted rounded-full px-8"
-                  >
-                    Partner with us <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white/20 text-white hover:bg-white/10 rounded-full px-8"
-                >
-                  Schedule Demo <Calendar className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center"></div>
             </Copy>
           </MotionDiv>
         </div>
