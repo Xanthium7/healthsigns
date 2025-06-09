@@ -434,14 +434,6 @@ export default function AboutPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
             >
-              <Copy>
-                <div className="flex items-center gap-2 mb-4">
-                  <Building2 className="h-6 w-6 text-primary" />
-                  <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                    Hospitals
-                  </span>
-                </div>
-              </Copy>
               <Copy delay={0.2}>
                 <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                   {" "}
