@@ -456,31 +456,32 @@ export default function AboutPage() {
                   "Cost reduction and workflow efficiency",
                 ].map((feature, index) => (
                   <Copy key={index} delay={0.1}>
-                    <div className="flex items-center ">
-                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 translate-y-5" />
-                      <div className="text-muted-foreground font-jakarta ml-7">
-                        {feature}
+                    <div className="space-y-2 mt-4">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0  " />
+                        <span className="text-lg text-muted-foreground font-jakarta">
+                          {feature}
+                        </span>
                       </div>
                     </div>
                   </Copy>
                 ))}
-
-                <Copy delay={0.1}>
-                  <div className="bg-card/50 backdrop-blur-sm border mt-8 border-primary/20 p-6 rounded-2xl">
-                    <h4 className="font-semibold text-foreground mb-2">
-                      Trusted By:
-                    </h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <Star className="h-4 w-4 text-yellow-500" />
-                        <span className="text-sm text-muted-foreground font-jakarta">
-                          Believers Church Medical College
-                        </span>
-                      </div>
+              </div>
+              <Copy>
+                <div className="bg-card/50 backdrop-blur-sm border mt-8 border-primary/20 p-6 rounded-2xl">
+                  <h4 className="font-semibold text-foreground mb-2">
+                    Trusted By:
+                  </h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Star className="h-4 w-4 text-yellow-500" />
+                      <span className="text-sm text-muted-foreground font-jakarta">
+                        Believers Church Medical College
+                      </span>
                     </div>
                   </div>
-                </Copy>
-              </div>
+                </div>
+              </Copy>
             </MotionDiv>
 
             <MotionDiv
@@ -534,22 +535,14 @@ export default function AboutPage() {
               variants={fadeInUp}
               className="order-1 lg:order-2"
             >
-              <Copy>
-                <div className="flex items-center gap-2 mb-4">
-                  <FlaskConical className="h-6 w-6 text-primary" />
-                  <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                    Smart Labs
-                  </span>
-                </div>
-              </Copy>
-              <Copy delay={0.2}>
+              <Copy delay={0.1}>
                 <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                   {" "}
                   {/* Adjusted font size, weight, casing, tracking */}
                   AI-Enhanced Diagnostic Excellence
                 </h2>
               </Copy>
-              <Copy delay={0.4}>
+              <Copy delay={0.1}>
                 <p className="text-lg text-muted-foreground mb-6 font-jakarta">
                   {" "}
                   {/* Added font-jakarta */}
@@ -565,33 +558,33 @@ export default function AboutPage() {
                   "Voice-based summaries via WhatsApp",
                   "Integration with lab machines through accelerators",
                 ].map((feature, index) => (
-                  <Copy key={index} delay={0.1 * index + 0.6}>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground font-jakarta">
-                        {feature}
-                      </span>{" "}
-                      {/* Added font-jakarta */}
+                  <Copy key={index} delay={0.1}>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 " />
+                        <span className="text-sm text-muted-foreground font-jakarta">
+                          {feature}
+                        </span>
+                      </div>
                     </div>
                   </Copy>
                 ))}
-
-                <Copy delay={0.8}>
-                  <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-2xl border border-primary/20">
-                    <div className="flex items-center gap-3 mb-2">
-                      <TrendingUp className="h-6 w-6 text-primary" />
-                      <span className="font-bold text-2xl text-foreground">
-                        1M+
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground font-jakarta">
-                      {" "}
-                      {/* Added font-jakarta */}
-                      Reports generated to date
-                    </p>
-                  </div>
-                </Copy>
               </div>
+              <Copy delay={0.1}>
+                <div className="bg-gradient-to-r from-primary/10  to-secondary/10 p-6 rounded-2xl border border-primary/20">
+                  <div className="flex items-center gap-3 mb-2">
+                    <TrendingUp className="h-6 w-6 text-primary" />
+                    <span className="font-bold text-2xl text-foreground">
+                      1M+
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-jakarta">
+                    {" "}
+                    {/* Added font-jakarta */}
+                    Reports generated to date
+                  </p>
+                </div>
+              </Copy>
             </MotionDiv>
           </div>
         </div>
@@ -693,18 +686,8 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <MessageSquare className="h-6 w-6 text-primary" />
-                <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                  Testimonials
-                </span>
-              </div>
-            </Copy>
-            <Copy delay={0.2}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                {" "}
-                {/* Adjusted font size, weight, casing, tracking */}
+            <Copy delay={0.1}>
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-secondary/50 uppercase tracking-tight">
                 What Our Partners Say
               </h2>
             </Copy>
@@ -721,8 +704,8 @@ export default function AboutPage() {
               >
                 <Card className="h-full border-none shadow-lg bg-gradient-to-br from-card to-card/80 rounded-2xl">
                   <CardContent className="p-8">
-                    <div className="mb-6">
-                      <MessageSquare className="h-8 w-8 text-primary mb-4" />
+                    <div className="mb-6 flex gap-4">
+                      <MessageSquare className="h-8 w-8 text-primary mb-4 flex-shrink-0" />
                       <blockquote className="text-lg text-muted-foreground italic leading-relaxed font-jakarta">
                         {" "}
                         {/* Added font-jakarta */}"{testimonial.quote}"
