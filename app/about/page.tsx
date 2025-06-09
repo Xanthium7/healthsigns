@@ -7,16 +7,35 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation } from "framer-motion";
 import {
   ArrowRight,
-  Cpu,
-  Globe,
+  Building2,
+  FlaskConical,
+  Stethoscope,
+  Home,
+  Leaf,
+  Brain,
+  FileText,
+  MessageSquare,
+  Calendar,
+  Activity,
+  TrendingUp,
   Users,
-  Puzzle,
+  Shield,
+  Globe,
+  Zap,
+  CheckCircle,
   Heart,
-  Link2,
+  Sparkles,
+  MapPin,
+  Clock,
+  Star,
+  ChevronRight,
 } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import Copy from "@/components/Copy";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
+import Link from "next/link";
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+
 // Animated components
 const MotionDiv = motion.div;
 
@@ -47,31 +66,172 @@ export default function AboutPage() {
     },
   };
 
+  const sectors = [
+    {
+      icon: <Building2 className="h-8 w-8" />,
+      title: "Hospitals",
+      subtitle: "AI-Enhanced Operations",
+      description:
+        "Streamline workflows with AI accelerators that integrate seamlessly with EMR systems.",
+    },
+    {
+      icon: <FlaskConical className="h-8 w-8" />,
+      title: "Smart Labs",
+      subtitle: "Diagnostic Excellence",
+      description:
+        "AI-generated insights with over 1 million reports generated to enhance accuracy.",
+    },
+    {
+      icon: <Stethoscope className="h-8 w-8" />,
+      title: "Clinics",
+      subtitle: "Intelligent Care",
+      description:
+        "Multilingual AI-powered medical dictation and automated patient management.",
+    },
+    {
+      icon: <Home className="h-8 w-8" />,
+      title: "Homecare",
+      subtitle: "Smart Coordination",
+      description:
+        "Uber-like scheduling with proximity-based staff assignment and real-time tracking.",
+    },
+    {
+      icon: <Leaf className="h-8 w-8" />,
+      title: "Ayurveda",
+      subtitle: "Traditional + Digital",
+      description:
+        "Voice transcription in regional languages with holistic wellness tracking.",
+    },
+  ];
+
+  const journeySteps = [
+    {
+      step: "01",
+      title: "Easy Onboarding",
+      description:
+        "Upload records and get structured summaries with AI-powered document processing.",
+    },
+    {
+      step: "02",
+      title: "Smart Risk Assessment",
+      description:
+        "AI detects risk areas and care gaps with dynamic scoring and insights.",
+    },
+    {
+      step: "03",
+      title: "Customizable Care Plans",
+      description:
+        "Doctors tailor AI-generated suggestions for personalized patient care.",
+    },
+    {
+      step: "04",
+      title: "Real-Time Assistant",
+      description:
+        "AI supports clinical decision-making with evidence-based suggestions.",
+    },
+    {
+      step: "05",
+      title: "Connected Devices",
+      description:
+        "Live tracking of vitals with automated alerts for timely interventions.",
+    },
+    {
+      step: "06",
+      title: "Weekly Check-ins",
+      description:
+        "Keep patients informed and motivated with regular engagement.",
+    },
+    {
+      step: "07",
+      title: "Pre-Triage Summaries",
+      description:
+        "Actionable insights before every visit to streamline consultations.",
+    },
+    {
+      step: "08",
+      title: "Trend Tracking",
+      description:
+        "Dynamic risk analysis and transparent reporting for care teams.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "HealthSigns has helped us streamline our diagnostic workflows and deliver better patient experiences.",
+      author: "Believers Church Medical College",
+      role: "Healthcare Partner",
+    },
+    {
+      quote:
+        "Thanks to HealthSigns' AI, we've automated millions of reports and improved result clarity.",
+      author: "Leading Diagnostic Lab",
+      role: "Laboratory Partner",
+    },
+  ];
+
+  const globalLocations = [
+    { country: "United States", flag: "🇺🇸" },
+    { country: "India", flag: "🇮🇳" },
+    { country: "UAE", flag: "🇦🇪" },
+    { country: "Colombia", flag: "🇨🇴", partner: "with Appisoft" },
+  ];
+
+  const partners = [
+    { name: "Appisoft", region: "Colombia expansion" },
+    {
+      name: "TicSocial",
+      region: "Multilingual AI for Spanish-speaking regions",
+    },
+  ];
+
   return (
-    <div className="">
+    <div className=" overflow-hidden">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-gradient-to-br from-primary/10 via-background to-secondary/10 relative overflow-hidden">
+        {" "}
+        {/* Adjusted padding */}
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
           <MotionDiv
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-5xl mx-auto"
           >
-            <Copy>
-              <h1 className="text-4xl md:text-5xl h-20 font-medium mb-6 text-primary">
-                About HealthSigns
+            <Copy delay={0.2}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-foreground uppercase tracking-tight leading-tight">
+                {" "}
+                {/* Adjusted font weight, casing, tracking, leading */}
+                AI-Powered Healthcare,
+                <span className="block text-primary mt-2">
+                  {" "}
+                  {/* Added margin-top for spacing */}
+                  Connected & Compassionate
+                </span>
               </h1>
             </Copy>
-            <Copy delay={0.5} animateOnScroll={false}>
-              <p className="text-lg md:text-xl text-muted-foreground  mb-8 leading-relaxed">
-                At HealthSigns, we bridge the gap between technology and
-                healthcare to deliver seamless, innovative, and personalized
-                patient management solutions. As a pioneering health-tech brand,
-                we are dedicated to transforming the way patients in India, the
-                Middle East, and the US access and experience medical care.
+            <Copy delay={0.4} animateOnScroll={false}>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-4xl mx-auto font-jakarta">
+                {" "}
+                {/* Added font-jakarta */}
+                Healthcare that's preventive, personalized and accessible,
+                powered by data, guided by care. We unify your health records
+                from clinics, labs, hospitals and home care into one secure
+                platform.
               </p>
+            </Copy>
+            <Copy delay={0.6} animateOnScroll={false}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <InteractiveHoverButton>
+                    Partner With Us
+                  </InteractiveHoverButton>
+                </Link>
+                <Button variant="outline" size="lg" className="rounded-full">
+                  Watch Demo <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
             </Copy>
           </MotionDiv>
 
@@ -102,112 +262,8 @@ export default function AboutPage() {
             />
           </div>
         </div>
-      </section>
-
-      {/* What We Do Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv initial="hidden" animate="visible" variants={fadeInUp}>
-              <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-xl">
-                <Image
-                  src="/placeholder.svg?height=800&width=1200"
-                  alt="What We Do"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
-              </div>
-
-              {/* Floating elements */}
-              <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-primary/40 to-accent/40 rounded-full blur-xl opacity-30"></div>
-            </MotionDiv>
-            <MotionDiv initial="hidden" animate="visible" variants={fadeInUp}>
-              <Copy animateOnScroll={false}>
-                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
-                  What We Do
-                </h2>
-              </Copy>
-
-              <Copy delay={0.2} animateOnScroll={false}>
-                <p className="text-lg text-muted-foreground  mb-6">
-                  HealthSigns offers a suite of advanced healthcare solutions
-                  designed to enhance patient care and provider efficiency. Our
-                  core offering includes Remote Patient Management, enabling
-                  continuous monitoring and care beyond traditional clinical
-                  settings.
-                  <br /> We are also developing a clinical decision support
-                  system that provides healthcare professionals with real-time,
-                  evidence-based insights. By seamlessly integrating with
-                  existing healthcare infrastructures, we ensure that patients
-                  receive timely, personalized care while supporting providers
-                  in making informed clinical decisions.
-                </p>
-              </Copy>
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
-
-      {/* How We Work Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="order-2 lg:order-1"
-            >
-              <Copy>
-                <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
-                  How We Work
-                </h2>
-              </Copy>
-              <Copy delay={0.2}>
-                <p className="text-lg text-muted-foreground  mb-6">
-                  Our unique business model allows us to partner with
-                  established healthcare providers in India, the Middle East,
-                  and the US. By leveraging our partners' existing customer
-                  bases, we seamlessly integrate our remote patient monitoring
-                  services, enhancing their capabilities and extending their
-                  reach.
-                </p>
-              </Copy>
-              <Copy delay={0.3}>
-                <p className="text-lg text-muted-foreground ">
-                  This collaborative approach ensures that patients receive
-                  consistent, high-quality care, regardless of their location.
-                </p>
-              </Copy>
-            </MotionDiv>
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="order-1 lg:order-2"
-            >
-              <div className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-xl">
-                <Image
-                  src="/placeholder.svg?height=800&width=1200"
-                  alt="How We Work"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
-              </div>
-
-              {/* Floating elements */}
-              <div className="absolute -top-5 left-10 w-20 h-20 bg-gradient-to-r from-secondary/40 to-primary/40 rounded-full blur-xl opacity-30"></div>
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Technology Section */}
+      </section>{" "}
+      {/* Who We Serve Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <MotionDiv
@@ -215,26 +271,298 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-16" // Increased max-width
           >
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
-                Our Technology
-              </h2>
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Users className="h-6 w-6 text-primary" />
+                <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                  Who We Serve
+                </span>
+              </div>
             </Copy>
             <Copy delay={0.2}>
-              <p className="text-lg text-muted-foreground ">
-                HealthSigns utilizes advanced AI technology to continuously
-                monitor patient data, identifying early signs of potential
-                health issues. Our platform provides healthcare providers with
-                actionable insights, enabling proactive intervention and
-                personalized treatment plans.
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                {" "}
+                {/* Adjusted font size, weight, casing, tracking */}
+                Transforming Healthcare Across All Sectors
+              </h2>
+            </Copy>
+            <Copy delay={0.4}>
+              <p className="text-lg text-muted-foreground font-jakarta">
+                {" "}
+                {/* Added font-jakarta */}
+                HealthSigns is designed for all key healthcare sectors,
+                providing tailored solutions that enhance efficiency and improve
+                patient outcomes.
+              </p>
+            </Copy>
+          </MotionDiv>
+
+          <MotionDiv
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {sectors.map((sector, index) => (
+              <MotionDiv key={index} variants={fadeInUp} className="group">
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card rounded-2xl overflow-hidden">
+                  <CardContent className="p-8">
+                    <div className="mb-6 bg-primary/10 p-4 rounded-full w-fit text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      {sector.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-card-foreground">
+                      {sector.title}
+                    </h3>
+                    <p className="text-sm font-medium text-primary mb-3">
+                      {sector.subtitle}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed font-jakarta">
+                      {" "}
+                      {/* Added font-jakarta */}
+                      {sector.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </MotionDiv>
+        </div>
+      </section>
+      {/* Hospitals Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+            >
+              <Copy>
+                <div className="flex items-center gap-2 mb-4">
+                  <Building2 className="h-6 w-6 text-primary" />
+                  <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                    Hospitals
+                  </span>
+                </div>
+              </Copy>
+              <Copy delay={0.2}>
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                  {" "}
+                  {/* Adjusted font size, weight, casing, tracking */}
+                  AI-Enhanced Hospital Operations
+                </h2>
+              </Copy>
+              <Copy delay={0.4}>
+                <p className="text-lg text-muted-foreground mb-6 font-jakarta">
+                  {" "}
+                  {/* Added font-jakarta */}
+                  We equip hospitals with AI tools that streamline operations
+                  and elevate care delivery.
+                </p>
+              </Copy>
+
+              <div className="space-y-4 mb-8">
+                {[
+                  "AI Accelerators with seamless EMR integration",
+                  "Automated lab result workflows",
+                  "WhatsApp integration for reports & invoices",
+                  "Cost reduction and workflow efficiency",
+                ].map((feature, index) => (
+                  <Copy key={index} delay={0.1 * index + 0.6}>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground font-jakarta">
+                        {feature}
+                      </span>{" "}
+                      {/* Added font-jakarta */}
+                    </div>
+                  </Copy>
+                ))}
+
+                <Copy delay={0.8}>
+                  <div className="bg-card/50 backdrop-blur-sm border border-primary/20 p-6 rounded-2xl">
+                    <h4 className="font-semibold text-foreground mb-2">
+                      Trusted By:
+                    </h4>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <Star className="h-4 w-4 text-yellow-500" />
+                        <span className="text-sm text-muted-foreground font-jakarta">
+                          {" "}
+                          {/* Added font-jakarta */}
+                          Appisoft (Strategic partner in Colombia)
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Star className="h-4 w-4 text-yellow-500" />
+                        <span className="text-sm text-muted-foreground font-jakarta">
+                          {" "}
+                          {/* Added font-jakarta */}
+                          Believers Church Medical College
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Copy>
+              </div>
+            </MotionDiv>
+
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="relative"
+            >
+              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/placeholder.svg?height=800&width=600"
+                  alt="Hospital AI Integration"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+              </div>
+              <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-primary/40 to-accent/40 rounded-full blur-xl opacity-30"></div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>
+      {/* Smart Labs Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="order-2 lg:order-1 relative"
+            >
+              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/placeholder.svg?height=800&width=600"
+                  alt="Smart Labs AI"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent"></div>
+              </div>
+              <div className="absolute -top-5 left-10 w-20 h-20 bg-gradient-to-r from-secondary/40 to-primary/40 rounded-full blur-xl opacity-30"></div>
+            </MotionDiv>
+
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="order-1 lg:order-2"
+            >
+              <Copy>
+                <div className="flex items-center gap-2 mb-4">
+                  <FlaskConical className="h-6 w-6 text-primary" />
+                  <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                    Smart Labs
+                  </span>
+                </div>
+              </Copy>
+              <Copy delay={0.2}>
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                  {" "}
+                  {/* Adjusted font size, weight, casing, tracking */}
+                  AI-Enhanced Diagnostic Excellence
+                </h2>
+              </Copy>
+              <Copy delay={0.4}>
+                <p className="text-lg text-muted-foreground mb-6 font-jakarta">
+                  {" "}
+                  {/* Added font-jakarta */}
+                  Smart Labs use AI to enhance accuracy and simplify diagnostics
+                  with over 1 million reports generated.
+                </p>
+              </Copy>
+
+              <div className="space-y-4 mb-8">
+                {[
+                  "Appointment bookings & lab order creation",
+                  "AI-generated lab results with explainable insights",
+                  "Voice-based summaries via WhatsApp",
+                  "Integration with lab machines through accelerators",
+                ].map((feature, index) => (
+                  <Copy key={index} delay={0.1 * index + 0.6}>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground font-jakarta">
+                        {feature}
+                      </span>{" "}
+                      {/* Added font-jakarta */}
+                    </div>
+                  </Copy>
+                ))}
+
+                <Copy delay={0.8}>
+                  <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-2xl border border-primary/20">
+                    <div className="flex items-center gap-3 mb-2">
+                      <TrendingUp className="h-6 w-6 text-primary" />
+                      <span className="font-bold text-2xl text-foreground">
+                        1M+
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground font-jakarta">
+                      {" "}
+                      {/* Added font-jakarta */}
+                      Reports generated to date
+                    </p>
+                  </div>
+                </Copy>
+              </div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>{" "}
+      {/* Patient Journey Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-4xl mx-auto mb-16"
+          >
+            <Copy>
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Brain className="h-6 w-6 text-primary" />
+                <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                  Patient Journey
+                </span>
+              </div>
+            </Copy>
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                {" "}
+                {/* Adjusted font size, weight, casing, tracking */}
+                How It Works – The Patient Journey
+              </h2>
+            </Copy>
+            <Copy delay={0.4}>
+              <p className="text-lg text-muted-foreground font-jakarta">
+                {" "}
+                {/* Added font-jakarta */}
+                From onboarding to follow-ups, HealthSigns transforms preventive
+                care, making it smarter, simpler, and more effective.
               </p>
             </Copy>
           </MotionDiv>
 
           <div className="relative">
-            <div className="absolute top-0 left-1/2 w-1 h-full bg-primary/30 transform -translate-x-1/2 z-0 rounded-full"></div>
+            <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-primary/30 via-primary/20 to-primary/30 transform -translate-x-1/2 z-0 rounded-full"></div>
             <MotionDiv
               initial="hidden"
               whileInView="visible"
@@ -242,54 +570,39 @@ export default function AboutPage() {
               variants={staggerContainer}
               className="relative z-10"
             >
-              {[
-                {
-                  title: "Data Collection",
-                  description:
-                    "Our system collects vital health data from various devices and wearables in real-time.",
-                },
-                {
-                  title: "AI Analysis",
-                  description:
-                    "Advanced algorithms analyze the data to identify patterns and potential health concerns.",
-                },
-                {
-                  title: "Actionable Insights",
-                  description:
-                    "Healthcare providers receive clear, actionable insights to make informed decisions.",
-                },
-                {
-                  title: "Personalized Care",
-                  description:
-                    "Patients receive personalized care plans based on their unique health data.",
-                },
-              ].map((item, index) => (
+              {journeySteps.map((step, index) => (
                 <MotionDiv
                   key={index}
                   variants={fadeInUp}
-                  className={`flex items-start mb-16 ${
+                  className={`flex items-start mb-12 ${
                     index % 2 === 0
-                      ? "justify-end md:pl-28"
-                      : "justify-start md:pr-28"
+                      ? "justify-start md:pr-28"
+                      : "justify-end md:pl-28"
                   }`}
                 >
                   <div
-                    className={`relative bg-background/70 backdrop-blur-md border border-primary/20 p-8 rounded-2xl shadow-xl max-w-md ${
+                    className={`relative bg-background/80 backdrop-blur-md border border-primary/20 p-6 rounded-2xl shadow-xl max-w-md ${
                       index % 2 === 0 ? "md:mr-[12%]" : "md:ml-[12%]"
                     }`}
                   >
                     <div
-                      className="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-[3px] border-background z-20"
-                      style={{ [index % 2 === 0 ? "left" : "right"]: "-10px" }}
-                    ></div>
+                      className="absolute top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-primary border-4 border-background z-20 flex items-center justify-center"
+                      style={{ [index % 2 === 0 ? "right" : "left"]: "-16px" }}
+                    >
+                      <span className="text-xs font-bold text-white">
+                        {step.step}
+                      </span>
+                    </div>
                     <Copy>
-                      <h3 className="text-xl font-semibold mb-3 text-foreground">
-                        {item.title}
+                      <h3 className="text-lg font-bold mb-3 text-foreground">
+                        {step.title}
                       </h3>
                     </Copy>
                     <Copy delay={0.1}>
-                      <p className="text-muted-foreground ">
-                        {item.description}
+                      <p className="text-sm text-muted-foreground leading-relaxed font-jakarta">
+                        {" "}
+                        {/* Added font-jakarta */}
+                        {step.description}
                       </p>
                     </Copy>
                   </div>
@@ -299,11 +612,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Why Choose HealthSigns Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none"></div>
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
           <MotionDiv
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -312,69 +623,55 @@ export default function AboutPage() {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-primary">
-                Why Choose HealthSigns?
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <MessageSquare className="h-6 w-6 text-primary" />
+                <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                  Testimonials
+                </span>
+              </div>
+            </Copy>
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                {" "}
+                {/* Adjusted font size, weight, casing, tracking */}
+                What Our Partners Say
               </h2>
             </Copy>
           </MotionDiv>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Cpu className="h-10 w-10 text-primary" />,
-                title: "Cutting-Edge AI",
-                description:
-                  "Our advanced AI algorithms provide real-time, actionable insights, ensuring proactive and personalized patient care.",
-              },
-              {
-                icon: <Globe className="h-10 w-10 text-primary" />,
-                title: "Global Reach",
-                description:
-                  "With a presence in India, the Middle East, and the US, we bring world-class healthcare solutions to diverse populations.",
-              },
-              {
-                icon: <Users className="h-10 w-10 text-primary" />,
-                title: "Local Expertise",
-                description:
-                  "Our team can be found hard at work across every new location to ensure local insights feed into our system always.",
-              },
-              {
-                icon: <Puzzle className="h-10 w-10 text-primary" />,
-                title: "Collaborative Approach",
-                description:
-                  "We partner with established healthcare providers to deliver seamless integration and extended patient care services.",
-              },
-              {
-                icon: <Heart className="h-10 w-10 text-primary" />,
-                title: "Patient-Centric",
-                description:
-                  "Our solutions are designed with the patient in mind, ensuring easy accessibility and improved health outcomes.",
-              },
-              {
-                icon: <Link2 className="h-10 w-10 text-primary" />,
-                title: "Seamless Integration",
-                description:
-                  "We work closely with leading healthcare providers to ensure our platform integrates smoothly with existing infrastructures.",
-              },
-            ].map((item, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
               <MotionDiv
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card rounded-2xl card-3d">
-                  <CardContent className="p-6">
-                    <div className="mb-4 bg-primary/10 p-3 rounded-full w-fit">
-                      {item.icon}
+                <Card className="h-full border-none shadow-lg bg-gradient-to-br from-card to-card/80 rounded-2xl">
+                  <CardContent className="p-8">
+                    <div className="mb-6">
+                      <MessageSquare className="h-8 w-8 text-primary mb-4" />
+                      <blockquote className="text-lg text-muted-foreground italic leading-relaxed font-jakarta">
+                        {" "}
+                        {/* Added font-jakarta */}"{testimonial.quote}"
+                      </blockquote>
                     </div>
-
-                    <h3 className="text-xl font-semibold mb-3 text-card-foreground">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-muted-foreground ">{item.description}</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Star className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-foreground">
+                          {testimonial.author}
+                        </div>
+                        <div className="text-sm text-muted-foreground font-jakarta">
+                          {" "}
+                          {/* Added font-jakarta */}
+                          {testimonial.role}
+                        </div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </MotionDiv>
@@ -382,7 +679,196 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      {/* About Us Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+            >
+              <Copy>
+                <div className="flex items-center gap-2 mb-4">
+                  <Heart className="h-6 w-6 text-primary" />
+                  <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                    About Us
+                  </span>
+                </div>
+              </Copy>
+              <Copy delay={0.2}>
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                  {" "}
+                  {/* Adjusted font size, weight, casing, tracking */}
+                  Bridging Healthcare with AI
+                </h2>
+              </Copy>
+              <Copy delay={0.4}>
+                <p className="text-lg text-muted-foreground mb-6 font-jakarta">
+                  {" "}
+                  {/* Added font-jakarta */}
+                  Your health data lives in many places - doctor's notes, lab
+                  reports, prescriptions, apps. When it's not connected, care
+                  becomes confusing and fragmented. HealthSigns brings it all
+                  together.
+                </p>
+              </Copy>
+              <Copy delay={0.6}>
+                <p className="text-lg text-muted-foreground mb-8 font-jakarta">
+                  {" "}
+                  {/* Added font-jakarta */}
+                  We unify patient data from labs, clinics, hospitals, and
+                  homecare, enabling early risk detection and smart clinical
+                  decision-making while delivering patient-friendly reports and
+                  reminders.
+                </p>
+              </Copy>
 
+              <div className="space-y-6">
+                <Copy delay={0.8}>
+                  <div className="bg-card/50 backdrop-blur-sm border border-primary/20 p-6 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Zap className="h-6 w-6 text-primary" />
+                      <h4 className="font-bold text-foreground">Vision</h4>
+                    </div>
+                    <p className="text-muted-foreground font-jakarta">
+                      {" "}
+                      {/* Added font-jakarta */}
+                      Preventive, personalized, and accessible
+                      healthcare—powered by data, guided by care.
+                    </p>
+                  </div>
+                </Copy>
+                <Copy delay={1.0}>
+                  <div className="bg-card/50 backdrop-blur-sm border border-primary/20 p-6 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Shield className="h-6 w-6 text-primary" />
+                      <h4 className="font-bold text-foreground">What We Do</h4>
+                    </div>
+                    <p className="text-muted-foreground font-jakarta">
+                      {" "}
+                      {/* Added font-jakarta */}
+                      Unify patient data, enable early risk detection, deliver
+                      smart clinical decision-making, and equip healthcare
+                      professionals with automation and real-time insights.
+                    </p>
+                  </div>
+                </Copy>
+              </div>
+            </MotionDiv>
+
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="relative"
+            >
+              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/placeholder.svg?height=800&width=600"
+                  alt="Healthcare AI Connection"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+              </div>
+              <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-primary/40 to-accent/40 rounded-full blur-xl opacity-30"></div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>
+      {/* Global Reach Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy>
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Globe className="h-6 w-6 text-primary" />
+                <span className="text-sm font-medium text-primary uppercase tracking-wide">
+                  Global Reach
+                </span>
+              </div>
+            </Copy>
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                {" "}
+                {/* Adjusted font size, weight, casing, tracking */}
+                Serving Healthcare Worldwide
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {globalLocations.map((location, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="text-center border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card rounded-2xl">
+                  <CardContent className="p-6">
+                    <div className="text-4xl mb-3">{location.flag}</div>
+                    <h3 className="font-bold text-foreground mb-2">
+                      {location.country}
+                    </h3>
+                    {location.partner && (
+                      <p className="text-sm text-primary font-jakarta">
+                        {location.partner}
+                      </p> /* Added font-jakarta */
+                    )}
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+
+          <MotionDiv
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-3xl border border-primary/20"
+          >
+            <Copy>
+              <h3 className="text-xl font-bold mb-6 text-foreground text-center">
+                Strategic Partners
+              </h3>
+            </Copy>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {partners.map((partner, index) => (
+                <Copy key={index} delay={0.2 + index * 0.1}>
+                  <div className="flex items-center gap-3 bg-background/50 p-4 rounded-xl">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Users className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">
+                        {partner.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground font-jakarta">
+                        {" "}
+                        {/* Added font-jakarta */}
+                        {partner.region}
+                      </div>
+                    </div>
+                  </div>
+                </Copy>
+              ))}
+            </div>
+          </MotionDiv>
+        </div>
+      </section>{" "}
       {/* CTA Section */}
       <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
         {/* Aurora as background */}
@@ -401,26 +887,41 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
             <Copy>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 Join Us in Transforming Healthcare
               </h2>
             </Copy>
             <Copy delay={0.2}>
-              <p className="text-xl mb-8">
+              <p className="text-xl mb-8 opacity-90 font-jakarta">
+                {" "}
+                {/* Added font-jakarta */}
                 At HealthSigns, we believe in the power of technology to
                 transform healthcare. Join us on our mission to provide better
                 care for patients around the world.
               </p>
             </Copy>
-            <Button
-              size="lg"
-              className="bg-background text-primary hover:bg-muted rounded-full"
-            >
-              Partner with us <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Copy delay={0.4}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="bg-background text-primary hover:bg-muted rounded-full px-8"
+                  >
+                    Partner with us <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white/20 text-white hover:bg-white/10 rounded-full px-8"
+                >
+                  Schedule Demo <Calendar className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </Copy>
           </MotionDiv>
         </div>
 
