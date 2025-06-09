@@ -218,33 +218,31 @@ export default function Home() {
       <section className="py-20 bg-background">
         <div className="w-full px-4 min-h-[40vh] md:min-h-[40vh] lg:min-h-[60vh] flex flex-col justify-around relative lg:text-right text-center">
           <Copy>
-            <h2 className="mt-12 mb-6 mx-4 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
+            <h2 className="mt-12  mx-4 text-secondary/30 uppercase text-4xl md:text-9xl font-extrabold text-center lg:text-right tracking-tight">
               Who are we ?
             </h2>
           </Copy>
-
-          <Copy delay={0.2}>
-            <p className="text-muted-foreground font-jakarta mx-4 lg:w-5/6 text-lg md:text-2xl lg:text-4xl text-center lg:text-left lg:mr-auto">
-              At HealthSigns, we pioneer the convergence of{" "}
-              <span className="font-bold text-foreground">
-                technology and healthcare
-              </span>
-              . Our mission:{" "}
-              <span className="font-bold text-foreground">
-                seamless, innovative, personalized patient management solutions
-              </span>
-              . As a forward-thinking{" "}
-              <span className="font-bold text-foreground">
-                healthtech brand
-              </span>
-              , we're revolutionizing access to{" "}
-              <span className="font-bold text-foreground">
-                world-class medical care
-              </span>{" "}
-              in India, the Middle East, and the US, making healthcare
-              intuitive, effective, and human-centered.
-            </p>
-          </Copy>
+          <div className="flex mt-8 md:mt-0 flex-col lg:flex-row items-center justify-between gap-8">
+            <Copy delay={0.2}>
+              <p className="text-muted-foreground font-jakarta mx-4 text-lg md:text-2xl lg:text-3xl text-center lg:text-left lg:mr-auto">
+                We bring together records from clinics, labs, hospitals, and
+                home care to create a holistic view of a patient's health. Using
+                AI, we identify risks early, generate tailored care plans, and
+                support doctors with real-time insights—making healthcare
+                smarter and more effective. Patients get report explanations in
+                simple language, test reminders, and direct access to providers.
+                Healthcare professionals benefit from automated workflows,
+                dynamic risk tracking, and seamless coordination.
+              </p>
+            </Copy>
+            <Image
+              className=" lg:w-5/12 -translate-y-16 md:-translate-y-0"
+              src="wrw.png"
+              alt="About HealthSigns"
+              width={500}
+              height={500}
+            />
+          </div>
         </div>
       </section>
 
