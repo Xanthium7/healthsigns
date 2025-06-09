@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,6 +30,7 @@ import {
   Star,
   ChevronRight,
 } from "lucide-react";
+import { AnimatedBeam } from "@/components/magicui/animated-beam";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import Copy from "@/components/Copy";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
@@ -38,6 +39,145 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 
 // Animated components
 const MotionDiv = motion.div;
+
+// WhoWeServeBeam Component
+function WhoWeServeBeam() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const centralRef = React.useRef<HTMLDivElement>(null);
+  const hospitalRef = React.useRef<HTMLDivElement>(null);
+  const labRef = React.useRef<HTMLDivElement>(null);
+  const clinicRef = React.useRef<HTMLDivElement>(null);
+  const homecareRef = React.useRef<HTMLDivElement>(null);
+
+  // Custom health logo SVG component
+  const HealthLogo = () => (
+    <Image src={"/logo.png"} alt="Health Logo" width={200} height={200}></Image>
+  );
+  // Circle component using forwardRef pattern
+  const Circle = React.forwardRef<
+    HTMLDivElement,
+    {
+      className?: string;
+      children?: React.ReactNode;
+      icon: React.ReactNode;
+      title: string;
+      style?: React.CSSProperties;
+    }
+  >(({ className, children, icon, title, style }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={`flex flex-col items-center justify-center bg-card border-2 border-primary/10 rounded-full p-4 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group ${className}`}
+        style={{ width: "100px", height: "100px", ...style }}
+      >
+        <div className="h-8 w-8 text-primary transition-colors duration-300">
+          {icon}
+        </div>
+        <span className="text-xs font-semibold text-center mt-1 text-foreground transition-colors duration-300">
+          {title}
+        </span>
+        {children}
+      </div>
+    );
+  });
+
+  Circle.displayName = "Circle";
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-full flex items-center justify-center"
+    >
+      {/* Central Health Logo */}
+      <div
+        ref={centralRef}
+        className="absolute z-20 flex flex-col items-center justify-center bg-background border-4 border-primary/20 rounded-full p-4 shadow-2xl hover:scale-110 transition-transform duration-300"
+        style={{ width: "120px", height: "120px" }}
+      >
+        <HealthLogo />
+      </div>
+
+      {/* Left Side Elements */}
+      <Circle
+        ref={hospitalRef}
+        className="absolute z-10"
+        style={{ top: "20%", left: "10%" }}
+        icon={<Building2 className="h-8 w-8" />}
+        title="Hospitals"
+      />
+
+      <Circle
+        ref={homecareRef}
+        className="absolute z-10"
+        style={{ bottom: "20%", left: "10%" }}
+        icon={<Home className="h-8 w-8" />}
+        title="Homecare"
+      />
+
+      {/* Right Side Elements */}
+      <Circle
+        ref={labRef}
+        className="absolute z-10"
+        style={{ top: "20%", right: "10%" }}
+        icon={<FlaskConical className="h-8 w-8" />}
+        title="SmartLabs"
+      />
+
+      <Circle
+        ref={clinicRef}
+        className="absolute z-10"
+        style={{ bottom: "20%", right: "10%" }}
+        icon={<Stethoscope className="h-8 w-8" />}
+        title="Clinics"
+      />
+
+      {/* Animated Beams */}
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={hospitalRef}
+        toRef={centralRef}
+        duration={3}
+        // pathColor="hsl(var(--primary))"
+        // gradientStartColor="hsl(var(--primary))"
+        // gradientStopColor="hsl(var(--secondary))"
+        curvature={-120}
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={labRef}
+        toRef={centralRef}
+        duration={3.5}
+        // delay={0.5}
+        // pathColor="hsl(var(--primary))"
+        // gradientStartColor="hsl(var(--primary))"
+        // gradientStopColor="hsl(var(--secondary))"
+        curvature={-120}
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={clinicRef}
+        toRef={centralRef}
+        duration={4}
+        delay={1}
+        // pathColor="hsl(var(--primary))"
+        // gradientStartColor="hsl(var(--primary))"
+        // gradientStopColor="hsl(var(--secondary))"
+        curvature={120}
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={homecareRef}
+        toRef={centralRef}
+        duration={3.2}
+        delay={1.5}
+        // pathColor="hsl(var(--primary))"
+        // gradientStartColor="hsl(var(--primary))"
+        // gradientStopColor="hsl(var(--secondary))"
+        curvature={120}
+      />
+    </div>
+  );
+}
 
 export default function AboutPage() {
   // Animation controls
@@ -65,44 +205,6 @@ export default function AboutPage() {
       },
     },
   };
-
-  const sectors = [
-    {
-      icon: <Building2 className="h-8 w-8" />,
-      title: "Hospitals",
-      subtitle: "AI-Enhanced Operations",
-      description:
-        "Streamline workflows with AI accelerators that integrate seamlessly with EMR systems.",
-    },
-    {
-      icon: <FlaskConical className="h-8 w-8" />,
-      title: "Smart Labs",
-      subtitle: "Diagnostic Excellence",
-      description:
-        "AI-generated insights with over 1 million reports generated to enhance accuracy.",
-    },
-    {
-      icon: <Stethoscope className="h-8 w-8" />,
-      title: "Clinics",
-      subtitle: "Intelligent Care",
-      description:
-        "Multilingual AI-powered medical dictation and automated patient management.",
-    },
-    {
-      icon: <Home className="h-8 w-8" />,
-      title: "Homecare",
-      subtitle: "Smart Coordination",
-      description:
-        "Uber-like scheduling with proximity-based staff assignment and real-time tracking.",
-    },
-    {
-      icon: <Leaf className="h-8 w-8" />,
-      title: "Ayurveda",
-      subtitle: "Traditional + Digital",
-      description:
-        "Voice transcription in regional languages with holistic wellness tracking.",
-    },
-  ];
 
   const journeySteps = [
     {
@@ -266,69 +368,59 @@ export default function AboutPage() {
       {/* Who We Serve Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto mb-16" // Increased max-width
-          >
-            <Copy>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Users className="h-6 w-6 text-primary" />
-                <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                  Who We Serve
-                </span>
-              </div>
-            </Copy>
-            <Copy delay={0.2}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                {" "}
-                {/* Adjusted font size, weight, casing, tracking */}
-                Transforming Healthcare Across All Sectors
-              </h2>
-            </Copy>
-            <Copy delay={0.4}>
-              <p className="text-lg text-muted-foreground font-jakarta">
-                {" "}
-                {/* Added font-jakarta */}
-                HealthSigns is designed for all key healthcare sectors,
-                providing tailored solutions that enhance efficiency and improve
-                patient outcomes.
-              </p>
-            </Copy>
-          </MotionDiv>
+          {/* Desktop Layout: Side by side */}
+          <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+            {/* Left Side: Title */}
+            <div className="flex items-center justify-start">
+              <Copy>
+                <h2 className="text-secondary/30 uppercase text-4xl xl:text-6xl font-extrabold tracking-tight leading-tight">
+                  WHO DO WE SERVE?
+                </h2>
+                <p className="mt-4">
+                  <span className="text-muted-foreground text-2xl xl:text-3xl font-jakarta ">
+                    We empower healthcare providers with AI-driven solutions
+                    that enhance patient care, streamline operations, and
+                    improve outcomes across hospitals, labs, clinics, and
+                    homecare.
+                  </span>
+                </p>
+              </Copy>
+            </div>
 
-          <MotionDiv
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {sectors.map((sector, index) => (
-              <MotionDiv key={index} variants={fadeInUp} className="group">
-                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card rounded-2xl overflow-hidden">
-                  <CardContent className="p-8">
-                    <div className="mb-6 bg-primary/10 p-4 rounded-full w-fit text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      {sector.icon}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 text-card-foreground">
-                      {sector.title}
-                    </h3>
-                    <p className="text-sm font-medium text-primary mb-3">
-                      {sector.subtitle}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed font-jakarta">
-                      {" "}
-                      {/* Added font-jakarta */}
-                      {sector.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </MotionDiv>
-            ))}
-          </MotionDiv>
+            {/* Right Side: AnimatedBeam Component */}
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainer}
+              className="relative h-[600px] xl:h-[700px] flex items-center justify-center"
+            >
+              <WhoWeServeBeam />
+            </MotionDiv>
+          </div>
+
+          {/* Mobile Layout: Column */}
+          <div className="block lg:hidden">
+            {/* Top: Title */}
+            <div className="text-center mb-12">
+              <Copy>
+                <h2 className="text-secondary/30 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
+                  WHO DO WE SERVE ?
+                </h2>
+              </Copy>
+            </div>
+
+            {/* Bottom: AnimatedBeam Component */}
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainer}
+              className="relative h-[500px] md:h-[600px] flex items-center justify-center"
+            >
+              <WhoWeServeBeam />
+            </MotionDiv>
+          </div>
         </div>
       </section>
       {/* Hospitals Section */}
