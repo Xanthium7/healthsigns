@@ -371,17 +371,19 @@ export default function AboutPage() {
           {/* Desktop Layout: Side by side */}
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
             {/* Left Side: Title */}
-            <div className="flex items-center justify-start">
+            <div className="flex items-center ">
               <Copy>
                 <h2 className="text-secondary/30 uppercase text-4xl xl:text-6xl font-extrabold tracking-tight leading-tight">
                   WHO DO WE SERVE?
                 </h2>
-                <p className="mt-4">
-                  <span className="text-muted-foreground text-2xl xl:text-3xl font-jakarta ">
-                    We empower healthcare providers with AI-driven solutions
-                    that enhance patient care, streamline operations, and
+                <p className="mt-4  ">
+                  <span className="text-muted-foreground text-xl xl:text-2xl font-jakarta l">
+                    We empower healthcare providers with AI-driven <br />{" "}
+                    solutions to enhance care, streamline operations, and
                     improve outcomes across hospitals, labs, clinics, and
-                    homecare.
+                    homecare. Our platform connects data, enables collaboration,
+                    supports clinical decisions, and delivers actionable
+                    insights for every step of the healthcare journey.
                   </span>
                 </p>
               </Copy>
@@ -424,7 +426,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Hospitals Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-background to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -435,41 +437,36 @@ export default function AboutPage() {
               variants={fadeInUp}
             >
               <Copy delay={0.2}>
-                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                  {" "}
-                  {/* Adjusted font size, weight, casing, tracking */}
-                  AI-Enhanced Hospital Operations
+                <h2 className="text-secondary/60 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
+                  AI-Enhanced <br /> Hospital Operations
                 </h2>
               </Copy>
               <Copy delay={0.4}>
-                <p className="text-lg text-muted-foreground mb-6 font-jakarta">
-                  {" "}
-                  {/* Added font-jakarta */}
+                <p className="text-xl text-muted-foreground my-6 ">
                   We equip hospitals with AI tools that streamline operations
                   and elevate care delivery.
                 </p>
               </Copy>
 
-              <div className="space-y-4 mb-8">
+              <div className=" mb-8">
                 {[
                   "AI Accelerators with seamless EMR integration",
                   "Automated lab result workflows",
                   "WhatsApp integration for reports & invoices",
                   "Cost reduction and workflow efficiency",
                 ].map((feature, index) => (
-                  <Copy key={index} delay={0.1 * index + 0.6}>
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground font-jakarta">
+                  <Copy key={index} delay={0.1}>
+                    <div className="flex items-center ">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 translate-y-5" />
+                      <div className="text-muted-foreground font-jakarta ml-7">
                         {feature}
-                      </span>{" "}
-                      {/* Added font-jakarta */}
+                      </div>
                     </div>
                   </Copy>
                 ))}
 
-                <Copy delay={0.8}>
-                  <div className="bg-card/50 backdrop-blur-sm border border-primary/20 p-6 rounded-2xl">
+                <Copy delay={0.1}>
+                  <div className="bg-card/50 backdrop-blur-sm border mt-8 border-primary/20 p-6 rounded-2xl">
                     <h4 className="font-semibold text-foreground mb-2">
                       Trusted By:
                     </h4>
@@ -477,16 +474,6 @@ export default function AboutPage() {
                       <div className="flex items-center gap-2">
                         <Star className="h-4 w-4 text-yellow-500" />
                         <span className="text-sm text-muted-foreground font-jakarta">
-                          {" "}
-                          {/* Added font-jakarta */}
-                          Appisoft (Strategic partner in Colombia)
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Star className="h-4 w-4 text-yellow-500" />
-                        <span className="text-sm text-muted-foreground font-jakarta">
-                          {" "}
-                          {/* Added font-jakarta */}
                           Believers Church Medical College
                         </span>
                       </div>
