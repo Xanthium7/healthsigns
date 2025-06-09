@@ -744,22 +744,14 @@ export default function AboutPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInUp}
             >
-              <Copy>
-                <div className="flex items-center gap-2 mb-4">
-                  <Heart className="h-6 w-6 text-primary" />
-                  <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                    About Us
-                  </span>
-                </div>
-              </Copy>
-              <Copy delay={0.2}>
+              <Copy delay={0.1}>
                 <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                   {" "}
                   {/* Adjusted font size, weight, casing, tracking */}
                   Bridging Healthcare with AI
                 </h2>
               </Copy>
-              <Copy delay={0.4}>
+              <Copy delay={0.1}>
                 <p className="text-lg text-muted-foreground mb-6 font-jakarta">
                   {" "}
                   {/* Added font-jakarta */}
@@ -769,7 +761,7 @@ export default function AboutPage() {
                   together.
                 </p>
               </Copy>
-              <Copy delay={0.6}>
+              <Copy delay={0.1}>
                 <p className="text-lg text-muted-foreground mb-8 font-jakarta">
                   {" "}
                   {/* Added font-jakarta */}
@@ -781,7 +773,7 @@ export default function AboutPage() {
               </Copy>
 
               <div className="space-y-6">
-                <Copy delay={0.8}>
+                <Copy delay={0.1}>
                   <div className="bg-card/50 backdrop-blur-sm border border-primary/20 p-6 rounded-2xl">
                     <div className="flex items-center gap-3 mb-3">
                       <Zap className="h-6 w-6 text-primary" />
@@ -795,7 +787,7 @@ export default function AboutPage() {
                     </p>
                   </div>
                 </Copy>
-                <Copy delay={1.0}>
+                <Copy delay={0.1}>
                   <div className="bg-card/50 backdrop-blur-sm border border-primary/20 p-6 rounded-2xl">
                     <div className="flex items-center gap-3 mb-3">
                       <Shield className="h-6 w-6 text-primary" />

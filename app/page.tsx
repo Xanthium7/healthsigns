@@ -142,9 +142,10 @@ export default function Home() {
               </div>
               <Copy delay={0.5} animateOnScroll={false}>
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 font-jakarta">
-                  Our AI-powered Remote Patient Management system ensures
-                  real-time monitoring, that allows for early detection and
-                  timely care, thus enhancing patient outcomes.
+                  Your health data lives in many places - doctor's notes, lab
+                  reports, prescriptions, apps. When it's not connected, care
+                  becomes confusing and fragmented.{" "}
+                  <strong> HealthSigns brings it all together.</strong>
                 </p>
               </Copy>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
