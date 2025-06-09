@@ -273,10 +273,30 @@ export default function AboutPage() {
   ];
 
   const globalLocations = [
-    { country: "United States", flag: "🇺🇸" },
-    { country: "India", flag: "🇮🇳" },
-    { country: "UAE", flag: "🇦🇪" },
-    { country: "Colombia", flag: "🇨🇴", partner: "with Appisoft" },
+    {
+      country: "United States",
+      flag: "🇺🇸",
+      flagUrl:
+        "https://i.pinimg.com/736x/1b/28/95/1b289528b25a459bd024ec8fe9adb539.jpg",
+    },
+    {
+      country: "India",
+      flag: "🇮🇳",
+      flagUrl:
+        "https://i.pinimg.com/736x/28/1f/8e/281f8e6f1e80ba9593954bf8e955a125.jpg",
+    },
+    {
+      country: "UAE",
+      flag: "🇦🇪",
+      flagUrl:
+        "https://i.pinimg.com/736x/b7/27/5e/b7275e377f88f26ff0b75c7ca799db19.jpg",
+    },
+    {
+      country: "Colombia",
+      flag: "🇨🇴",
+      flagUrl:
+        "https://i.pinimg.com/736x/cb/d8/e1/cbd8e18ecd473590702ee01df8dc850c.jpg",
+    },
   ];
 
   const partners = [
@@ -836,15 +856,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Globe className="h-6 w-6 text-primary" />
-                <span className="text-sm font-medium text-primary uppercase tracking-wide">
-                  Global Reach
-                </span>
-              </div>
-            </Copy>
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 {" "}
                 {/* Adjusted font size, weight, casing, tracking */}
@@ -862,17 +874,31 @@ export default function AboutPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="text-center border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card rounded-2xl">
-                  <CardContent className="p-6">
-                    <div className="text-4xl mb-3">{location.flag}</div>
-                    <h3 className="font-bold text-foreground mb-2">
-                      {location.country}
-                    </h3>
-                    {location.partner && (
-                      <p className="text-sm text-primary font-jakarta">
-                        {location.partner}
-                      </p> /* Added font-jakarta */
+                <Card className="text-center border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card h-[24vh] rounded-2xl overflow-hidden relative">
+                  <div className="absolute inset-0 z-0">
+                    {location.flagUrl ? (
+                      <Image
+                        src={location.flagUrl}
+                        alt={`${location.country} flag`}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src="/placeholder.svg?height=300&width=400"
+                        alt={`${location.country} background`}
+                        fill
+                        className="object-cover opacity-20"
+                      />
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-br from-card/70 to-card/80"></div>
+                  </div>
+                  <CardContent className="p-6 relative z-10 flex items-center justify-center h-full">
+                    <Copy>
+                      <h3 className="font-bold text-2xl uppercase text-secondary text-center">
+                        {location.country}
+                      </h3>
+                    </Copy>
                   </CardContent>
                 </Card>
               </MotionDiv>
@@ -893,7 +919,7 @@ export default function AboutPage() {
             </Copy>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {partners.map((partner, index) => (
-                <Copy key={index} delay={0.2 + index * 0.1}>
+                <Copy key={index} delay={0.1}>
                   <div className="flex items-center gap-3 bg-background/50 p-4 rounded-xl">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <Users className="h-5 w-5 text-primary" />
