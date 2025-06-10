@@ -36,6 +36,8 @@ import Copy from "@/components/Copy";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
 import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import { Marquee } from "@/components/magicui/marquee";
+import { cn } from "@/lib/utils";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -256,22 +258,6 @@ export default function AboutPage() {
         "Dynamic risk analysis and transparent reporting for care teams.",
     },
   ];
-
-  const testimonials = [
-    {
-      quote:
-        "HealthSigns has helped us streamline our diagnostic workflows and deliver better patient experiences.",
-      author: "Believers Church Medical College",
-      role: "Healthcare Partner",
-    },
-    {
-      quote:
-        "Thanks to HealthSigns' AI, we've automated millions of reports and improved result clarity.",
-      author: "Leading Diagnostic Lab",
-      role: "Laboratory Partner",
-    },
-  ];
-
   const globalLocations = [
     {
       country: "United States",
@@ -306,6 +292,93 @@ export default function AboutPage() {
       region: "Multilingual AI for Spanish-speaking regions",
     },
   ];
+
+  const testimonials = [
+    {
+      name: "Believers Church Medical College",
+      username: "@bcmc_healthcare",
+      body: "HealthSigns has helped us streamline our diagnostic workflows and deliver better patient experiences.",
+      img: "https://avatar.vercel.sh/bcmc",
+    },
+    {
+      name: "Leading Diagnostic Lab",
+      username: "@diagnostic_lab",
+      body: "Thanks to HealthSigns' AI, we've automated millions of reports and improved result clarity.",
+      img: "https://avatar.vercel.sh/lab",
+    },
+    {
+      name: "Metro General Hospital",
+      username: "@metro_hospital",
+      body: "The AI accelerators have transformed our EMR integration and reduced operational costs significantly.",
+      img: "https://avatar.vercel.sh/metro",
+    },
+    {
+      name: "SmartCare Clinic",
+      username: "@smartcare",
+      body: "WhatsApp integration for reports has revolutionized how we communicate with patients.",
+      img: "https://avatar.vercel.sh/smartcare",
+    },
+    {
+      name: "Regional Health Network",
+      username: "@regional_health",
+      body: "Real-time insights and automated alerts have improved our patient care outcomes dramatically.",
+      img: "https://avatar.vercel.sh/regional",
+    },
+    {
+      name: "City Medical Center",
+      username: "@city_medical",
+      body: "The unified platform has eliminated data silos and enhanced collaboration across departments.",
+      img: "https://avatar.vercel.sh/city",
+    },
+  ];
+
+  const firstRow = testimonials.slice(0, Math.ceil(testimonials.length / 2));
+  const secondRow = testimonials.slice(Math.ceil(testimonials.length / 2));
+
+  const TestimonialCard = ({
+    img,
+    name,
+    username,
+    body,
+  }: {
+    img: string;
+    name: string;
+    username: string;
+    body: string;
+  }) => {
+    return (
+      <figure
+        className={cn(
+          "relative h-full w-[25rem] cursor-pointer overflow-hidden rounded-2xl border p-6",
+          "border-primary/20 bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-300",
+          "shadow-lg hover:shadow-xl"
+        )}
+      >
+        <div className="flex flex-row items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+            <Image
+              src={img}
+              alt={`${name}'s avatar`}
+              width={48}
+              height={48}
+              className="rounded-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col">
+            <figcaption className="text-sm font-bold text-foreground">
+              {name}
+            </figcaption>
+            <p className="text-xs font-medium text-muted-foreground">
+              {username}
+            </p>
+          </div>
+        </div>
+        <blockquote className="text-sm text-muted-foreground italic leading-relaxed font-jakarta">
+          "{body}"
+        </blockquote>
+      </figure>
+    );
+  };
 
   return (
     <div className=" overflow-hidden">
@@ -457,7 +530,7 @@ export default function AboutPage() {
               variants={fadeInUp}
             >
               <Copy delay={0.2}>
-                <h2 className="text-secondary/60 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
+                <h2 className="text-secondary/70 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
                   AI-Enhanced <br /> Hospital Operations
                 </h2>
               </Copy>
@@ -556,7 +629,7 @@ export default function AboutPage() {
               className="order-1 lg:order-2"
             >
               <Copy delay={0.1}>
-                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-secondary/70 uppercase tracking-tight">
                   {" "}
                   {/* Adjusted font size, weight, casing, tracking */}
                   AI-Enhanced Diagnostic Excellence
@@ -699,43 +772,19 @@ export default function AboutPage() {
             </Copy>
           </MotionDiv>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <MotionDiv
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                <Card className="h-full border-none shadow-lg bg-gradient-to-br from-card to-card/80 rounded-2xl">
-                  <CardContent className="p-8">
-                    <div className="mb-6 flex gap-4">
-                      <MessageSquare className="h-8 w-8 text-primary mb-4 flex-shrink-0" />
-                      <blockquote className="text-lg text-muted-foreground italic leading-relaxed font-jakarta">
-                        {" "}
-                        {/* Added font-jakarta */}"{testimonial.quote}"
-                      </blockquote>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Star className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-foreground">
-                          {testimonial.author}
-                        </div>
-                        <div className="text-sm text-muted-foreground font-jakarta">
-                          {" "}
-                          {/* Added font-jakarta */}
-                          {testimonial.role}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </MotionDiv>
-            ))}
+          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+            <Marquee pauseOnHover className="[--duration:25s]">
+              {firstRow.map((testimonial) => (
+                <TestimonialCard key={testimonial.username} {...testimonial} />
+              ))}
+            </Marquee>
+            <Marquee reverse pauseOnHover className="[--duration:25s]">
+              {secondRow.map((testimonial) => (
+                <TestimonialCard key={testimonial.username} {...testimonial} />
+              ))}
+            </Marquee>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
           </div>
         </div>
       </section>
