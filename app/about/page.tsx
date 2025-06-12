@@ -510,7 +510,7 @@ export default function AboutPage() {
                         >
                           {/* Replace with your actual demo video URL */}
                           <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            src="https://www.dropbox.com/scl/fi/sqgd8ogq6qwsacl6na1o5/demo_video.mp4?rlkey=mjzdayjdafc3jlfz6570vokc0&st=1q4twgej&raw=1"
                             type="video/mp4"
                           />
                           Your browser does not support the video tag.

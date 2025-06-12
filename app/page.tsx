@@ -223,16 +223,24 @@ export default function Home() {
             </h2>
           </Copy>
           <div className="flex mt-8 md:mt-0 flex-col lg:flex-row items-center justify-between gap-8">
+            {" "}
             <Copy delay={0.2}>
-              <p className="text-muted-foreground font-jakarta mx-4 text-lg md:text-2xl lg:text-3xl text-center lg:text-left lg:mr-auto">
-                We bring together records from clinics, labs, hospitals, and
-                home care to create a holistic view of a patient's health. Using
-                AI, we identify risks early, generate tailored care plans, and
-                support doctors with real-time insights—making healthcare
-                smarter and more effective. Patients get report explanations in
-                simple language, test reminders, and direct access to providers.
-                Healthcare professionals benefit from automated workflows,
-                dynamic risk tracking, and seamless coordination.
+              <p className="text-muted-foreground font-jakarta mx-4 text-lg md:text-xl lg:text-2xl text-center lg:text-left lg:mr-auto">
+                We <span className="font-bold">bring together records</span>{" "}
+                from clinics, labs, hospitals, and home care to create a{" "}
+                <span className="font-bold">holistic view</span> of a patient's
+                health. Using <span className="font-bold">AI</span>, we{" "}
+                <span className="font-bold">identify risks early</span>,
+                generate <span className="font-bold">tailored care plans</span>,
+                and support doctors with{" "}
+                <span className="font-bold">real-time insights</span>—making
+                healthcare smarter and more effective. Patients get{" "}
+                <span className="font-bold">report explanations</span> in simple
+                language, <span className="font-bold">test reminders</span>, and
+                direct access to providers. Healthcare professionals benefit
+                from <span className="font-bold">automated workflows</span>,{" "}
+                <span className="font-bold">dynamic risk tracking</span>, and{" "}
+                <span className="font-bold">seamless coordination</span>.
               </p>
             </Copy>
             <Image

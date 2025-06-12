@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 import Copy from "./Copy";
 import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
+import Link from "next/link";
 
 export default function Careers() {
   const MotionDiv = motion.div;
@@ -20,17 +21,19 @@ export default function Careers() {
             </Copy>
           </div>
           <div className="w-full md:w-1/2 container flex flex-col gap-4 items-center md:items-start justify-between space-y-8 md:space-y-8 md:pl-8">
+            {" "}
             <Copy delay={0.15}>
               <p className="text-muted-foreground text-lg sm:text-2xl font-jakarta text-center md:text-left">
-                Our <span className="font-bold">innovative model</span> partners
-                with <span className="font-bold">healthcare providers</span> in
-                India, the Middle East, and US. We use{" "}
-                <span className="font-bold">remote patient monitoring</span> to{" "}
-                <span className="font-bold">enhance care delivery</span> and{" "}
-                <span className="font-bold">expand reach</span>, ensuring{" "}
-                <span className="font-bold">quality care</span> and better
-                outcomes through technology and partnership, transforming
-                healthcare to be more accessible.
+                We <span className="font-bold">unify health records</span> from
+                clinics, labs, hospitals and home care into{" "}
+                <span className="font-bold">one secure platform</span>. Our{" "}
+                <span className="font-bold">AI makes sense of it all</span>,
+                spotting risks early and helping doctors deliver{" "}
+                <span className="font-bold">smarter, personalized care</span>.
+                From <span className="font-bold">onboarding to follow-ups</span>
+                , we transform preventive care, making it smarter, simpler, and
+                more effective across the{" "}
+                <span className="font-bold">US, India, UAE, and Colombia</span>.
               </p>
             </Copy>
             <InteractiveHoverButton
@@ -39,12 +42,7 @@ export default function Careers() {
               padding="p-2 px-8"
               className="text-secondary self-center md:self-start"
             >
-              <a
-                href="/career
-              "
-              >
-                Explore Careers
-              </a>
+              <Link href="/about">Learn More</Link>
             </InteractiveHoverButton>
           </div>
         </div>
