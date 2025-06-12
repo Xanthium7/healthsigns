@@ -179,25 +179,37 @@ function WhoWeServeBeam() {
 
 export default function AboutPage() {
   // Animation controls
-  const controls = useAnimation();
-  // Video modal state
+  const controls = useAnimation(); // Video modal state
   const [isVideoMuted, setIsVideoMuted] = React.useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
   const [videoProgress, setVideoProgress] = React.useState(0);
   const [videoDuration, setVideoDuration] = React.useState(0);
+  const [videoBuffered, setVideoBuffered] = React.useState(0);
+  const [videoError, setVideoError] = React.useState<string | null>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     controls.start("visible");
   }, [controls]); // Video control functions
-  const handlePlayPause = () => {
-    if (videoRef.current) {
+  const handlePlayPause = async () => {
+    if (!videoRef.current) return;
+
+    try {
       if (isVideoPlaying) {
         videoRef.current.pause();
+        setIsVideoPlaying(false);
       } else {
-        videoRef.current.play();
+        // Ensure video is ready before playing
+        if (videoRef.current.readyState >= 2) {
+          await videoRef.current.play();
+          setIsVideoPlaying(true);
+        } else {
+          console.log("Video not ready to play yet");
+        }
       }
-      setIsVideoPlaying(!isVideoPlaying);
+    } catch (error) {
+      console.warn("Play/pause error:", error);
+      setIsVideoPlaying(false);
     }
   };
 
@@ -207,11 +219,17 @@ export default function AboutPage() {
       setIsVideoMuted(!isVideoMuted);
     }
   };
-
   const handleVideoLoad = () => {
     if (videoRef.current) {
-      videoRef.current.muted = isVideoMuted;
-      setVideoDuration(videoRef.current.duration);
+      try {
+        videoRef.current.muted = isVideoMuted;
+        setVideoDuration(videoRef.current.duration || 0);
+        setVideoError(null);
+        console.log("Video loaded successfully");
+      } catch (error) {
+        console.warn("Video load error:", error);
+        setVideoError("Failed to load video metadata");
+      }
     }
   };
 
@@ -220,7 +238,56 @@ export default function AboutPage() {
       const progress =
         (videoRef.current.currentTime / videoRef.current.duration) * 100;
       setVideoProgress(progress);
+
+      // Track buffered amount
+      if (videoRef.current.buffered.length > 0) {
+        const bufferedEnd = videoRef.current.buffered.end(
+          videoRef.current.buffered.length - 1
+        );
+        const bufferedProgress =
+          (bufferedEnd / videoRef.current.duration) * 100;
+        setVideoBuffered(bufferedProgress);
+      }
     }
+  };
+  const handleVideoError = (
+    e: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
+    const video = e.currentTarget;
+    let errorMessage = "Video loading failed";
+
+    if (video.error) {
+      switch (video.error.code) {
+        case video.error.MEDIA_ERR_ABORTED:
+          errorMessage = "Video loading was aborted by user";
+          break;
+        case video.error.MEDIA_ERR_NETWORK:
+          errorMessage = "Network error - check your internet connection";
+          break;
+        case video.error.MEDIA_ERR_DECODE:
+          errorMessage = "Video format error - file may be corrupted";
+          break;
+        case video.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+          errorMessage = "Video format not supported by your browser";
+          break;
+        default:
+          errorMessage = `Video error code: ${video.error.code}`;
+      }
+    } else {
+      errorMessage = "Video failed to load - please try refreshing the page";
+    }
+
+    setVideoError(errorMessage);
+    console.warn("Video error:", errorMessage);
+    // Don't throw the error to prevent crashes
+  };
+
+  const handleVideoWaiting = () => {
+    console.log("Video is buffering...");
+  };
+
+  const handleVideoCanPlay = () => {
+    console.log("Video can start playing");
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -233,11 +300,12 @@ export default function AboutPage() {
       setVideoProgress(percentage * 100);
     }
   };
-
   const resetVideoState = () => {
     setIsVideoPlaying(false);
     setIsVideoMuted(true);
     setVideoProgress(0);
+    setVideoBuffered(0);
+    setVideoError(null);
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -501,19 +569,33 @@ export default function AboutPage() {
                           onPlay={() => setIsVideoPlaying(true)}
                           onPause={() => setIsVideoPlaying(false)}
                           onTimeUpdate={handleTimeUpdate}
-                          onLoadedMetadata={() =>
-                            videoRef.current &&
-                            setVideoDuration(videoRef.current.duration)
-                          }
+                          onLoadedMetadata={() => {
+                            if (videoRef.current) {
+                              setVideoDuration(videoRef.current.duration || 0);
+                            }
+                          }}
+                          onError={handleVideoError}
+                          onWaiting={handleVideoWaiting}
+                          onCanPlay={handleVideoCanPlay}
                           playsInline
                           preload="metadata"
+                          muted
+                          style={{ backgroundColor: "#000" }}
                         >
-                          {/* Replace with your actual demo video URL */}
+                          {/* Primary video source */}
                           <source
                             src="https://www.dropbox.com/scl/fi/sqgd8ogq6qwsacl6na1o5/demo_video.mp4?rlkey=mjzdayjdafc3jlfz6570vokc0&st=1q4twgej&raw=1"
                             type="video/mp4"
                           />
-                          Your browser does not support the video tag.
+                          {/* Fallback video source */}
+                          <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            type="video/mp4"
+                          />
+                          <p className="text-white/60 p-4 text-center">
+                            Your browser does not support video playback. Please
+                            try updating your browser or use a different one.
+                          </p>
                         </video>
                         {/* Custom Video Controls Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-all duration-300 flex items-center justify-center group">
@@ -553,6 +635,7 @@ export default function AboutPage() {
                       {/* Video Timeline and Controls */}
                       <div className="mb-4">
                         <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-lg">
+                          {" "}
                           {/* Progress Bar */}
                           <div className="flex items-center gap-4 mb-2">
                             <span className="text-white/80 text-sm font-mono">
@@ -564,9 +647,14 @@ export default function AboutPage() {
                             >
                               {/* Progress background */}
                               <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 rounded-full"></div>
+                              {/* Buffer indicator */}
+                              <div
+                                className="h-full bg-white/30 rounded-full transition-all duration-200"
+                                style={{ width: `${videoBuffered}%` }}
+                              ></div>
                               {/* Progress fill */}
                               <div
-                                className="h-full bg-gradient-to-r from-primary via-primary/80 to-secondary rounded-full transition-all duration-200 relative overflow-hidden"
+                                className="h-full bg-gradient-to-r from-primary via-primary/80 to-secondary rounded-full transition-all duration-200 relative overflow-hidden absolute top-0 left-0"
                                 style={{ width: `${videoProgress}%` }}
                               >
                                 {/* Shimmer effect */}
@@ -578,8 +666,26 @@ export default function AboutPage() {
                             <span className="text-white/80 text-sm font-mono">
                               {formatTime(videoDuration)}
                             </span>
-                          </div>
-
+                          </div>{" "}
+                          {/* Error display */}
+                          {videoError && (
+                            <div className="mb-2 p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
+                              <p className="text-red-300 text-sm mb-2">
+                                {videoError}
+                              </p>
+                              <button
+                                onClick={() => {
+                                  setVideoError(null);
+                                  if (videoRef.current) {
+                                    videoRef.current.load();
+                                  }
+                                }}
+                                className="text-xs bg-red-500/30 hover:bg-red-500/50 px-2 py-1 rounded transition-colors"
+                              >
+                                Retry
+                              </button>
+                            </div>
+                          )}
                           {/* Control buttons row */}
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">

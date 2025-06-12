@@ -45,9 +45,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${jakarta.variable} font-sans`}
       >
-        <div className="hidden lg:block">
-          <SmoothCursor />
-        </div>
+        <div className="hidden lg:block">{/* <SmoothCursor /> */}</div>
         <ReactLenis root>
           <div className="flex min-h-screen flex-col">
             <Navbar />
