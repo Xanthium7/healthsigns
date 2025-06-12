@@ -38,6 +38,15 @@ import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Play, Volume2, VolumeX } from "lucide-react";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -139,9 +148,6 @@ function WhoWeServeBeam() {
         fromRef={hospitalRef}
         toRef={centralRef}
         duration={3}
-        // pathColor="hsl(var(--primary))"
-        // gradientStartColor="hsl(var(--primary))"
-        // gradientStopColor="hsl(var(--secondary))"
         curvature={-120}
       />
       <AnimatedBeam
@@ -149,10 +155,6 @@ function WhoWeServeBeam() {
         fromRef={labRef}
         toRef={centralRef}
         duration={3.5}
-        // delay={0.5}
-        // pathColor="hsl(var(--primary))"
-        // gradientStartColor="hsl(var(--primary))"
-        // gradientStopColor="hsl(var(--secondary))"
         curvature={-120}
       />
       <AnimatedBeam
@@ -161,9 +163,6 @@ function WhoWeServeBeam() {
         toRef={centralRef}
         duration={4}
         delay={1}
-        // pathColor="hsl(var(--primary))"
-        // gradientStartColor="hsl(var(--primary))"
-        // gradientStopColor="hsl(var(--secondary))"
         curvature={120}
       />
       <AnimatedBeam
@@ -172,9 +171,6 @@ function WhoWeServeBeam() {
         toRef={centralRef}
         duration={3.2}
         delay={1.5}
-        // pathColor="hsl(var(--primary))"
-        // gradientStartColor="hsl(var(--primary))"
-        // gradientStopColor="hsl(var(--secondary))"
         curvature={120}
       />
     </div>
@@ -184,10 +180,76 @@ function WhoWeServeBeam() {
 export default function AboutPage() {
   // Animation controls
   const controls = useAnimation();
+  // Video modal state
+  const [isVideoMuted, setIsVideoMuted] = React.useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
+  const [videoProgress, setVideoProgress] = React.useState(0);
+  const [videoDuration, setVideoDuration] = React.useState(0);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     controls.start("visible");
-  }, [controls]);
+  }, [controls]); // Video control functions
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsVideoPlaying(!isVideoPlaying);
+    }
+  };
+
+  const handleMuteToggle = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isVideoMuted;
+      setIsVideoMuted(!isVideoMuted);
+    }
+  };
+
+  const handleVideoLoad = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = isVideoMuted;
+      setVideoDuration(videoRef.current.duration);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const progress =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setVideoProgress(progress);
+    }
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (videoRef.current) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const percentage = clickX / rect.width;
+      const newTime = percentage * videoRef.current.duration;
+      videoRef.current.currentTime = newTime;
+      setVideoProgress(percentage * 100);
+    }
+  };
+
+  const resetVideoState = () => {
+    setIsVideoPlaying(false);
+    setIsVideoMuted(true);
+    setVideoProgress(0);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      videoRef.current.muted = true;
+    }
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 60 },
@@ -395,18 +457,11 @@ export default function AboutPage() {
             className="text-center max-w-5xl mx-auto"
           >
             <Copy delay={0.2}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-foreground uppercase tracking-tight leading-tight">
-                {" "}
-                {/* Adjusted font weight, casing, tracking, leading */}
-                AI-Powered Healthcare,
-                <span className="block text-primary mt-2">
-                  {" "}
-                  {/* Added margin-top for spacing */}
-                  Connected & Compassionate
-                </span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-secondary/70 uppercase tracking-tight leading-tight">
+                Transforming Healthcare
               </h1>
             </Copy>
-            <Copy delay={0.4} animateOnScroll={false}>
+            <Copy delay={0.2} animateOnScroll={false}>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-4xl mx-auto font-jakarta">
                 {" "}
                 {/* Added font-jakarta */}
@@ -415,17 +470,190 @@ export default function AboutPage() {
                 from clinics, labs, hospitals and home care into one secure
                 platform.
               </p>
-            </Copy>
-            <Copy delay={0.6} animateOnScroll={false}>
+            </Copy>{" "}
+            <Copy delay={0.2} animateOnScroll={false}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
-                  <InteractiveHoverButton>
-                    Partner With Us
-                  </InteractiveHoverButton>
-                </Link>
-                <Button variant="outline" size="lg" className="rounded-full">
-                  Watch Demo <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                {" "}
+                <Dialog onOpenChange={(open) => !open && resetVideoState()}>
+                  <DialogTrigger asChild>
+                    <InteractiveHoverButton>
+                      Watch a Demo
+                    </InteractiveHoverButton>
+                  </DialogTrigger>{" "}
+                  <DialogContent className="max-w-5xl w-[95vw] max-h-[95vh] p-0 overflow-hidden border border-white/10 bg-black/20 backdrop-blur-2xl shadow-2xl mx-4">
+                    <DialogHeader className="p-6 pb-4 bg-gradient-to-b from-black/40 via-black/20 to-transparent backdrop-blur-sm">
+                      <DialogTitle className="text-2xl md:text-3xl font-bold text-center text-white">
+                        HealthSigns Platform Demo
+                      </DialogTitle>
+                      <DialogDescription className="text-center text-gray-300 text-base">
+                        Discover how our AI-powered healthcare platform
+                        transforms patient care
+                      </DialogDescription>
+                    </DialogHeader>{" "}
+                    <div className="relative w-full px-4 md:px-6">
+                      {/* Video Container */}
+                      <div className="relative w-full aspect-video bg-black/50 backdrop-blur-sm mb-4 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                        {/* Video Element */}{" "}
+                        <video
+                          ref={videoRef}
+                          className="w-full h-full object-cover block"
+                          onLoadedData={handleVideoLoad}
+                          onPlay={() => setIsVideoPlaying(true)}
+                          onPause={() => setIsVideoPlaying(false)}
+                          onTimeUpdate={handleTimeUpdate}
+                          onLoadedMetadata={() =>
+                            videoRef.current &&
+                            setVideoDuration(videoRef.current.duration)
+                          }
+                          playsInline
+                          preload="metadata"
+                        >
+                          {/* Replace with your actual demo video URL */}
+                          <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            type="video/mp4"
+                          />
+                          Your browser does not support the video tag.
+                        </video>
+                        {/* Custom Video Controls Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-all duration-300 flex items-center justify-center group">
+                          <div className="flex items-center gap-6">
+                            {/* Play/Pause Button */}
+                            <button
+                              onClick={handlePlayPause}
+                              className="flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-xl"
+                            >
+                              {isVideoPlaying ? (
+                                <div className="w-8 h-8 flex gap-1.5 items-center">
+                                  <div className="w-2.5 h-8 bg-white rounded-sm"></div>
+                                  <div className="w-2.5 h-8 bg-white rounded-sm"></div>
+                                </div>
+                              ) : (
+                                <Play
+                                  className="w-8 h-8 text-white ml-1"
+                                  fill="white"
+                                />
+                              )}
+                            </button>
+
+                            {/* Mute/Unmute Button */}
+                            <button
+                              onClick={handleMuteToggle}
+                              className="flex items-center justify-center w-14 h-14 bg-white/10 backdrop-blur-lg rounded-full border border-white/15 hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-lg"
+                            >
+                              {isVideoMuted ? (
+                                <VolumeX className="w-6 h-6 text-white" />
+                              ) : (
+                                <Volume2 className="w-6 h-6 text-white" />
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>{" "}
+                      {/* Video Timeline and Controls */}
+                      <div className="mb-4">
+                        <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-lg">
+                          {/* Progress Bar */}
+                          <div className="flex items-center gap-4 mb-2">
+                            <span className="text-white/80 text-sm font-mono">
+                              {formatTime(videoRef.current?.currentTime || 0)}
+                            </span>
+                            <div
+                              className="flex-1 h-2 bg-white/20 rounded-full cursor-pointer group relative overflow-hidden backdrop-blur-sm"
+                              onClick={handleSeek}
+                            >
+                              {/* Progress background */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 rounded-full"></div>
+                              {/* Progress fill */}
+                              <div
+                                className="h-full bg-gradient-to-r from-primary via-primary/80 to-secondary rounded-full transition-all duration-200 relative overflow-hidden"
+                                style={{ width: `${videoProgress}%` }}
+                              >
+                                {/* Shimmer effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 animate-pulse"></div>
+                              </div>
+                              {/* Hover effect */}
+                              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full"></div>
+                            </div>
+                            <span className="text-white/80 text-sm font-mono">
+                              {formatTime(videoDuration)}
+                            </span>
+                          </div>
+
+                          {/* Control buttons row */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <button
+                                onClick={handlePlayPause}
+                                className="flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all duration-200"
+                              >
+                                {isVideoPlaying ? (
+                                  <div className="w-4 h-4 flex gap-0.5 items-center">
+                                    <div className="w-1 h-4 bg-white rounded-sm"></div>
+                                    <div className="w-1 h-4 bg-white rounded-sm"></div>
+                                  </div>
+                                ) : (
+                                  <Play
+                                    className="w-4 h-4 text-white ml-0.5"
+                                    fill="white"
+                                  />
+                                )}
+                              </button>
+
+                              <button
+                                onClick={handleMuteToggle}
+                                className="flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all duration-200"
+                              >
+                                {isVideoMuted ? (
+                                  <VolumeX className="w-4 h-4 text-white" />
+                                ) : (
+                                  <Volume2 className="w-4 h-4 text-white" />
+                                )}
+                              </button>
+                            </div>
+
+                            <div className="text-white/60 text-sm">
+                              {Math.round(videoProgress)}% complete
+                            </div>
+                          </div>
+                        </div>
+                      </div>{" "}
+                      {/* Additional Info Card */}
+                      <div className="mb-6">
+                        <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-lg">
+                          <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-12 h-12 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-primary/30">
+                              <Sparkles className="w-6 h-6 text-primary" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-lg text-white mb-2">
+                                See HealthSigns in Action
+                              </h4>
+                              <p className="text-gray-300 leading-relaxed">
+                                Watch how our platform integrates seamlessly
+                                with healthcare workflows, from AI-powered
+                                diagnostics to patient engagement and care
+                                coordination. Experience the future of
+                                healthcare technology.
+                              </p>
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                <span className="px-3 py-1 bg-primary/20 backdrop-blur-sm text-primary text-xs font-medium rounded-full border border-primary/30">
+                                  AI Diagnostics
+                                </span>
+                                <span className="px-3 py-1 bg-secondary/20 backdrop-blur-sm text-secondary text-xs font-medium rounded-full border border-secondary/30">
+                                  Patient Care
+                                </span>
+                                <span className="px-3 py-1 bg-accent/20 backdrop-blur-sm text-accent text-xs font-medium rounded-full border border-accent/30">
+                                  Workflow Integration
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </Copy>
           </MotionDiv>
@@ -731,7 +959,7 @@ export default function AboutPage() {
                 >
                   <div
                     className={`relative bg-background/70 backdrop-blur-md border border-primary/20 p-8 rounded-2xl shadow-xl max-w-md ${
-                      index % 2 === 0 ? "md:mr-[12%]" : "md:ml-[12%]"
+                      index % 2 === 0 ? "md:mr-[16%]" : "md:ml-[16%]"
                     }`}
                   >
                     <div
