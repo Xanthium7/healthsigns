@@ -697,7 +697,7 @@ export default function AboutPage() {
                 <h2 className="text-secondary/30 uppercase text-4xl xl:text-6xl font-extrabold tracking-tight leading-tight">
                   WHO DO WE SERVE?
                 </h2>
-                <p className="mt-4  ">
+                <p className="mt-4 lg:mt-12  ">
                   <span className="text-muted-foreground text-xl xl:text-2xl font-jakarta l">
                     We empower healthcare providers with AI-driven <br />{" "}
                     solutions to enhance care, streamline operations, and
