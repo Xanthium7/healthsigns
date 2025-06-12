@@ -36,7 +36,7 @@ import Copy from "@/components/Copy";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
 import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
-import { Marquee } from "@/components/magicui/marquee";
+import { CustomMarquee } from "@/components/ui/custom-marquee";
 import { cn } from "@/lib/utils";
 import {
   Dialog,
@@ -1104,19 +1104,29 @@ export default function AboutPage() {
                 What Our Partners Say
               </h2>
             </Copy>
-          </MotionDiv>
-
+          </MotionDiv>{" "}
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-            <Marquee pauseOnHover className="[--duration:25s]">
+            <CustomMarquee
+              pauseOnHover
+              duration={60}
+              repeat={6}
+              className="[--marquee-gap:2rem] mb-4"
+            >
               {firstRow.map((testimonial) => (
                 <TestimonialCard key={testimonial.username} {...testimonial} />
               ))}
-            </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:25s]">
+            </CustomMarquee>
+            <CustomMarquee
+              reverse
+              pauseOnHover
+              duration={60}
+              repeat={6}
+              className="[--marquee-gap:2rem]"
+            >
               {secondRow.map((testimonial) => (
                 <TestimonialCard key={testimonial.username} {...testimonial} />
               ))}
-            </Marquee>
+            </CustomMarquee>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
           </div>
