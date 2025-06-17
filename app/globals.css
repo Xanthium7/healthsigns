@@ -366,3 +366,21 @@ html {
 .animate-marquee-paused {
   animation-play-state: paused !important;
 }
+
+/* FlowingMenu Animation - Deployment Safe */
+@keyframes flowing-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-flowing-marquee {
+  animation: flowing-marquee 8s linear infinite;
+}
+
+.animate-flowing-marquee:hover {
+  animation-play-state: paused;
+}

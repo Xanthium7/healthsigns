@@ -9,6 +9,7 @@ interface MenuItemProps {
   link: string;
   text: string;
   image: string;
+  scrolltext: string;
 }
 
 interface FlowingMenuProps {
@@ -27,7 +28,12 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({ items = [] }) => {
   );
 };
 
-const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
+const MenuItem: React.FC<MenuItemProps> = ({
+  link,
+  text,
+  image,
+  scrolltext,
+}) => {
   const itemRef = React.useRef<HTMLDivElement>(null);
   const marqueeRef = React.useRef<HTMLDivElement>(null);
   const marqueeInnerRef = React.useRef<HTMLDivElement>(null);
@@ -48,16 +54,14 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
 
   const handleMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
-      return;
-
-    // Restart marquee animation
+      return; // Restart marquee animation with deployment-safe approach
     const scrollingMarqueeElement = marqueeInnerRef.current
       ?.children[0] as HTMLElement;
     if (scrollingMarqueeElement) {
-      scrollingMarqueeElement.classList.remove("animate-marquee");
+      scrollingMarqueeElement.classList.remove("animate-flowing-marquee");
       // Force reflow to restart animation
       void scrollingMarqueeElement.offsetWidth;
-      scrollingMarqueeElement.classList.add("animate-marquee");
+      scrollingMarqueeElement.classList.add("animate-flowing-marquee");
     }
 
     const rect = itemRef.current.getBoundingClientRect();
@@ -97,11 +101,17 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
     return Array.from({ length: 4 }).map((_, idx) => (
       <React.Fragment key={idx}>
         <span className="text-primary-foreground uppercase font-medium text-base sm:text-lg md:text-xl leading-none p-1 sm:p-2 mx-1 sm:mx-2">
-          {text}
+          {scrolltext}
         </span>
-        <div
+        {/* <div
           className="w-12 h-8 sm:w-16 sm:h-10 md:w-24 md:h-16 mx-1 sm:mx-2 my-auto rounded-md bg-cover bg-center"
           style={{ backgroundImage: `url(${image})` }}
+          // style={{ background: `transparent` }}
+        /> */}
+        <div
+          className="w-4 h-4 sm:w-4 sm:h-4 md:w-4 md:h-4 mx-8 sm:mx-2 my-auto rounded-md bg-cover bg-center"
+          // style={{ backgroundImage: `url(${image})` }}
+          style={{ background: `#d6d6d6` }}
         />
       </React.Fragment>
     ));
@@ -127,7 +137,8 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
           className="h-full w-[200%] flex translate-y-[101%]"
           ref={marqueeInnerRef}
         >
-          <div className="flex items-center relative h-full will-change-transform animate-marquee">
+          {" "}
+          <div className="flex items-center relative h-full will-change-transform animate-flowing-marquee">
             {repeatedMarqueeContent}
           </div>
         </div>

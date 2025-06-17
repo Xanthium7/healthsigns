@@ -42,28 +42,24 @@ const whyPartnerItems = [
   {
     icon: <Users className="h-10 w-10 text-primary" />, // Kept for potential future use or if FlowingMenu is adapted
     title: "Empower Your Patients",
-    description:
-      "Transform patients into active partners in their health journey. Our RPM fosters engagement, boosts adherence, and elevates outcomes.",
+    description: "Transform patients into active health partners.",
   },
   {
     icon: <Activity className="h-10 w-10 text-primary" />,
     title: "Stay Ahead of Health Risks",
-    description:
-      "Leverage continuous vital tracking for early issue detection. Our RPM keeps you one step ahead, ensuring timely interventions and proactive care.",
+    description: "Early detection through continuous monitoring.",
   },
 
   {
     icon: <DollarSign className="h-10 w-10 text-primary" />,
     title: "Smart Savings, Smarter Care",
-    description:
-      "Slash unnecessary costs by minimizing in-person visits and readmissions. Deliver premium, efficient care without breaking the bank.",
+    description: "Reduce costs while delivering premium care.",
   },
 
   {
     icon: <Database className="h-10 w-10 text-primary" />,
     title: "Unlock Actionable Intelligence",
-    description:
-      "Turn raw health data into powerful, actionable insights. Understand patient trends and treatment efficacy for superior decision-making.",
+    description: "Turn health data into powerful insights.",
   },
 ];
 
@@ -71,6 +67,7 @@ const flowingMenuItems = whyPartnerItems.map((item, index) => ({
   link: "#", // Placeholder link
   text: item.title,
   image: `https://picsum.photos/600/400?random=${index + 1}`, // Placeholder image
+  scrolltext: item.description,
 }));
 
 export default function Home() {
@@ -225,7 +222,7 @@ export default function Home() {
           <div className="flex mt-8 md:mt-0 flex-col lg:flex-row items-center justify-between gap-8">
             {" "}
             <Copy delay={0.2}>
-              <p className="text-muted-foreground font-jakarta mx-4 text-lg md:text-xl lg:text-2xl text-center lg:text-left lg:mr-auto">
+              <p className="text-muted-foreground font-jakarta mx-4 text-lg md:text-xl lg:text-2xl   text-center lg:text-left lg:mr-auto">
                 We <span className="font-bold">bring together records</span>{" "}
                 from clinics, labs, hospitals, and home care to create a{" "}
                 <span className="font-bold">holistic view</span> of a patient's
