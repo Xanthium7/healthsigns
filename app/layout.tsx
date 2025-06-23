@@ -58,8 +58,11 @@ export default function RootLayout({
         <Link href="/contact">
           <div className="fixed bottom-0 left-0 right-0 z-40 bg-foreground text-primary-foreground transition-colors duration-300 cursor-pointer">
             <div className="container mx-auto px-4 py-4 text-center ">
-              <span className="text-sm font-bold hover:border-b-2 pb-1  border-primary-foreground ">
-                Interested? Get in Touch
+              <span className="text-md font-bold">
+                Want to see what the hype is about ?
+              </span>
+              <span className="border border-primary bg-primary/90 text-background hover:bg-primary ml-2 p-1 px-2 rounded-sm">
+                <span className="text-md  font-bold  ">Book a demo</span>
               </span>
             </div>
           </div>
