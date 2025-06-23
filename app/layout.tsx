@@ -57,8 +57,8 @@ export default function RootLayout({
         {/* Bottom Footer */}
         <Link href="/contact">
           <div className="fixed bottom-0 left-0 right-0 z-40 bg-foreground text-primary-foreground transition-colors duration-300 cursor-pointer">
-            <div className="container mx-auto px-4 py-2 text-center ">
-              <span className="text-sm font-semibold hover:border-b-2 pb-1 border-primary-foreground ">
+            <div className="container mx-auto px-4 py-4 text-center ">
+              <span className="text-sm font-bold hover:border-b-2 pb-1  border-primary-foreground ">
                 Interested? Get in Touch
               </span>
             </div>
