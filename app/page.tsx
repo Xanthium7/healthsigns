@@ -34,6 +34,8 @@ import SpotlightCard from "@/CoolComponents/SpotlightCard/SpotlightCard";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import FlowingMenu from "@/CoolComponents/FlowingMenu/FlowingMenu";
 import Careers from "@/components/Careers";
+import { CustomMarquee } from "@/components/ui/custom-marquee";
+import { cn } from "@/lib/utils";
 
 // Animated components
 const MotionDiv = motion.div;
@@ -99,6 +101,92 @@ export default function Home() {
         staggerChildren: 0.2,
       },
     },
+  };
+  const testimonials = [
+    {
+      name: "Believers Church Medical College",
+      username: "@bcmc_healthcare",
+      body: "HealthSigns has helped us streamline our diagnostic workflows and deliver better patient experiences.",
+      img: "https://avatar.vercel.sh/bcmc",
+    },
+    {
+      name: "Leading Diagnostic Lab",
+      username: "@diagnostic_lab",
+      body: "Thanks to HealthSigns' AI, we've automated millions of reports and improved result clarity.",
+      img: "https://avatar.vercel.sh/lab",
+    },
+    {
+      name: "Metro General Hospital",
+      username: "@metro_hospital",
+      body: "The AI accelerators have transformed our EMR integration and reduced operational costs significantly.",
+      img: "https://avatar.vercel.sh/metro",
+    },
+    {
+      name: "SmartCare Clinic",
+      username: "@smartcare",
+      body: "WhatsApp integration for reports has revolutionized how we communicate with patients.",
+      img: "https://avatar.vercel.sh/smartcare",
+    },
+    {
+      name: "Regional Health Network",
+      username: "@regional_health",
+      body: "Real-time insights and automated alerts have improved our patient care outcomes dramatically.",
+      img: "https://avatar.vercel.sh/regional",
+    },
+    {
+      name: "City Medical Center",
+      username: "@city_medical",
+      body: "The unified platform has eliminated data silos and enhanced collaboration across departments.",
+      img: "https://avatar.vercel.sh/city",
+    },
+  ];
+
+  const firstRow = testimonials.slice(0, Math.ceil(testimonials.length / 2));
+  const secondRow = testimonials.slice(Math.ceil(testimonials.length / 2));
+
+  const TestimonialCard = ({
+    img,
+    name,
+    username,
+    body,
+  }: {
+    img: string;
+    name: string;
+    username: string;
+    body: string;
+  }) => {
+    return (
+      <figure
+        className={cn(
+          "relative h-full w-[25rem] cursor-pointer overflow-hidden rounded-2xl border p-6",
+          "border-primary/20 bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-300",
+          "shadow-lg hover:shadow-xl"
+        )}
+      >
+        <div className="flex flex-row items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+            <Image
+              src={img}
+              alt={`${name}'s avatar`}
+              width={48}
+              height={48}
+              className="rounded-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col">
+            <figcaption className="text-sm font-bold text-foreground">
+              {name}
+            </figcaption>
+            <p className="text-xs font-medium text-muted-foreground">
+              {username}
+            </p>
+          </div>
+        </div>
+        <blockquote className="text-sm text-muted-foreground italic leading-relaxed font-jakarta">
+          "{body}"
+        </blockquote>
+      </figure>
+    );
   };
 
   return (
@@ -271,6 +359,50 @@ export default function Home() {
 
       {/*  Careers Section */}
       <Careers />
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.1}>
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-secondary/50 uppercase tracking-tight">
+                What Our Partners Say
+              </h2>
+            </Copy>
+          </MotionDiv>{" "}
+          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+            <CustomMarquee
+              pauseOnHover
+              duration={60}
+              repeat={6}
+              className="[--marquee-gap:2rem] mb-4"
+            >
+              {firstRow.map((testimonial) => (
+                <TestimonialCard key={testimonial.username} {...testimonial} />
+              ))}
+            </CustomMarquee>
+            <CustomMarquee
+              reverse
+              pauseOnHover
+              duration={60}
+              repeat={6}
+              className="[--marquee-gap:2rem]"
+            >
+              {secondRow.map((testimonial) => (
+                <TestimonialCard key={testimonial.username} {...testimonial} />
+              ))}
+            </CustomMarquee>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+          </div>
+        </div>
+      </section>
 
       {/* Pricing Section */}
       <section className="py-20 bg-background">

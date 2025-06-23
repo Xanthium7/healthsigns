@@ -12,6 +12,9 @@ import {
   Bell,
   RefreshCw,
   Users,
+  TrendingUp,
+  CheckCircle,
+  Star,
 } from "lucide-react";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import Copy from "@/components/Copy";
@@ -56,7 +59,6 @@ export default function AIPage() {
     <div className="pt-16 md:pt-24 bg-gradient-to-br from-primary/10 to-background relative overflow-hidden">
       {/* Dotted pattern moved to the main parent div */}
       <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.15] pointer-events-none z-0"></div>
-
       {/* Hero Section */}
       <section className="py-16 md:py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -121,7 +123,6 @@ export default function AIPage() {
           </div>
         </div>
       </section>
-
       {/* How Our AI Works Section */}
       <section className="py-16 md:py-20 bg-background relative z-10">
         {/* Gradient overlay for soft top edge */}
@@ -163,7 +164,6 @@ export default function AIPage() {
           </div>
         </div>
       </section>
-
       {/* Intelligent Monitoring Section */}
       <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 to-background/20 relative overflow-hidden z-10">
         {/* Gradient overlay for soft top edge - Simplified */}
@@ -211,7 +211,170 @@ export default function AIPage() {
           </div>
         </div>
       </section>
+      {/* Hospitals Section */}
+      <section className="py-20 bg-gradient-to-br from-background to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+            >
+              <Copy delay={0.2}>
+                <h2 className="text-secondary/70 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
+                  AI-Enhanced <br /> Hospital Operations
+                </h2>
+              </Copy>
+              <Copy delay={0.4}>
+                <p className="text-xl text-muted-foreground my-6 ">
+                  We equip hospitals with AI tools that streamline operations
+                  and elevate care delivery.
+                </p>
+              </Copy>
 
+              <div className=" mb-8">
+                {[
+                  "AI Accelerators with seamless EMR integration",
+                  "Automated lab result workflows",
+                  "WhatsApp integration for reports & invoices",
+                  "Cost reduction and workflow efficiency",
+                ].map((feature, index) => (
+                  <Copy key={index} delay={0.1}>
+                    <div className="space-y-2 mt-4">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0  " />
+                        <span className="text-lg text-muted-foreground font-jakarta">
+                          {feature}
+                        </span>
+                      </div>
+                    </div>
+                  </Copy>
+                ))}
+              </div>
+              <Copy>
+                <div className="bg-card/50 backdrop-blur-sm border mt-8 border-primary/20 p-6 rounded-2xl">
+                  <h4 className="font-semibold text-foreground mb-2">
+                    Trusted By:
+                  </h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Star className="h-4 w-4 text-yellow-500" />
+                      <span className="text-sm text-muted-foreground font-jakarta">
+                        Believers Church Medical College
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Copy>
+            </MotionDiv>
+
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="relative"
+            >
+              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/placeholder.svg?height=800&width=600"
+                  alt="Hospital AI Integration"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+              </div>
+              <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-primary/40 to-accent/40 rounded-full blur-xl opacity-30"></div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>
+      {/* Smart Labs Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="order-2 lg:order-1 relative"
+            >
+              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/placeholder.svg?height=800&width=600"
+                  alt="Smart Labs AI"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent"></div>
+              </div>
+              <div className="absolute -top-5 left-10 w-20 h-20 bg-gradient-to-r from-secondary/40 to-primary/40 rounded-full blur-xl opacity-30"></div>
+            </MotionDiv>
+
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUp}
+              className="order-1 lg:order-2"
+            >
+              <Copy delay={0.1}>
+                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-secondary/70 uppercase tracking-tight">
+                  {" "}
+                  {/* Adjusted font size, weight, casing, tracking */}
+                  AI-Enhanced Diagnostic Excellence
+                </h2>
+              </Copy>
+              <Copy delay={0.1}>
+                <p className="text-lg text-muted-foreground mb-6 font-jakarta">
+                  {" "}
+                  {/* Added font-jakarta */}
+                  Smart Labs use AI to enhance accuracy and simplify diagnostics
+                  with over 1 million reports generated.
+                </p>
+              </Copy>
+
+              <div className="space-y-4 mb-8">
+                {[
+                  "Appointment bookings & lab order creation",
+                  "AI-generated lab results with explainable insights",
+                  "Voice-based summaries via WhatsApp",
+                  "Integration with lab machines through accelerators",
+                ].map((feature, index) => (
+                  <Copy key={index} delay={0.1}>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 " />
+                        <span className="text-sm text-muted-foreground font-jakarta">
+                          {feature}
+                        </span>
+                      </div>
+                    </div>
+                  </Copy>
+                ))}
+              </div>
+              <Copy delay={0.1}>
+                <div className="bg-gradient-to-r from-primary/10  to-secondary/10 p-6 rounded-2xl border border-primary/20">
+                  <div className="flex items-center gap-3 mb-2">
+                    <TrendingUp className="h-6 w-6 text-primary" />
+                    <span className="font-bold text-2xl text-foreground">
+                      1M+
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-jakarta">
+                    {" "}
+                    {/* Added font-jakarta */}
+                    Reports generated to date
+                  </p>
+                </div>
+              </Copy>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>{" "}
       {/* Key AI Features Section */}
       <section className="py-16 md:py-20 bg-background relative z-10">
         {/* Gradient overlay for soft top edge */}
@@ -311,7 +474,6 @@ export default function AIPage() {
           </MotionDiv>
         </div>
       </section>
-
       {/* Predictive Analytics Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-background/20 relative overflow-hidden z-10">
         {/* Gradient overlay for soft top edge - Simplified */}
@@ -366,7 +528,6 @@ export default function AIPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden z-10">
         {/* Gradient overlay for soft top edge */}

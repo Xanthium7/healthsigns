@@ -423,93 +423,6 @@ export default function AboutPage() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Believers Church Medical College",
-      username: "@bcmc_healthcare",
-      body: "HealthSigns has helped us streamline our diagnostic workflows and deliver better patient experiences.",
-      img: "https://avatar.vercel.sh/bcmc",
-    },
-    {
-      name: "Leading Diagnostic Lab",
-      username: "@diagnostic_lab",
-      body: "Thanks to HealthSigns' AI, we've automated millions of reports and improved result clarity.",
-      img: "https://avatar.vercel.sh/lab",
-    },
-    {
-      name: "Metro General Hospital",
-      username: "@metro_hospital",
-      body: "The AI accelerators have transformed our EMR integration and reduced operational costs significantly.",
-      img: "https://avatar.vercel.sh/metro",
-    },
-    {
-      name: "SmartCare Clinic",
-      username: "@smartcare",
-      body: "WhatsApp integration for reports has revolutionized how we communicate with patients.",
-      img: "https://avatar.vercel.sh/smartcare",
-    },
-    {
-      name: "Regional Health Network",
-      username: "@regional_health",
-      body: "Real-time insights and automated alerts have improved our patient care outcomes dramatically.",
-      img: "https://avatar.vercel.sh/regional",
-    },
-    {
-      name: "City Medical Center",
-      username: "@city_medical",
-      body: "The unified platform has eliminated data silos and enhanced collaboration across departments.",
-      img: "https://avatar.vercel.sh/city",
-    },
-  ];
-
-  const firstRow = testimonials.slice(0, Math.ceil(testimonials.length / 2));
-  const secondRow = testimonials.slice(Math.ceil(testimonials.length / 2));
-
-  const TestimonialCard = ({
-    img,
-    name,
-    username,
-    body,
-  }: {
-    img: string;
-    name: string;
-    username: string;
-    body: string;
-  }) => {
-    return (
-      <figure
-        className={cn(
-          "relative h-full w-[25rem] cursor-pointer overflow-hidden rounded-2xl border p-6",
-          "border-primary/20 bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-300",
-          "shadow-lg hover:shadow-xl"
-        )}
-      >
-        <div className="flex flex-row items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-            <Image
-              src={img}
-              alt={`${name}'s avatar`}
-              width={48}
-              height={48}
-              className="rounded-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col">
-            <figcaption className="text-sm font-bold text-foreground">
-              {name}
-            </figcaption>
-            <p className="text-xs font-medium text-muted-foreground">
-              {username}
-            </p>
-          </div>
-        </div>
-        <blockquote className="text-sm text-muted-foreground italic leading-relaxed font-jakarta">
-          "{body}"
-        </blockquote>
-      </figure>
-    );
-  };
-
   return (
     <div className=" overflow-hidden">
       {/* Hero Section */}
@@ -852,170 +765,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* Hospitals Section */}
-      <section className="py-20 bg-gradient-to-br from-background to-background relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-            >
-              <Copy delay={0.2}>
-                <h2 className="text-secondary/70 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
-                  AI-Enhanced <br /> Hospital Operations
-                </h2>
-              </Copy>
-              <Copy delay={0.4}>
-                <p className="text-xl text-muted-foreground my-6 ">
-                  We equip hospitals with AI tools that streamline operations
-                  and elevate care delivery.
-                </p>
-              </Copy>
-
-              <div className=" mb-8">
-                {[
-                  "AI Accelerators with seamless EMR integration",
-                  "Automated lab result workflows",
-                  "WhatsApp integration for reports & invoices",
-                  "Cost reduction and workflow efficiency",
-                ].map((feature, index) => (
-                  <Copy key={index} delay={0.1}>
-                    <div className="space-y-2 mt-4">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0  " />
-                        <span className="text-lg text-muted-foreground font-jakarta">
-                          {feature}
-                        </span>
-                      </div>
-                    </div>
-                  </Copy>
-                ))}
-              </div>
-              <Copy>
-                <div className="bg-card/50 backdrop-blur-sm border mt-8 border-primary/20 p-6 rounded-2xl">
-                  <h4 className="font-semibold text-foreground mb-2">
-                    Trusted By:
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <Star className="h-4 w-4 text-yellow-500" />
-                      <span className="text-sm text-muted-foreground font-jakarta">
-                        Believers Church Medical College
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Copy>
-            </MotionDiv>
-
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="relative"
-            >
-              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
-                <Image
-                  src="/placeholder.svg?height=800&width=600"
-                  alt="Hospital AI Integration"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
-              </div>
-              <div className="absolute -bottom-5 right-10 w-20 h-20 bg-gradient-to-r from-primary/40 to-accent/40 rounded-full blur-xl opacity-30"></div>
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
-      {/* Smart Labs Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="order-2 lg:order-1 relative"
-            >
-              <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
-                <Image
-                  src="/placeholder.svg?height=800&width=600"
-                  alt="Smart Labs AI"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent"></div>
-              </div>
-              <div className="absolute -top-5 left-10 w-20 h-20 bg-gradient-to-r from-secondary/40 to-primary/40 rounded-full blur-xl opacity-30"></div>
-            </MotionDiv>
-
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
-              className="order-1 lg:order-2"
-            >
-              <Copy delay={0.1}>
-                <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-secondary/70 uppercase tracking-tight">
-                  {" "}
-                  {/* Adjusted font size, weight, casing, tracking */}
-                  AI-Enhanced Diagnostic Excellence
-                </h2>
-              </Copy>
-              <Copy delay={0.1}>
-                <p className="text-lg text-muted-foreground mb-6 font-jakarta">
-                  {" "}
-                  {/* Added font-jakarta */}
-                  Smart Labs use AI to enhance accuracy and simplify diagnostics
-                  with over 1 million reports generated.
-                </p>
-              </Copy>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  "Appointment bookings & lab order creation",
-                  "AI-generated lab results with explainable insights",
-                  "Voice-based summaries via WhatsApp",
-                  "Integration with lab machines through accelerators",
-                ].map((feature, index) => (
-                  <Copy key={index} delay={0.1}>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 " />
-                        <span className="text-sm text-muted-foreground font-jakarta">
-                          {feature}
-                        </span>
-                      </div>
-                    </div>
-                  </Copy>
-                ))}
-              </div>
-              <Copy delay={0.1}>
-                <div className="bg-gradient-to-r from-primary/10  to-secondary/10 p-6 rounded-2xl border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <TrendingUp className="h-6 w-6 text-primary" />
-                    <span className="font-bold text-2xl text-foreground">
-                      1M+
-                    </span>
-                  </div>
-                  <p className="text-sm text-muted-foreground font-jakarta">
-                    {" "}
-                    {/* Added font-jakarta */}
-                    Reports generated to date
-                  </p>
-                </div>
-              </Copy>
-            </MotionDiv>
-          </div>
-        </div>
-      </section>{" "}
       {/* Patient Journey Section */}
       <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
@@ -1086,49 +835,6 @@ export default function AboutPage() {
                 </MotionDiv>
               ))}
             </MotionDiv>
-          </div>
-        </div>
-      </section>
-      {/* Testimonials Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <Copy delay={0.1}>
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-secondary/50 uppercase tracking-tight">
-                What Our Partners Say
-              </h2>
-            </Copy>
-          </MotionDiv>{" "}
-          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-            <CustomMarquee
-              pauseOnHover
-              duration={60}
-              repeat={6}
-              className="[--marquee-gap:2rem] mb-4"
-            >
-              {firstRow.map((testimonial) => (
-                <TestimonialCard key={testimonial.username} {...testimonial} />
-              ))}
-            </CustomMarquee>
-            <CustomMarquee
-              reverse
-              pauseOnHover
-              duration={60}
-              repeat={6}
-              className="[--marquee-gap:2rem]"
-            >
-              {secondRow.map((testimonial) => (
-                <TestimonialCard key={testimonial.username} {...testimonial} />
-              ))}
-            </CustomMarquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
           </div>
         </div>
       </section>
@@ -1262,7 +968,11 @@ export default function AboutPage() {
               </p>
             </Copy>
             <Copy delay={0.4}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center"></div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <InteractiveHoverButton>Book a Call</InteractiveHoverButton>
+                </Link>
+              </div>
             </Copy>
           </MotionDiv>
         </div>
