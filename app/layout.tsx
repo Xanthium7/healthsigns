@@ -52,15 +52,14 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
-          </div>
+          </div>{" "}
         </ReactLenis>{" "}
-        {/* Sticky Footer */}
+        {/* Bottom Footer */}
         <Link href="/contact">
-          <div className="fixed bottom-6 right-6 z-50 group cursor-pointer">
-            <div className="bg-accent hover:bg-accent/90 text-primary-foreground p-3 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center gap-2 w-12 h-12 group-hover:w-44 overflow-hidden">
-              <MessagesSquare className="w-6 h-6 flex-shrink-0" />
-              <span className="text-sm text-right font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 delay-100 transform translate-x-2 group-hover:translate-x-2">
-                Get in Touch
+          <div className="fixed bottom-0 left-0 right-0 z-40 bg-foreground text-primary-foreground transition-colors duration-300 cursor-pointer">
+            <div className="container mx-auto px-4 py-2 text-center ">
+              <span className="text-sm font-semibold hover:border-b-2 pb-1 border-primary-foreground ">
+                Interested? Get in Touch
               </span>
             </div>
           </div>
