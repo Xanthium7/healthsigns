@@ -31,12 +31,8 @@ const Footer = () => {
             <div className="relative flex flex-col items-center justify-center text-center md:border-l md:border-r border-background/10 px-4 md:px-8 py-4 md:py-8">
               {/* Logo Text */}
               <h1 className="flex gap-1 md:block relative z-10  md:gap-1 text-4xl md:text-5xl lg:text-6xl font-semibold leading-none">
-                <span className="text-primary block md:-translate-x-16">
-                  Health
-                </span>
-                <span className="text-background block md:mt-1 md:translate-x-16">
-                  Signs
-                </span>
+                <span className="text-primary  ">Health</span>
+                <span className="text-background  ">Signs</span>
               </h1>
             </div>
 

@@ -147,9 +147,7 @@ export default function Home() {
               </Copy>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href={"/contact"}>
-                  <InteractiveHoverButton>
-                    Partner With Us
-                  </InteractiveHoverButton>
+                  <InteractiveHoverButton>SET UP A CALL</InteractiveHoverButton>
                 </Link>
               </div>
             </MotionDiv>

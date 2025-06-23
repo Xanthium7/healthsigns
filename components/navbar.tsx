@@ -66,7 +66,7 @@ const Navbar = () => {
     { name: "About", href: "/about" },
     { name: "RPM", href: "/rpm" },
     { name: "Proprietary AI", href: "/ai" },
-    { name: "Career", href: "/career" },
+    { name: "Careers", href: "/career" },
   ];
 
   return (
