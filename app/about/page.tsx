@@ -416,7 +416,10 @@ export default function AboutPage() {
   ];
 
   const partners = [
-    { name: "Appisoft", region: "Colombia expansion" },
+    {
+      name: "Appisoft",
+      region: "One stop location for IT and Consulting Services",
+    },
     {
       name: "TicSocial",
       region: "Multilingual AI for Spanish-speaking regions",
@@ -708,7 +711,6 @@ export default function AboutPage() {
       {/* Who We Serve Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          {/* Desktop Layout: Side by side */}
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
             {/* Left Side: Title */}
             <div className="flex items-center ">
@@ -743,7 +745,6 @@ export default function AboutPage() {
 
           {/* Mobile Layout: Column */}
           <div className="block lg:hidden">
-            {/* Top: Title */}
             <div className="text-center mb-12">
               <Copy>
                 <h2 className="text-secondary/30 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
@@ -752,7 +753,6 @@ export default function AboutPage() {
               </Copy>
             </div>
 
-            {/* Bottom: AnimatedBeam Component */}
             <MotionDiv
               initial="hidden"
               whileInView="visible"
@@ -778,15 +778,11 @@ export default function AboutPage() {
           >
             <Copy delay={0.2}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                {" "}
-                {/* Adjusted font size, weight, casing, tracking */}
                 The Patient Journey
               </h2>
             </Copy>
             <Copy delay={0.4}>
               <p className="text-lg text-muted-foreground font-jakarta">
-                {" "}
-                {/* Added font-jakarta */}
                 From onboarding to follow-ups, HealthSigns transforms preventive
                 care, making it smarter, simpler, and more effective.
               </p>
@@ -838,101 +834,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* Global Reach Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <Copy delay={0.1}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                {" "}
-                {/* Adjusted font size, weight, casing, tracking */}
-                Serving Healthcare Worldwide
-              </h2>
-            </Copy>
-          </MotionDiv>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {globalLocations.map((location, index) => (
-              <MotionDiv
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="text-center border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card h-[24vh] rounded-2xl overflow-hidden relative">
-                  <div className="absolute inset-0 z-0">
-                    {location.flagUrl ? (
-                      <Image
-                        src={location.flagUrl}
-                        alt={`${location.country} flag`}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <Image
-                        src="/placeholder.svg?height=300&width=400"
-                        alt={`${location.country} background`}
-                        fill
-                        className="object-cover opacity-20"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-br from-card/70 to-card/80"></div>
-                  </div>
-                  <CardContent className="p-6 relative z-10 flex items-center justify-center h-full">
-                    <Copy>
-                      <h3 className="font-bold text-2xl uppercase text-secondary text-center">
-                        {location.country}
-                      </h3>
-                    </Copy>
-                  </CardContent>
-                </Card>
-              </MotionDiv>
-            ))}
-          </div>
-
-          <MotionDiv
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-3xl border border-primary/20"
-          >
-            <Copy>
-              <h3 className="text-xl font-bold mb-6 text-foreground text-center">
-                Strategic Partners
-              </h3>
-            </Copy>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {partners.map((partner, index) => (
-                <Copy key={index} delay={0.1}>
-                  <div className="flex items-center gap-3 bg-background/50 p-4 rounded-xl">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Users className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground">
-                        {partner.name}
-                      </div>
-                      <div className="text-sm text-muted-foreground font-jakarta">
-                        {" "}
-                        {/* Added font-jakarta */}
-                        {partner.region}
-                      </div>
-                    </div>
-                  </div>
-                </Copy>
-              ))}
-            </div>
-          </MotionDiv>
-        </div>
-      </section>{" "}
       {/* CTA Section */}
       <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
         {/* Aurora as background */}
