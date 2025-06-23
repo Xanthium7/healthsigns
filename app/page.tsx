@@ -351,11 +351,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About HealthSigns Section */}
-
-      <TextReveal className="font-extrabold uppercase text-center">
+      {/* <TextReveal className="font-extrabold uppercase text-center">
         At HealthSigns, we're pioneering the future of healthcare
-      </TextReveal>
+      </TextReveal> */}
 
       {/*  Careers Section */}
       <Careers />
