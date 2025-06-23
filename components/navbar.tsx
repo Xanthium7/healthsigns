@@ -60,7 +60,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
@@ -69,11 +68,15 @@ const Navbar = () => {
     { name: "Careers", href: "/career" },
   ];
 
+  // Check if we're on pages where navbar should always be visible
+  const alwaysVisiblePages = ["/rpm", "/ai"];
+  const shouldAlwaysShow = alwaysVisiblePages.includes(pathname);
+
   return (
     <header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
-        scrolled
+        scrolled || shouldAlwaysShow
           ? "bg-background/30 opacity-100 backdrop-blur-xl shadow-sm border-b border-border/30"
           : "bg-transparent opacity-0"
       )}
