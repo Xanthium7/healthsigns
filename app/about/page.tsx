@@ -1099,22 +1099,22 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: <Users className="w-8 h-8 text-primary" />,
+                icon: <Users className="w-8 h-8 text-secondary" />,
                 number: "10,000+",
                 label: "Patients Monitored",
               },
               {
-                icon: <Building2 className="w-8 h-8 text-primary" />,
+                icon: <Building2 className="w-8 h-8 text-secondary" />,
                 number: "50+",
                 label: "Healthcare Facilities",
               },
               {
-                icon: <Globe className="w-8 h-8 text-primary" />,
+                icon: <Globe className="w-8 h-8 text-secondary" />,
                 number: "15",
                 label: "Countries Served",
               },
               {
-                icon: <TrendingUp className="w-8 h-8 text-primary" />,
+                icon: <TrendingUp className="w-8 h-8 text-secondary" />,
                 number: "98%",
                 label: "Accuracy Rate",
               },
@@ -1130,7 +1130,7 @@ export default function AboutPage() {
                   <CardContent className="p-0">
                     <Copy>
                       <div className="mb-4 flex justify-center">
-                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                        <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center">
                           {stat.icon}
                         </div>
                       </div>
