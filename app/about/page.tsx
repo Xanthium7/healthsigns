@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation } from "framer-motion";
@@ -34,7 +35,6 @@ import { AnimatedBeam } from "@/components/magicui/animated-beam";
 import { BlurrySphere } from "@/components/ui/blurry-sphere";
 import Copy from "@/components/Copy";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
-import Link from "next/link";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { CustomMarquee } from "@/components/ui/custom-marquee";
 import { cn } from "@/lib/utils";
@@ -440,23 +440,27 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center max-w-5xl mx-auto"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-secondary/70 uppercase tracking-tight leading-tight">
                 Transforming Healthcare
               </h1>
             </Copy>
-            <Copy delay={0.2} animateOnScroll={false}>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-4xl mx-auto font-jakarta">
-                {" "}
-                {/* Added font-jakarta */}
-                Healthcare that's preventive, personalized and accessible,
-                powered by data, guided by care. We unify your health records
-                from clinics, labs, hospitals and home care into one secure
-                platform.
+            <Copy delay={0.1} animateOnScroll={false}>
+              <p className="text-xl text-muted-foreground  font-jakarta leading-relaxed">
+                HealthSigns leverages AI and healthcare expertise to transform
+                patient care and streamline operations. Our innovative solutions
+                help providers deliver better outcomes across the healthcare
+                ecosystem.
+              </p>
+
+              <p className="text-xl text-muted-foreground font-jakarta leading-relaxed">
+                Our mission is to make healthcare more accessible and effective
+                by bridging advanced technology with compassionate care,
+                empowering providers to deliver exceptional results.
               </p>
             </Copy>{" "}
             <Copy delay={0.2} animateOnScroll={false}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
                 {" "}
                 <Dialog onOpenChange={(open) => !open && resetVideoState()}>
                   <DialogTrigger asChild>
@@ -708,229 +712,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>{" "}
-      {/* Who We Serve Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
-            {/* Left Side: Title */}
-            <div className="flex items-center ">
-              <Copy>
-                <h2 className="text-secondary/30 uppercase text-4xl xl:text-6xl font-extrabold tracking-tight leading-tight">
-                  WHO DO WE SERVE?
-                </h2>
-                <p className="mt-4 lg:mt-12  ">
-                  <span className="text-muted-foreground text-xl xl:text-2xl font-jakarta l">
-                    We empower healthcare providers with AI-driven <br />{" "}
-                    solutions to enhance care, streamline operations, and
-                    improve outcomes across hospitals, labs, clinics, and
-                    homecare. Our platform connects data, enables collaboration,
-                    supports clinical decisions, and delivers actionable
-                    insights for every step of the healthcare journey.
-                  </span>
-                </p>
-              </Copy>
-            </div>
-
-            {/* Right Side: AnimatedBeam Component */}
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={staggerContainer}
-              className="relative h-[600px] xl:h-[700px] flex items-center justify-center"
-            >
-              <WhoWeServeBeam />
-            </MotionDiv>
-          </div>
-
-          {/* Mobile Layout: Column */}
-          <div className="block lg:hidden">
-            <div className="text-center mb-12">
-              <Copy>
-                <h2 className="text-secondary/30 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
-                  WHO DO WE SERVE ?
-                </h2>
-              </Copy>
-            </div>
-
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={staggerContainer}
-              className="relative h-[500px] md:h-[600px] flex items-center justify-center"
-            >
-              <WhoWeServeBeam />
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
-      {/* Patient Journey Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
-        <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto mb-16"
-          >
-            <Copy delay={0.2}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                The Patient Journey
-              </h2>
-            </Copy>
-            <Copy delay={0.4}>
-              <p className="text-lg text-muted-foreground font-jakarta">
-                From onboarding to follow-ups, HealthSigns transforms preventive
-                care, making it smarter, simpler, and more effective.
-              </p>
-            </Copy>
-          </MotionDiv>
-
-          <div className="relative">
-            <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-primary/30 via-primary/20 to-primary/30 transform -translate-x-1/2 z-0 rounded-full"></div>
-            <MotionDiv
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={staggerContainer}
-              className="relative z-10"
-            >
-              {journeySteps.map((step, index) => (
-                <MotionDiv
-                  key={index}
-                  variants={fadeInUp}
-                  className={`flex items-start mb-16 ${
-                    index % 2 === 0
-                      ? "justify-end md:pl-28"
-                      : "justify-start md:pr-28"
-                  }`}
-                >
-                  <div
-                    className={`relative bg-background/70 backdrop-blur-md border border-primary/20 p-8 rounded-2xl shadow-xl max-w-md ${
-                      index % 2 === 0 ? "md:mr-[16%]" : "md:ml-[16%]"
-                    }`}
-                  >
-                    <div
-                      className="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-[3px] border-background z-20"
-                      style={{ [index % 2 === 0 ? "left" : "right"]: "-10px" }}
-                    ></div>
-                    <Copy>
-                      <h3 className="text-xl font-semibold mb-3 text-foreground">
-                        {step.title}
-                      </h3>
-                    </Copy>
-                    <Copy delay={0.1}>
-                      <p className="text-muted-foreground ">
-                        {step.description}
-                      </p>
-                    </Copy>
-                  </div>
-                </MotionDiv>
-              ))}
-            </MotionDiv>
-          </div>
-        </div>
-      </section>
-      {/* Global Reach Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <Copy delay={0.1}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                Serving Healthcare Worldwide
-              </h2>
-            </Copy>
-          </MotionDiv>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {globalLocations.map((location, index) => (
-              <MotionDiv
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="text-center border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card h-[24vh] rounded-2xl overflow-hidden relative">
-                  <div className="absolute inset-0 z-0">
-                    {location.flagUrl ? (
-                      <Image
-                        src={location.flagUrl}
-                        alt={`${location.country} flag`}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <Image
-                        src="/placeholder.svg?height=300&width=400"
-                        alt={`${location.country} background`}
-                        fill
-                        className="object-cover opacity-20"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-br from-card/70 to-card/80"></div>
-                  </div>
-                  <CardContent className="p-6 relative z-10 flex items-center justify-center h-full">
-                    <Copy>
-                      <h3 className="font-bold text-2xl uppercase text-secondary text-center">
-                        {location.country}
-                      </h3>
-                    </Copy>
-                  </CardContent>
-                </Card>
-              </MotionDiv>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* About HealthSigns Section */}
-      <section className="py-20 bg-gradient-to-br from-secondary/5 to-background relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
-        <div className="container mx-auto px-4">
-          <MotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <Copy delay={0.2}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-foreground uppercase tracking-tight">
-                About HealthSigns
-              </h2>
-            </Copy>
-            <Copy delay={0.4}>
-              <p className="text-lg text-muted-foreground mb-6 font-jakarta leading-relaxed">
-                Founded with a vision to revolutionize healthcare through
-                artificial intelligence, HealthSigns is at the forefront of
-                medical technology innovation. We combine cutting-edge AI
-                algorithms with deep healthcare expertise to create solutions
-                that transform patient care, improve outcomes, and streamline
-                operations across the healthcare ecosystem.
-              </p>
-            </Copy>
-            <Copy delay={0.6}>
-              <p className="text-lg text-muted-foreground font-jakarta leading-relaxed">
-                Our mission is to make healthcare more accessible, efficient,
-                and effective by bridging the gap between advanced technology
-                and compassionate care. We believe that every patient deserves
-                the best possible health outcomes, and our platform is designed
-                to empower healthcare providers with the tools they need to
-                deliver exceptional care.
-              </p>
-            </Copy>
-          </MotionDiv>
-        </div>
-      </section>
       {/* What We Do Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -1011,6 +792,63 @@ export default function AboutPage() {
                 </Card>
               </MotionDiv>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Who We Serve Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+            {/* Left Side: Title */}
+            <div className="flex items-center ">
+              <Copy>
+                <h2 className="text-secondary/30 uppercase text-4xl xl:text-6xl font-extrabold tracking-tight leading-tight">
+                  WHO DO WE SERVE?
+                </h2>
+                <p className="mt-4 lg:mt-12  ">
+                  <span className="text-muted-foreground text-xl xl:text-2xl font-jakarta l">
+                    We empower healthcare providers with AI-driven <br />{" "}
+                    solutions to enhance care, streamline operations, and
+                    improve outcomes across hospitals, labs, clinics, and
+                    homecare. Our platform connects data, enables collaboration,
+                    supports clinical decisions, and delivers actionable
+                    insights for every step of the healthcare journey.
+                  </span>
+                </p>
+              </Copy>
+            </div>
+
+            {/* Right Side: AnimatedBeam Component */}
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainer}
+              className="relative h-[600px] xl:h-[700px] flex items-center justify-center"
+            >
+              <WhoWeServeBeam />
+            </MotionDiv>
+          </div>
+
+          {/* Mobile Layout: Column */}
+          <div className="block lg:hidden">
+            <div className="text-center mb-12">
+              <Copy>
+                <h2 className="text-secondary/30 uppercase text-4xl md:text-5xl font-extrabold tracking-tight">
+                  WHO DO WE SERVE ?
+                </h2>
+              </Copy>
+            </div>
+
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainer}
+              className="relative h-[500px] md:h-[600px] flex items-center justify-center"
+            >
+              <WhoWeServeBeam />
+            </MotionDiv>
           </div>
         </div>
       </section>
@@ -1113,12 +951,15 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="max-w-5xl mx-auto mb-16"
           >
             <Copy delay={0.2}>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
-                Leadership Team
-              </h2>
+              <div className="flex flex-row items-center justify-between gap-4 text-left">
+                <h2 className="text-3xl md:text-5xl font-extrabold text-foreground uppercase tracking-tight ">
+                  Leadership Team
+                </h2>
+                <div className="bg-red-500 w-32 h-20"></div>
+              </div>
             </Copy>
           </MotionDiv>
 
@@ -1224,10 +1065,7 @@ export default function AboutPage() {
                             className="object-contain"
                           />
                         </div>
-                        <div className="flex-1 text-center md:text-left">
-                          <h3 className="text-xl font-semibold mb-2 text-foreground">
-                            {partner.name}
-                          </h3>
+                        <div className="flex-1 text-center mt-4 md:text-left">
                           <p className="text-muted-foreground font-jakarta leading-relaxed">
                             {partner.region}
                           </p>
