@@ -459,7 +459,7 @@ export default function AboutPage() {
                 empowering providers to deliver exceptional results.
               </p>
             </Copy>{" "}
-            <Copy delay={0.2} animateOnScroll={false}>
+            <Copy delay={0.1} animateOnScroll={false}>
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
                 {" "}
                 <Dialog onOpenChange={(open) => !open && resetVideoState()}>
@@ -722,7 +722,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 What We Do
               </h2>
@@ -863,7 +863,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 What Makes Us Different
               </h2>
@@ -953,7 +953,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="max-w-5xl mx-auto mb-16"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <div className="flex flex-row items-center justify-between gap-4 text-left">
                 <h2 className="text-3xl md:text-5xl font-extrabold text-foreground uppercase tracking-tight ">
                   Leadership Team
@@ -1032,7 +1032,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 Our Strategic Partners
               </h2>
@@ -1089,7 +1089,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 Our Impact
               </h2>
@@ -1159,7 +1159,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
                 In The Media
               </h2>
@@ -1232,12 +1232,12 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-foreground uppercase tracking-tight">
                 Join Our Mission
               </h2>
             </Copy>
-            <Copy delay={0.4}>
+            <Copy delay={0.2}>
               <p className="text-lg text-muted-foreground mb-8 font-jakarta leading-relaxed">
                 Be part of a team that's transforming healthcare through
                 innovation. At HealthSigns, you'll work alongside brilliant
@@ -1293,7 +1293,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <Copy delay={0.6}>
+            <Copy delay={0.1}>
               <div className="flex justify-center">
                 <Link href="/career">
                   <InteractiveHoverButton>
@@ -1329,7 +1329,7 @@ export default function AboutPage() {
                 Join Us in Transforming Healthcare
               </h2>
             </Copy>
-            <Copy delay={0.2}>
+            <Copy delay={0.1}>
               <p className="text-xl mb-8 opacity-90 font-jakarta">
                 {" "}
                 {/* Added font-jakarta */}
@@ -1338,7 +1338,7 @@ export default function AboutPage() {
                 care for patients around the world.
               </p>
             </Copy>
-            <Copy delay={0.4}>
+            <Copy delay={0.1}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
                   <InteractiveHoverButton>Book a Call</InteractiveHoverButton>
