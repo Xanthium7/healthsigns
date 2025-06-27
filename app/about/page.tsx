@@ -834,7 +834,639 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      {/* CTA Section */}
+      {/* Global Reach Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.1}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                Serving Healthcare Worldwide
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {globalLocations.map((location, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="text-center border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-card h-[24vh] rounded-2xl overflow-hidden relative">
+                  <div className="absolute inset-0 z-0">
+                    {location.flagUrl ? (
+                      <Image
+                        src={location.flagUrl}
+                        alt={`${location.country} flag`}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <Image
+                        src="/placeholder.svg?height=300&width=400"
+                        alt={`${location.country} background`}
+                        fill
+                        className="object-cover opacity-20"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-br from-card/70 to-card/80"></div>
+                  </div>
+                  <CardContent className="p-6 relative z-10 flex items-center justify-center h-full">
+                    <Copy>
+                      <h3 className="font-bold text-2xl uppercase text-secondary text-center">
+                        {location.country}
+                      </h3>
+                    </Copy>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* About HealthSigns Section */}
+      <section className="py-20 bg-gradient-to-br from-secondary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-foreground uppercase tracking-tight">
+                About HealthSigns
+              </h2>
+            </Copy>
+            <Copy delay={0.4}>
+              <p className="text-lg text-muted-foreground mb-6 font-jakarta leading-relaxed">
+                Founded with a vision to revolutionize healthcare through
+                artificial intelligence, HealthSigns is at the forefront of
+                medical technology innovation. We combine cutting-edge AI
+                algorithms with deep healthcare expertise to create solutions
+                that transform patient care, improve outcomes, and streamline
+                operations across the healthcare ecosystem.
+              </p>
+            </Copy>
+            <Copy delay={0.6}>
+              <p className="text-lg text-muted-foreground font-jakarta leading-relaxed">
+                Our mission is to make healthcare more accessible, efficient,
+                and effective by bridging the gap between advanced technology
+                and compassionate care. We believe that every patient deserves
+                the best possible health outcomes, and our platform is designed
+                to empower healthcare providers with the tools they need to
+                deliver exceptional care.
+              </p>
+            </Copy>
+          </MotionDiv>
+        </div>
+      </section>
+      {/* What We Do Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                What We Do
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Brain className="w-12 h-12 text-primary" />,
+                title: "AI-Powered Diagnostics",
+                description:
+                  "Advanced machine learning algorithms that analyze medical data to provide accurate, fast, and reliable diagnostic insights.",
+              },
+              {
+                icon: <Activity className="w-12 h-12 text-primary" />,
+                title: "Remote Patient Monitoring",
+                description:
+                  "Continuous health tracking through connected devices, enabling proactive care and early intervention.",
+              },
+              {
+                icon: <FileText className="w-12 h-12 text-primary" />,
+                title: "Health Records Integration",
+                description:
+                  "Seamless integration of health data from multiple sources into a unified, secure platform.",
+              },
+              {
+                icon: <TrendingUp className="w-12 h-12 text-primary" />,
+                title: "Predictive Analytics",
+                description:
+                  "Data-driven insights that predict health trends and identify potential risk factors before they become critical.",
+              },
+              {
+                icon: <MessageSquare className="w-12 h-12 text-primary" />,
+                title: "Clinical Decision Support",
+                description:
+                  "Evidence-based recommendations that assist healthcare providers in making informed treatment decisions.",
+              },
+              {
+                icon: <Calendar className="w-12 h-12 text-primary" />,
+                title: "Care Coordination",
+                description:
+                  "Streamlined communication and workflow management across healthcare teams and facilities.",
+              },
+            ].map((service, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 p-6">
+                  <CardContent className="p-0 text-center">
+                    <Copy>
+                      <div className="mb-4 flex justify-center">
+                        {service.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3 text-foreground">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground font-jakarta leading-relaxed">
+                        {service.description}
+                      </p>
+                    </Copy>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* What Makes Us Different Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                What Makes Us Different
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <MotionDiv
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Copy>
+                <div className="space-y-6">
+                  {[
+                    {
+                      icon: <Shield className="w-8 h-8 text-primary" />,
+                      title: "Privacy-First Approach",
+                      description:
+                        "HIPAA-compliant security with end-to-end encryption ensuring patient data protection.",
+                    },
+                    {
+                      icon: <Zap className="w-8 h-8 text-primary" />,
+                      title: "Real-Time Processing",
+                      description:
+                        "Instant analysis and alerts that enable immediate response to critical health changes.",
+                    },
+                    {
+                      icon: <Globe className="w-8 h-8 text-primary" />,
+                      title: "Global Scalability",
+                      description:
+                        "Cloud-native architecture that scales seamlessly across different healthcare systems worldwide.",
+                    },
+                    {
+                      icon: <Heart className="w-8 h-8 text-primary" />,
+                      title: "Human-Centered Design",
+                      description:
+                        "Technology that enhances, not replaces, the human connection in healthcare delivery.",
+                    },
+                  ].map((differentiator, index) => (
+                    <div key={index} className="flex gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        {differentiator.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2 text-foreground">
+                          {differentiator.title}
+                        </h3>
+                        <p className="text-muted-foreground font-jakarta">
+                          {differentiator.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Copy>
+            </MotionDiv>
+
+            <MotionDiv
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/ai_insight.png"
+                  alt="HealthSigns AI Technology"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+              </div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>
+      {/* Leadership Team Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                Leadership Team
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Dr. Sarah Chen",
+                role: "Chief Executive Officer",
+                image: "/placeholder-user.jpg",
+                bio: "Former VP of Digital Health at Johns Hopkins, leading healthcare innovation for over 15 years.",
+              },
+              {
+                name: "Michael Rodriguez",
+                role: "Chief Technology Officer",
+                image: "/placeholder-user.jpg",
+                bio: "Ex-Google AI researcher with 12+ years experience in machine learning and healthcare applications.",
+              },
+              {
+                name: "Dr. Priya Patel",
+                role: "Chief Medical Officer",
+                image: "/placeholder-user.jpg",
+                bio: "Board-certified physician and healthcare informatics expert with extensive clinical experience.",
+              },
+            ].map((leader, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center">
+                  <CardContent className="p-0">
+                    <Copy>
+                      <div className="mb-4">
+                        <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-primary/20">
+                          <Image
+                            src={leader.image}
+                            alt={leader.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-foreground">
+                        {leader.name}
+                      </h3>
+                      <p className="text-primary font-medium mb-3">
+                        {leader.role}
+                      </p>
+                      <p className="text-muted-foreground font-jakarta text-sm leading-relaxed">
+                        {leader.bio}
+                      </p>
+                    </Copy>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Our Partners Section */}
+      <section className="py-20 bg-gradient-to-br from-secondary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                Our Strategic Partners
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {partners.map((partner, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 p-8">
+                  <CardContent className="p-0">
+                    <Copy>
+                      <div className="flex flex-col md:flex-row items-center gap-6">
+                        <div className="flex-shrink-0 w-24 h-16 bg-background rounded-xl flex items-center justify-center border border-primary/20 overflow-hidden">
+                          <Image
+                            src={
+                              partner.name === "Appisoft"
+                                ? "/appisoft.png"
+                                : "/ticsocial.png"
+                            }
+                            alt={`${partner.name} logo`}
+                            width={80}
+                            height={60}
+                            className="object-contain"
+                          />
+                        </div>
+                        <div className="flex-1 text-center md:text-left">
+                          <h3 className="text-xl font-semibold mb-2 text-foreground">
+                            {partner.name}
+                          </h3>
+                          <p className="text-muted-foreground font-jakarta leading-relaxed">
+                            {partner.region}
+                          </p>
+                        </div>
+                      </div>
+                    </Copy>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Our Impact Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                Our Impact
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: <Users className="w-8 h-8 text-primary" />,
+                number: "10,000+",
+                label: "Patients Monitored",
+              },
+              {
+                icon: <Building2 className="w-8 h-8 text-primary" />,
+                number: "50+",
+                label: "Healthcare Facilities",
+              },
+              {
+                icon: <Globe className="w-8 h-8 text-primary" />,
+                number: "15",
+                label: "Countries Served",
+              },
+              {
+                icon: <TrendingUp className="w-8 h-8 text-primary" />,
+                number: "98%",
+                label: "Accuracy Rate",
+              },
+            ].map((stat, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center">
+                  <CardContent className="p-0">
+                    <Copy>
+                      <div className="mb-4 flex justify-center">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                          {stat.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-3xl font-bold mb-2 text-primary">
+                        {stat.number}
+                      </h3>
+                      <p className="text-muted-foreground font-jakarta">
+                        {stat.label}
+                      </p>
+                    </Copy>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Media Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-background relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-dotted-pattern bg-[length:20px_20px] opacity-[0.1] pointer-events-none"></div>
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-foreground uppercase tracking-tight">
+                In The Media
+              </h2>
+            </Copy>
+          </MotionDiv>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "HealthSigns Revolutionizes Remote Patient Care",
+                publication: "Healthcare Tech Magazine",
+                date: "March 2024",
+                description:
+                  "How AI-powered monitoring is changing the landscape of healthcare delivery.",
+              },
+              {
+                title: "The Future of Medical AI",
+                publication: "Medical Innovation Today",
+                date: "February 2024",
+                description:
+                  "Industry experts discuss the potential of artificial intelligence in healthcare.",
+              },
+              {
+                title: "Breakthrough in Predictive Healthcare",
+                publication: "Digital Health News",
+                date: "January 2024",
+                description:
+                  "HealthSigns platform achieves 98% accuracy in early disease detection.",
+              },
+            ].map((article, index) => (
+              <MotionDiv
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 p-6">
+                  <CardContent className="p-0">
+                    <Copy>
+                      <div className="mb-4">
+                        <span className="text-sm text-primary font-medium">
+                          {article.publication}
+                        </span>
+                        <span className="text-sm text-muted-foreground ml-2">
+                          • {article.date}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-3 text-foreground">
+                        {article.title}
+                      </h3>
+                      <p className="text-muted-foreground font-jakarta text-sm leading-relaxed">
+                        {article.description}
+                      </p>
+                    </Copy>
+                  </CardContent>
+                </Card>
+              </MotionDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Careers Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <MotionDiv
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <Copy delay={0.2}>
+              <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-foreground uppercase tracking-tight">
+                Join Our Mission
+              </h2>
+            </Copy>
+            <Copy delay={0.4}>
+              <p className="text-lg text-muted-foreground mb-8 font-jakarta leading-relaxed">
+                Be part of a team that's transforming healthcare through
+                innovation. At HealthSigns, you'll work alongside brilliant
+                minds, tackle meaningful challenges, and make a real impact on
+                global health outcomes.
+              </p>
+            </Copy>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {[
+                {
+                  icon: <Sparkles className="w-8 h-8 text-primary" />,
+                  title: "Innovation First",
+                  description:
+                    "Work with cutting-edge AI technology and pioneer the future of healthcare.",
+                },
+                {
+                  icon: <Users className="w-8 h-8 text-primary" />,
+                  title: "Collaborative Culture",
+                  description:
+                    "Join a diverse, inclusive team where every voice matters and ideas flourish.",
+                },
+                {
+                  icon: <TrendingUp className="w-8 h-8 text-primary" />,
+                  title: "Growth Opportunities",
+                  description:
+                    "Advance your career with continuous learning and professional development.",
+                },
+              ].map((benefit, index) => (
+                <MotionDiv
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Copy>
+                    <div className="text-center">
+                      <div className="mb-4 flex justify-center">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                          {benefit.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3 text-foreground">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-muted-foreground font-jakarta">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </Copy>
+                </MotionDiv>
+              ))}
+            </div>
+
+            <Copy delay={0.6}>
+              <div className="flex justify-center">
+                <Link href="/career">
+                  <InteractiveHoverButton>
+                    Explore Career Opportunities
+                  </InteractiveHoverButton>
+                </Link>
+              </div>
+            </Copy>
+          </MotionDiv>
+        </div>
+      </section>
       <section className="py-20 bg-[#3d2323] text-primary-foreground relative overflow-hidden">
         {/* Aurora as background */}
         <div className="absolute inset-0 z-10 pointer-events-none">
