@@ -930,14 +930,13 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative h-[25rem] rounded-2xl overflow-hidden">
                 <Image
-                  src="/ai_insight.png"
+                  src="/diff.png"
                   alt="HealthSigns AI Technology"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
               </div>
             </MotionDiv>
           </div>
@@ -968,19 +967,22 @@ export default function AboutPage() {
               {
                 name: "Dr. Sarah Chen",
                 role: "Chief Executive Officer",
-                image: "/placeholder-user.jpg",
+                image:
+                  "https://cdn.pixabay.com/photo/2021/03/26/08/34/woman-6125218_640.jpg",
                 bio: "Former VP of Digital Health at Johns Hopkins, leading healthcare innovation for over 15 years.",
               },
               {
                 name: "Michael Rodriguez",
                 role: "Chief Technology Officer",
-                image: "/placeholder-user.jpg",
+                image:
+                  "https://cdn.pixabay.com/photo/2021/03/26/08/34/woman-6125218_640.jpg",
                 bio: "Ex-Google AI researcher with 12+ years experience in machine learning and healthcare applications.",
               },
               {
                 name: "Dr. Priya Patel",
                 role: "Chief Medical Officer",
-                image: "/placeholder-user.jpg",
+                image:
+                  "https://cdn.pixabay.com/photo/2021/03/26/08/34/woman-6125218_640.jpg",
                 bio: "Board-certified physician and healthcare informatics expert with extensive clinical experience.",
               },
             ].map((leader, index) => (
