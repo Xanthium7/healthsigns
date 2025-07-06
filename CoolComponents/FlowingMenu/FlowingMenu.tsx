@@ -123,7 +123,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       ref={itemRef}
     >
       <div
-        className="flex items-center justify-center h-full relative  uppercase no-underline font-semibold text-foreground text-xl sm:text-2xl md:text-3xl lg:text-4xl hover:text-transparent focus:text-transparent focus-visible:text-transparent transition-colors duration-300 p-2 sm:p-0"
+        className="flex items-center justify-center h-full relative  uppercase no-underline font-semibold text-foreground text-xl sm:text-xl md:text-2xl lg:text-3xl hover:text-transparent focus:text-transparent focus-visible:text-transparent transition-colors duration-300 p-2 sm:p-0"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

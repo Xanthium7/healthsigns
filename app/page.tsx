@@ -43,25 +43,27 @@ const MotionDiv = motion.div;
 const whyPartnerItems = [
   {
     icon: <Users className="h-10 w-10 text-primary" />, // Kept for potential future use or if FlowingMenu is adapted
-    title: "Empower Your Patients",
-    description: "Transform patients into active health partners.",
+    title: "Better Health Outcomes for Patients",
+    description:
+      "Improved care quality and patient satisfaction through connected healthcare.",
   },
   {
     icon: <Activity className="h-10 w-10 text-primary" />,
-    title: "Stay Ahead of Health Risks",
-    description: "Early detection through continuous monitoring.",
+    title: "Connected Technologies That Provide Real Medical Intelligence",
+    description:
+      "Advanced AI-driven insights that transform healthcare delivery.",
   },
 
   {
     icon: <DollarSign className="h-10 w-10 text-primary" />,
-    title: "Smart Savings, Smarter Care",
-    description: "Reduce costs while delivering premium care.",
+    title: "Lowered Load on Clinicians and Medical Teams",
+    description: "Streamlined workflows that reduce administrative burden.",
   },
 
   {
     icon: <Database className="h-10 w-10 text-primary" />,
-    title: "Unlock Actionable Intelligence",
-    description: "Turn health data into powerful insights.",
+    title: "Tailored Care Plans for People Around the World",
+    description: "Personalized healthcare solutions that scale globally.",
   },
 ];
 
