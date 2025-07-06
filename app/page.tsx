@@ -227,15 +227,15 @@ export default function Home() {
               </div>
               <Copy delay={0.5} animateOnScroll={false}>
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 font-jakarta">
-                  Your health data lives in many places - doctor's notes, lab
-                  reports, prescriptions, apps. When it's not connected, care
-                  becomes confusing and fragmented.{" "}
-                  <strong> HealthSigns brings it all together.</strong>
+                  Your health data is often fragmented - lying in doctors notes,
+                  lab reports prescriptions and apps. It needs connection for
+                  you to receive the best care
+                  <strong> HealthSigns bridges the gaps.</strong>
                 </p>
               </Copy>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href={"/contact"}>
-                  <InteractiveHoverButton>SET UP A CALL</InteractiveHoverButton>
+                  <InteractiveHoverButton>Book Demo</InteractiveHoverButton>
                 </Link>
               </div>
             </MotionDiv>
@@ -309,21 +309,18 @@ export default function Home() {
             {" "}
             <Copy delay={0.2}>
               <p className="text-muted-foreground font-jakarta mx-4 text-lg md:text-xl lg:text-2xl   text-center lg:text-left lg:mr-auto">
-                We <span className="font-bold">bring together records</span>{" "}
-                from clinics, labs, hospitals, and home care to create a{" "}
-                <span className="font-bold">holistic view</span> of a patient's
-                health. Using <span className="font-bold">AI</span>, we{" "}
-                <span className="font-bold">identify risks early</span>,
-                generate <span className="font-bold">tailored care plans</span>,
-                and support doctors with{" "}
-                <span className="font-bold">real-time insights</span>—making
-                healthcare smarter and more effective. Patients get{" "}
-                <span className="font-bold">report explanations</span> in simple
-                language, <span className="font-bold">test reminders</span>, and
-                direct access to providers. Healthcare professionals benefit
-                from <span className="font-bold">automated workflows</span>,{" "}
-                <span className="font-bold">dynamic risk tracking</span>, and{" "}
-                <span className="font-bold">seamless coordination</span>.
+                <strong>Better health outcomes</strong> are possible when{" "}
+                <strong>risk is identified early</strong>, and effective
+                treatments prescribed on time. What we noticed around the world
+                - was that{" "}
+                <strong>health outcomes had not improved significantly</strong>{" "}
+                even with these advancements. Prescriptions, lab reports,
+                fitness and wellness apps, doctor's notes and even medical
+                records were <strong>disconnected</strong>. By{" "}
+                <strong>bridging the gap</strong> - we could improve the odds.
+                By providing <strong>medical intelligence</strong> - we could
+                enhance people's lives. Through
+                <strong>connection</strong> - we could make a difference.
               </p>
             </Copy>
             <Image
