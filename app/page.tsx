@@ -414,14 +414,13 @@ export default function Home() {
             <MotionDiv variants={fadeInUp}>
               <Copy delay={0.1}>
                 <h2 className="text-3xl md:text-5xl font-medium mb-4 text-foreground">
-                  Flexible Plans for Every Need
+                  One Plan. Built Around You.
                 </h2>
               </Copy>
               <Copy delay={0.2}>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-jakarta">
-                  Our plans are designed to align with your organization's goals
-                  and scale, offering both standardized enterprise solutions and
-                  fully customizable options.
+                  No templates. No hidden costs. Just a transparent, customized
+                  plan that aligns with how you deliver care.
                 </p>
               </Copy>
             </MotionDiv>
@@ -434,22 +433,20 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-8">
                 {/* Enterprise Section */}
                 <div>
-                  <h3 className="relative z-10 text-3xl font-semibold mb-2 text-foreground text-center md:text-left">
-                    ENTERPRISE & CUSTOM SOLUTIONS
-                  </h3>
                   <p className="relative z-10 text-muted-foreground mb-6 font-jakarta text-sm text-center md:text-left">
-                    Comprehensive RPM solutions for large-scale healthcare
-                    systems, with options for full customization to meet
-                    specific clinical and operational requirements.
+                    A fully customizable RPM solution designed for your care
+                    delivery model—whether you're scaling across regions or
+                    optimizing a single facility. We tailor every element to
+                    match your clinical, operational, and compliance needs.
                   </p>
                   <ul className="relative z-10 space-y-2 text-muted-foreground font-jakarta text-sm mb-6">
                     {[
                       "Dedicated Clinical Success Manager",
-                      "HIPAA-Compliant Infrastructure",
-                      "Customizable RPM Device Integration",
-                      "Advanced Analytics & Reporting Suite",
-                      "EHR/EMR Integration Support",
-                      "Tailored Patient Onboarding Programs",
+                      "HIPAA-Compliant, Secure Infrastructure",
+                      "Custom RPM Device & Workflow Integration",
+                      "Real-Time Analytics & Outcome Dashboards",
+                      "Seamless EHR/EMR Interoperability",
+                      "Personalized Patient Onboarding & Support",
                     ].map((feature, index) => (
                       <li key={index} className="flex items-center">
                         <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
@@ -464,7 +461,7 @@ export default function Home() {
                       padding="p-2 px-8"
                       className="text-secondary self-center md:self-start"
                     >
-                      <Link href={"/contact"}>Contact Us</Link>
+                      <Link href={"/contact"}>Book Demo</Link>
                     </InteractiveHoverButton>
                   </div>
                 </div>
